@@ -18,7 +18,7 @@ public class AlertController {
     @PostMapping
     public Alert saveAlert(@RequestBody Alert alert){
         Alert newAlert = new Alert(
-                new Timestamp(System.currentTimeMillis()),
+                alert.getTimestamp(),
                 alert.getHostname(),
                 alert.getApplication_id(),
                 alert.getFile(),

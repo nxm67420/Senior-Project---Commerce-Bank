@@ -37,6 +37,20 @@ public class Alert {
         this.change_agent = change_agent;
         this.change_process = change_process;
     }
+
+    public Alert(
+            String hostname,
+            int application_id,
+            String file,
+            String change_agent,
+            String change_process) {
+        this.timestamp = new Timestamp(System.currentTimeMillis());
+        this.hostname = hostname;
+        this.application_id = application_id;
+        this.file = file;
+        this.change_agent = change_agent;
+        this.change_process = change_process;
+    }
     public Alert(){
         this.timestamp = new Timestamp(System.currentTimeMillis());
     }
