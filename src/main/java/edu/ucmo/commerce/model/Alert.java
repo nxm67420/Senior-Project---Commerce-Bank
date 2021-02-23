@@ -1,5 +1,7 @@
 package edu.ucmo.commerce.model;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 
@@ -22,6 +24,8 @@ public class Alert {
     private String change_agent;
     @Column
     private String change_process;
+    @Column
+    private Boolean checked;
 
     public Alert(
             Timestamp timestamp,
@@ -36,6 +40,7 @@ public class Alert {
         this.file = file;
         this.change_agent = change_agent;
         this.change_process = change_process;
+        this.checked = false;
     }
 
     public Alert(
@@ -50,9 +55,9 @@ public class Alert {
         this.file = file;
         this.change_agent = change_agent;
         this.change_process = change_process;
+        this.checked = false;
     }
     public Alert(){
-        this.timestamp = new Timestamp(System.currentTimeMillis());
     }
 
     public int getId() {
@@ -121,6 +126,15 @@ public class Alert {
                 ", file='" + file + '\'' +
                 ", change_agent='" + change_agent + '\'' +
                 ", change_process='" + change_process + '\'' +
+                ", checked='" + checked + '\'' +
                 '}';
+    }
+
+    public Boolean getChecked() {
+        return checked;
+    }
+
+    public void setChecked(Boolean checked) {
+        this.checked = checked;
     }
 }

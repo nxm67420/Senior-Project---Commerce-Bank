@@ -30,7 +30,7 @@ public class AlertController {
 
     @GetMapping
     public List<Alert> listAlerts(){
-        List<Alert> list = new ArrayList();
+        List<Alert> list = new ArrayList<>();
         alertDao.findAll().iterator().forEachRemaining(list::add);
         return list;
     }
