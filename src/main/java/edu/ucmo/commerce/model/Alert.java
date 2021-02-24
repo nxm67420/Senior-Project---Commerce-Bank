@@ -17,7 +17,7 @@ public class Alert {
     @Column
     private String hostname;
     @Column
-    private int application_id;
+    private String application_id;
     @Column
     private String file;
     @Column
@@ -30,7 +30,7 @@ public class Alert {
     public Alert(
             Timestamp timestamp,
             String hostname,
-            int application_id,
+            String application_id,
             String file,
             String change_agent,
             String change_process) {
@@ -45,7 +45,7 @@ public class Alert {
 
     public Alert(
             String hostname,
-            int application_id,
+            String application_id,
             String file,
             String change_agent,
             String change_process) {
@@ -84,11 +84,11 @@ public class Alert {
         this.hostname = hostname;
     }
 
-    public int getApplication_id() {
+    public String getApplication_id() {
         return application_id;
     }
 
-    public void setApplication_id(int application_id) {
+    public void setApplication_id(String application_id) {
         this.application_id = application_id;
     }
 
