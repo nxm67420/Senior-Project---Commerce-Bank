@@ -5,7 +5,7 @@ import edu.ucmo.commerce.model.Alert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.Timestamp;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +25,7 @@ public class AlertController {
                 alert.getChange_agent(),
                 alert.getChange_process()
                 );
+
         return alertDao.save(newAlert);
     }
 

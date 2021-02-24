@@ -1,7 +1,5 @@
 package edu.ucmo.commerce.model;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
-
 import javax.persistence.*;
 import java.sql.Timestamp;
 
