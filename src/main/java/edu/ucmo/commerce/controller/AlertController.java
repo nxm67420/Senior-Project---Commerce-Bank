@@ -25,7 +25,6 @@ public class AlertController {
                 alert.getChange_agent(),
                 alert.getChange_process()
                 );
-
         return alertDao.save(newAlert);
     }
 
