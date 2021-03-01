@@ -30,6 +30,9 @@ public class User {
     @Column(name = "last_name")
     private String lastName;
 
+    @Column(name = "role")
+    private Integer role;
+
     //@Column(name = "active")
     //private Boolean active;
 
@@ -37,35 +40,41 @@ public class User {
     public User(){}
 
     //Filled Constructor
-    public User(String userName, String email, String password, String firstName, String lastName){
+    public User(String userName, String email, String password, String firstName, String lastName, Integer role){
         this.userName = userName;
         this.email = email;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.role = role;
+
     }
 
     //!!!!Double Check this Table Merge
-    @ManyToMany(cascade = CascadeType.MERGE)
-    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles;
+//    @ManyToMany(cascade = CascadeType.MERGE)
+//    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+//    private Set<Role> roles;
 
     public Integer getId() {
         return id;
     }
 
+    //Auto Set User Identification
     public void setId(Integer id) {
         this.id = id;
     }
 
+    //Retrieves username
     public String getUserName() {
         return userName;
     }
 
+    //Set username
     public void setUserName(String userName) {
         this.userName = userName;
     }
 
+    //Get email will be used for 'Alert' system
     public String getEmail() {
         return email;
     }
@@ -98,6 +107,14 @@ public class User {
         this.lastName = lastName;
     }
 
+    public Integer getRole() {
+        return role;
+    }
+
+    public void setRole(Integer role) {
+        this.role = role;
+    }
+
     /*
     public Boolean getActive() {
         return active;
@@ -108,13 +125,13 @@ public class User {
     }
      */
 
-    public Set<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
+//    public Set<Role> getRoles() {
+//        return roles;
+//    }
+//
+//    public void setRoles(Set<Role> roles) {
+//        this.roles = roles;
+//    }
 
     @Override
     public String toString() {
@@ -125,7 +142,7 @@ public class User {
                 ", password ='" + password + '\'' +
                 ", firstName ='" + firstName + '\'' +
                 ", lastName ='" + lastName + '\'' +
-                ", roles =" + roles +
+                ", roles =" + role +
                 '}';
     }
 }
