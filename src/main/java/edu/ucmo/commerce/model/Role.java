@@ -5,6 +5,7 @@ import javax.persistence.*;
 @Entity //Exists in the Database
 @Table(name = "role") //Table in The Database roles
 public class Role {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "role_id")
@@ -17,7 +18,7 @@ public class Role {
     public Role() {
     }
 
-    //Filled Constructor
+    //Create Role Object when User Object is created
     public  Role(String role){
         this.role = role;
     }
@@ -26,6 +27,7 @@ public class Role {
         return id;
     }
 
+    //Set ID accordingly to User ID /*Will Be Foreign Key*/
     public void setId(int id) {
         this.id = id;
     }
@@ -34,6 +36,8 @@ public class Role {
         return role;
     }
 
+    //Sets user role as "Admin" || "User"
+    //This will determine who has permission to access & edit sensitive files
     public void setRole(String role) {
         this.role = role;
     }

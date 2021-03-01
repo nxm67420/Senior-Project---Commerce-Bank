@@ -54,18 +54,22 @@ public class User {
         return id;
     }
 
+    //Auto Set User Identification
     public void setId(Integer id) {
         this.id = id;
     }
 
+    //Retrieves username
     public String getUserName() {
         return userName;
     }
 
+    //Set username
     public void setUserName(String userName) {
         this.userName = userName;
     }
 
+    //Get email will be used for 'Alert' system
     public String getEmail() {
         return email;
     }
