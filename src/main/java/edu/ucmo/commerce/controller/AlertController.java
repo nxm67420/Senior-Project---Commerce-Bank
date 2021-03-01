@@ -3,6 +3,7 @@ package edu.ucmo.commerce.controller;
 import edu.ucmo.commerce.dao.AlertDao;
 import edu.ucmo.commerce.model.Alert;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -25,7 +26,6 @@ public class AlertController {
                 alert.getChange_agent(),
                 alert.getChange_process()
                 );
-
         return alertDao.save(newAlert);
     }
 
