@@ -13,10 +13,9 @@
 </head>
 
 <body>
-
 <div class="container">
 
-    <form th:action="@{/login}" method="POST" class="form-signin">
+    <form th:action="@{/}" method="POST" class="form-signin">
         <h3 class="form-signin-heading" th:text="Welcome"> </h3>
         <br/>
 
@@ -28,6 +27,10 @@
         <div align="center" th:if="${param.error}">
             <p style="font-size: 20px; color: #FF1C19;">User Name or Password invalid, please verify</p>
         </div>
+
+        <!--Based on user login information / page will determine whether to
+        output userPage.html || adminPage.html -->
+
         <button class="btn btn-lg btn-primary btn-block" name="Submit" value="Login" type="Submit"
                 th:text="Login"> </button>
     </form>

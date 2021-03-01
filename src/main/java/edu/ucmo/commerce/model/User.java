@@ -14,11 +14,14 @@ public class User {
     @Column(name = "user_id")
     private Integer id;
 
+    //@NotNull(message = "LastName can not be null!!")
+    //@NotEmpty(message = "LastName can not be empty!!")
     @Column(name = "user_name")
     private String userName;
 
     @Column(name = "email")
     private String email;
+
 
     @Column(name = "password")
     @JsonIgnore
@@ -132,6 +135,7 @@ public class User {
 //    public void setRoles(Set<Role> roles) {
 //        this.roles = roles;
 //    }
+
 
     @Override
     public String toString() {
