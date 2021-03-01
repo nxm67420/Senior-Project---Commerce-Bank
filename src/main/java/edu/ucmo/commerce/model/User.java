@@ -31,7 +31,7 @@ public class User {
     private String lastName;
 
     @Column(name = "role")
-    private Integer role;
+    private String role;
 
     //@Column(name = "active")
     //private Boolean active;
@@ -40,7 +40,7 @@ public class User {
     public User(){}
 
     //Filled Constructor
-    public User(String userName, String email, String password, String firstName, String lastName, Integer role){
+    public User(String userName, String email, String password, String firstName, String lastName, String role){
         this.userName = userName;
         this.email = email;
         this.password = password;
@@ -107,11 +107,11 @@ public class User {
         this.lastName = lastName;
     }
 
-    public Integer getRole() {
+    public String getRole() {
         return role;
     }
 
-    public void setRole(Integer role) {
+    public void setRole(String role) {
         this.role = role;
     }
 

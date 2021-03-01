@@ -5,8 +5,8 @@ INSERT INTO `alert` (`id`, `application_id`, `change_agent`, `change_process`, `
 REPLACE INTO users (user_id, user_name, email, password, first_name, last_name, role)
 VALUES (1,'Itachi186', 'user@acme.com',
         '$2y$10$A50PPo/tm3skv9iguM4UpOJg3ZUulV0XMB3iuGpx7po4k9OcFrREO',
-        'Program', 'User', 1);
+        'Program', 'User', 'USER');
 REPLACE INTO users (user_id, user_name, email, password, first_name, last_name, role)
 VALUES (2, 'BruceLee', 'admin@acme.com',
         '$2y$10$A50PPo/tm3skv9iguM4UpOJg3ZUulV0XMB3iuGpx7po4k9OcFrREO',
-        'Program', 'Admin', 2);
+        'Program', 'Admin', 'ADMIN');
