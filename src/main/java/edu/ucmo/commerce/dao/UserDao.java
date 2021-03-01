@@ -9,5 +9,5 @@ import org.springframework.stereotype.Repository;
 public interface UserDao extends CrudRepository<User, Long> { //<Trying To Access, Type of Primary Key>
     User findByEmail(String email);
     User findByUserName(String userName);
-    User findByRole(String role); //may have to implement
+    User findByRole(int role);
 }
