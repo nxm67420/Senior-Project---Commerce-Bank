@@ -3,9 +3,14 @@
 <head lang="en">
     <meta charset="UTF-8"/>
     <title>ReactJS + Spring</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.0/css/bootstrap.min.css">
 </head>
 <body>
 
+Logged in user: <b th:inline="text">[[${#httpServletRequest.remoteUser}]]</b>
+<form th:action="@{/logout}" method="POST">
+    <input class="btn btn-primary" type="submit" value="Logout"/>
+</form>
 <h1>Welcome to Commerce Project!!!!</h1>
 
 <div id="react"></div>
