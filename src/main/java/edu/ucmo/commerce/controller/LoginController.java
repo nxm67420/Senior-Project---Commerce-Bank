@@ -13,7 +13,6 @@ public class LoginController {
         return "login";
     }
 
-
 //    public String verify(@ModelAttribute){
 //        return "verify";
 //    }
