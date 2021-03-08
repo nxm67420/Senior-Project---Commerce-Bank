@@ -1,3 +1,13 @@
+DROP TABLE IF EXISTS user_application;
+
+DROP TABLE IF EXISTS application_users;
+CREATE TABLE application_users (
+  application_user_id INT    NOT NULL AUTO_INCREMENT,
+  user_id VARCHAR(255) NOT NULL,
+  application_id VARCHAR(320) NOT NULL,
+  PRIMARY KEY (application_user_id)
+);
+
 DROP TABLE IF EXISTS alert;
 CREATE TABLE alert (
   id     INT         NOT NULL AUTO_INCREMENT,

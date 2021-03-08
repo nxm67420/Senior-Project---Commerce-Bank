@@ -3,6 +3,7 @@ package edu.ucmo.commerce.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -53,11 +54,18 @@ public class User {
 
     }
 
-    //!!!!Double Check this Table Merge
-//    @ManyToMany(cascade = CascadeType.MERGE)
-//    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-//    private Set<Role> roles;
+    @ManyToMany(cascade = CascadeType.MERGE)
+    @JoinTable(name = "user_application", joinColumns = @JoinColumn(name = "user_id"), @JoinColumn(name = "application_id"))
+    @Column(name = "applications")
+    private Set<ApplicationUsers> applications;
 
+    public Set<ApplicationUsers> getApplications(){
+        return applications;
+    }
+
+    public void setApplications(Set<ApplicationUsers> applicationUsers){
+        this.applications=applicationUsers;
+    }
     public Integer getId() {
         return id;
     }
