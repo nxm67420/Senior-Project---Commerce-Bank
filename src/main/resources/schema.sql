@@ -24,6 +24,7 @@ CREATE TABLE alert (
                        PRIMARY KEY (id)
 );
 
+<<<<<<< Updated upstream
 DROP Table IF EXISTS application_users;
 CREATE TABLE application_users(
     application_user_id INT NOT NULL AUTO_INCREMENT,
@@ -32,6 +33,23 @@ CREATE TABLE application_users(
     PRIMARY KEY (application_user_id)
 
 );
+=======
+#Create User Object
+DROP TABLE IF EXISTS users;
+CREATE TABLE IF NOT EXISTS users (
+user_id INT    NOT NULL AUTO_INCREMENT,
+user_name VARCHAR(255) NOT NULL,
+email VARCHAR(320) NOT NULL,
+password VARCHAR(255) NOT NULL,
+first_name Varchar(50) NOT NULL,
+last_name  VARCHAR(50) NOT NULL,
+role VARCHAR(255) NOT NULL,
+PRIMARY KEY (user_id)
+);
+
+DROP TABLE  IF EXISTS role;
+
+>>>>>>> Stashed changes
 
 DROP TABLE IF EXISTS hibernate_sequence;
 CREATE TABLE hibernate_sequence(

@@ -50,7 +50,6 @@ public class User {
         this.firstName = firstName;
         this.lastName = lastName;
         this.role = role;
-
     }
 
     //!!!!Double Check this Table Merge
@@ -146,7 +145,7 @@ public class User {
                 ", password ='" + password + '\'' +
                 ", firstName ='" + firstName + '\'' +
                 ", lastName ='" + lastName + '\'' +
-                ", roles =" + role +
+                ", roles =" + role + '\'' +
                 '}';
     }
 }
