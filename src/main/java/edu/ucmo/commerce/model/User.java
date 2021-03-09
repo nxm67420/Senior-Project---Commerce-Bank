@@ -55,8 +55,7 @@ public class User {
     }
 
     @ManyToMany(cascade = CascadeType.MERGE)
-    @JoinTable(name = "user_application", joinColumns = @JoinColumn(name = "user_id"), @JoinColumn(name = "application_id"))
-    @Column(name = "applications")
+    @JoinTable( name="user_application", joinColumns = @JoinColumn(name="user_id"), inverseJoinColumns = @JoinColumn(name="application_id"))
     private Set<ApplicationUsers> applications;
 
     public Set<ApplicationUsers> getApplications(){
