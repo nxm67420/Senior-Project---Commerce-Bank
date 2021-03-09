@@ -17,9 +17,11 @@ import java.util.List;
 @Service
 public class MyUserDetalisService implements UserDetailsService {
 
+    //Created Object to Test Verification Process
     @Autowired
     private UserDao userDao;
 
+    //Method uses 'userDao' to verify login credentials and grants authority over certain task, based on assigned 'role'
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String userName){
@@ -37,6 +39,8 @@ public class MyUserDetalisService implements UserDetailsService {
         }
 
         return new org.springframework.security.core.userdetails.User(user.getUserName(), user.getPassword(), true, true, true, true, authorities);
-    }
+    }//End of Verification Function
+
+
 
 }

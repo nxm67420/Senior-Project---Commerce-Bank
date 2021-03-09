@@ -17,7 +17,7 @@ CREATE TABLE alert (
   file VARCHAR(255) NOT NULL,
   hostname VARCHAR(255) NOT NULL,
   timestamp TIMESTAMP NOT NULL,
-  checked BOOLEAN NOT NULL,
+  checked BOOLEAN NOT NULL DEFAULT 0,
   PRIMARY KEY (id)
 );
 
@@ -32,3 +32,4 @@ CREATE TABLE users (
   role VARCHAR(255) NOT NULL,
   PRIMARY KEY (user_id)
 );
+
