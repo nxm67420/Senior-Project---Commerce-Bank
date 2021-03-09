@@ -12,7 +12,7 @@ public class ApplicationUsers {
     @Column(name = "user_id")
     private int userId;
     @Column(name = "application_id")
-    private int applicationId;
+    private String applicationId;
 
     @Override
     public String toString() {
@@ -39,11 +39,11 @@ public class ApplicationUsers {
         this.userId = userId;
     }
 
-    public int getApplicationId() {
+    public String getApplicationId() {
         return applicationId;
     }
 
-    public void setApplicationId(int applicationId) {
+    public void setApplicationId(String applicationId) {
         this.applicationId = applicationId;
     }
 }
