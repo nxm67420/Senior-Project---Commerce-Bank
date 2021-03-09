@@ -1,7 +1,9 @@
 package edu.ucmo.commerce.controller;
 
 import edu.ucmo.commerce.dao.AlertDao;
+import edu.ucmo.commerce.dao.ApplicationUsersDao;
 import edu.ucmo.commerce.model.Alert;
+import edu.ucmo.commerce.model.ApplicationUsers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,6 +19,9 @@ public class AlertController {
 
     @Autowired
     private AlertDao alertDao;
+
+    @Autowired
+    private ApplicationUsersDao applicationUsersDao;
 
     @PostMapping
     public Alert saveAlert(@RequestBody Alert alert){
@@ -58,21 +63,15 @@ public class AlertController {
         return list;
     }
 
-
-    //Return (Alerts Checked == True)
-    //In Progress
-
-
-    //Return (Alerts.Checked == False && Days Passed > 2)
-    //DaysPassed - Posted Date
-    //In Progress
-    /*@GetMapping("checked/{checked}/days/{days}")
-    public Alert passedDue(Integer checked, Integer days){
+    @GetMapping("/{id}")
+    public List<Alert> getUserAlerts(@PathVariable int id){
         List<Alert> list = new ArrayList<>();
-        alertDao.findByCheckedAndTimestamp(0, 2).iterator().forEachRemaining(list::add);
-        return (Alert)list;
-    }*/
+        List<ApplicationUsers> applications =  new ArrayList<>();
+        applicationUsersDao.findByUserId(id).iterator().forEachRemaining(applications::add);
+        for (ApplicationUsers application : applications) {
+            alertDao.findAlertByApplicationId(String.valueOf(application.getApplicationId())).iterator().forEachRemaining(list::add);
+        }
+        return list;
+    }
 
-    //Save Altered Process
-    //Admin Name, Timestamp, Comments
 }
