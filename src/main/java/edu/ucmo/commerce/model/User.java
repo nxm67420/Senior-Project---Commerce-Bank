@@ -54,17 +54,6 @@ public class User {
 
     }
 
-    @ManyToMany(cascade = CascadeType.MERGE)
-    @JoinTable( name="user_application", joinColumns = @JoinColumn(name="user_id"), inverseJoinColumns = @JoinColumn(name="application_id"))
-    private Set<ApplicationUsers> applications;
-
-    public Set<ApplicationUsers> getApplications(){
-        return applications;
-    }
-
-    public void setApplications(Set<ApplicationUsers> applicationUsers){
-        this.applications=applicationUsers;
-    }
     public Integer getId() {
         return id;
     }
