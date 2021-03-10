@@ -1,4 +1,4 @@
-INSERT INTO `alert` (`id`, `application_id`, `change_agent`, `change_process`, `file`, `hostname`, `timestamp`, `checked`) VALUES (NULL, 500, 'hunter', 'update', 'README', 'localhost', current_timestamp(), 0);
+INSERT INTO `alert` (`id`, `application_id`, `change_agent`, `change_process`, `file`, `hostname`, `timestamp`, `checked`) VALUES (NULL, 500, 'hunter', 'update', 'README', 'localhost', current_timestamp(), 1);
 INSERT INTO `alert` (`id`, `application_id`, `change_agent`, `change_process`, `file`, `hostname`, `timestamp`, `checked`) VALUES (NULL, 255, 'amanda', 'modification', 'React', 'localhost', current_timestamp(), 0);
 INSERT INTO `alert` (`id`, `application_id`, `change_agent`, `change_process`, `file`, `hostname`, `timestamp`, `checked`) VALUES (NULL, 525, 'william', 'modification', 'Java', 'localhost', current_timestamp(), 0);
 INSERT INTO `alert` (`id`, `application_id`, `change_agent`, `change_process`, `file`, `hostname`, `timestamp`, `checked`) VALUES (NULL, 'xyz', 'test\\fmundt1022', 'C:\\Windows\\System32\\notepad.exe', 'C:\\Windows\\System32\\drivers\\etc\\hosts', 'ltaxyz345101010.test.testing.com', TIMESTAMP '2021-02-21 19:20:30.45', 0);

@@ -1,7 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import ReactDOM from 'react-dom';
 import axios from "axios";
 import Table from 'react-bootstrap/Table';
+import ToggleButton from 'react-bootstrap/ToggleButton'
+import ButtonGroup from "react-bootstrap/ButtonGroup";
+
 
 
 
@@ -11,7 +14,7 @@ class UserList extends React.Component {
         super(props);
         this.state = {
             alerts: []
-        }
+        };
     }
     async getData() {
         const response =
@@ -39,6 +42,11 @@ class UserList extends React.Component {
                 <Table striped bordered hover>
                     <thead>
                     <tr>
+                        <th colSpan="6">
+                            Not Checked
+                        </th>
+                    </tr>
+                    <tr>
                         <th>File</th>
                         <th>Hostname</th>
                         <th>Application ID</th>
@@ -49,7 +57,42 @@ class UserList extends React.Component {
                     </thead>
                     <tbody>
                     {
-                        this.state.alerts.map(
+                        this.state.alerts.filter(alert => alert.checked === false)
+                            .filter(alert => Date.now() - Date.parse(alert.timestamp) > 172800000)
+                            .sort((a, b) => a.timestamp < b.timestamp ? 1 : -1)
+                            .map(
+                            alert =>
+                                <tr key={alert.id}>
+                                    <td>{alert.file}</td>
+                                    <td>{alert.hostname}</td>
+                                    <td>{alert.application_id}</td>
+                                    <td>{alert.change_agent}</td>
+                                    <td>{alert.change_process}</td>
+                                    <td>{alert.timestamp}</td>
+                                </tr> )
+                    }
+                    </tbody>
+                </Table>
+
+                <Table striped bordered hover>
+                    <thead>
+                    <tr>
+                        <th colSpan="6">
+                            Checked
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>File</th>
+                        <th>Hostname</th>
+                        <th>Application ID</th>
+                        <th>Change Agent</th>
+                        <th>Change Process</th>
+                        <th>Timestamp</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {
+                        this.state.alerts.filter(alert => alert.checked === true).sort((a, b) => a.timestamp < b.timestamp ? 1 : -1).map(
                             alert =>
                                 <tr key={alert.id}>
                                     <td>{alert.file}</td>
