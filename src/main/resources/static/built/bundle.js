@@ -32834,6 +32834,8 @@ var UserList = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
     _this.state = {
       alerts: [],
+      filteredAlerts: [],
+      currentAlerts: [],
       checked: false
     };
     return _this;
@@ -32890,9 +32892,14 @@ var UserList = /*#__PURE__*/function (_React$Component) {
 
       this.getData().then(function (res) {
         var alerts = res.data;
+        var filterAlerts = res.data.filter(function (alert) {
+          return Date.now() - Date.parse(alert.timestamp) > 172800000;
+        });
 
         _this2.setState({
-          alerts: alerts
+          alerts: alerts,
+          filteredAlerts: filterAlerts,
+          currentAlerts: alerts
         });
       });
     } //Changes the checked state when button is clicked, as well as filters table
@@ -32900,31 +32907,15 @@ var UserList = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "setChecked",
     value: function setChecked() {
-      var _this3 = this;
-
       if (this.state.checked === true) {
         this.setState({
-          checked: false
-        });
-        this.getData().then(function (res) {
-          var alerts = res.data;
-
-          _this3.setState({
-            alerts: alerts
-          });
+          checked: false,
+          currentAlerts: this.state.alerts
         });
       } else {
         this.setState({
-          checked: true
-        });
-        this.getData().then(function (res) {
-          var alerts = res.data.filter(function (alert) {
-            return Date.now() - Date.parse(alert.timestamp) > 172800000;
-          });
-
-          _this3.setState({
-            alerts: alerts
-          });
+          checked: true,
+          currentAlerts: this.state.filteredAlerts
         });
       }
 
@@ -32942,13 +32933,13 @@ var UserList = /*#__PURE__*/function (_React$Component) {
         checked: this.state.checked,
         value: "1",
         onChange: this.setChecked.bind(this)
-      }, "Checked")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Table__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      }, "Two Days")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Table__WEBPACK_IMPORTED_MODULE_3__["default"], {
         striped: true,
         bordered: true,
         hover: true
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
         colSpan: "6"
-      }, "Not Checked")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "File"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Hostname"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Application ID"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Change Agent"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Change Process"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Timestamp"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, this.state.alerts.filter(function (alert) {
+      }, "Not Checked")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "File"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Hostname"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Application ID"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Change Agent"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Change Process"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Timestamp"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, this.state.currentAlerts.filter(function (alert) {
         return alert.checked === false;
       }).sort(function (a, b) {
         return a.timestamp < b.timestamp ? 1 : -1;

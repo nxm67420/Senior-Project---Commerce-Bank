@@ -12,8 +12,14 @@ class UserList extends React.Component {
 
     constructor (props){
         super(props);
+        // three different states
+        // alerts -> all the alerts relevant to user
+        // filteredAlerts -> alerts older than two days, relevant to user
+        //currentAlerts -> current alert list being rendered, will either be alerts or filteredAlerts
         this.state = {
             alerts: [],
+            filteredAlerts: [],
+            currentAlerts: [],
             checked: false
         };
     }
@@ -35,24 +41,28 @@ class UserList extends React.Component {
     componentDidMount() {
             this.getData().then(res => {
                 const alerts = res.data;
-                this.setState({alerts: alerts});
+                const filterAlerts = res.data.filter(alert => Date.now() - Date.parse(alert.timestamp) > 172800000);
+                this.setState({
+                    alerts: alerts,
+                    filteredAlerts: filterAlerts,
+                    currentAlerts: alerts
+                });
             });
     }
 
     //Changes the checked state when button is clicked, as well as filters table
     setChecked(){
         if (this.state.checked === true){
-            this.setState({checked: false});
-            this.getData().then(res => {
-                const alerts = res.data;
-                this.setState({alerts: alerts});
+            this.setState({
+                checked: false,
+                currentAlerts: this.state.alerts
             });
+
         }
         else {
-            this.setState({checked: true});
-            this.getData().then(res => {
-                const alerts = res.data.filter(alert => Date.now() - Date.parse(alert.timestamp) > 172800000);
-                this.setState({alerts: alerts});
+            this.setState({
+                checked: true,
+                currentAlerts: this.state.filteredAlerts
             });
         }
         console.log(this.state.checked)
@@ -69,7 +79,7 @@ class UserList extends React.Component {
                         value="1"
                         onChange={this.setChecked.bind(this)}
                     >
-                        Checked
+                        Two Days
                     </ToggleButton>
                 </ButtonGroup>
                 <Table striped bordered hover>
@@ -90,7 +100,7 @@ class UserList extends React.Component {
                     </thead>
                     <tbody>
                     {
-                        this.state.alerts.filter(alert => alert.checked === false)
+                        this.state.currentAlerts.filter(alert => alert.checked === false)
                             .sort((a, b) => a.timestamp < b.timestamp ? 1 : -1)
                             .map(
                             alert =>
