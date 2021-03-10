@@ -13,9 +13,12 @@ class UserList extends React.Component {
     constructor (props){
         super(props);
         this.state = {
-            alerts: []
+            alerts: [],
+            checked: false
         };
     }
+
+    //Gets the user's alerts
     async getData() {
         const response =
             await axios.get("http://localhost:8080/users/username/request");
@@ -30,15 +33,45 @@ class UserList extends React.Component {
     }
 
     componentDidMount() {
-        this.getData().then(res => {
-            const alerts = res.data;
-            this.setState({ alerts: alerts});
-        });
+            this.getData().then(res => {
+                const alerts = res.data;
+                this.setState({alerts: alerts});
+            });
+    }
+
+    //Changes the checked state when button is clicked, as well as filters table
+    setChecked(){
+        if (this.state.checked === true){
+            this.setState({checked: false});
+            this.getData().then(res => {
+                const alerts = res.data;
+                this.setState({alerts: alerts});
+            });
+        }
+        else {
+            this.setState({checked: true});
+            this.getData().then(res => {
+                const alerts = res.data.filter(alert => Date.now() - Date.parse(alert.timestamp) > 172800000);
+                this.setState({alerts: alerts});
+            });
+        }
+        console.log(this.state.checked)
     }
 
     render() {
         return (
             <div>
+                <ButtonGroup toggle className="mb-2">
+                    <ToggleButton
+                        type="checkbox"
+                        variant="primary"
+                        checked={this.state.checked}
+                        value="1"
+                        onChange={this.setChecked.bind(this)}
+                    >
+                        Checked
+                    </ToggleButton>
+                </ButtonGroup>
                 <Table striped bordered hover>
                     <thead>
                     <tr>
@@ -58,7 +91,6 @@ class UserList extends React.Component {
                     <tbody>
                     {
                         this.state.alerts.filter(alert => alert.checked === false)
-                            .filter(alert => Date.now() - Date.parse(alert.timestamp) > 172800000)
                             .sort((a, b) => a.timestamp < b.timestamp ? 1 : -1)
                             .map(
                             alert =>

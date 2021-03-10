@@ -32833,10 +32833,12 @@ var UserList = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      alerts: []
+      alerts: [],
+      checked: false
     };
     return _this;
-  }
+  } //Gets the user's alerts
+
 
   _createClass(UserList, [{
     key: "getData",
@@ -32893,11 +32895,54 @@ var UserList = /*#__PURE__*/function (_React$Component) {
           alerts: alerts
         });
       });
+    } //Changes the checked state when button is clicked, as well as filters table
+
+  }, {
+    key: "setChecked",
+    value: function setChecked() {
+      var _this3 = this;
+
+      if (this.state.checked === true) {
+        this.setState({
+          checked: false
+        });
+        this.getData().then(function (res) {
+          var alerts = res.data;
+
+          _this3.setState({
+            alerts: alerts
+          });
+        });
+      } else {
+        this.setState({
+          checked: true
+        });
+        this.getData().then(function (res) {
+          var alerts = res.data.filter(function (alert) {
+            return Date.now() - Date.parse(alert.timestamp) > 172800000;
+          });
+
+          _this3.setState({
+            alerts: alerts
+          });
+        });
+      }
+
+      console.log(this.state.checked);
     }
   }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Table__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_ButtonGroup__WEBPACK_IMPORTED_MODULE_5__["default"], {
+        toggle: true,
+        className: "mb-2"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_ToggleButton__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        type: "checkbox",
+        variant: "primary",
+        checked: this.state.checked,
+        value: "1",
+        onChange: this.setChecked.bind(this)
+      }, "Checked")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Table__WEBPACK_IMPORTED_MODULE_3__["default"], {
         striped: true,
         bordered: true,
         hover: true
@@ -32905,8 +32950,6 @@ var UserList = /*#__PURE__*/function (_React$Component) {
         colSpan: "6"
       }, "Not Checked")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "File"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Hostname"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Application ID"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Change Agent"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Change Process"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Timestamp"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, this.state.alerts.filter(function (alert) {
         return alert.checked === false;
-      }).filter(function (alert) {
-        return Date.now() - Date.parse(alert.timestamp) > 172800000;
       }).sort(function (a, b) {
         return a.timestamp < b.timestamp ? 1 : -1;
       }).map(function (alert) {
