@@ -4,7 +4,7 @@ import axios from 'axios';
 
 //Base URL Link to Retrieve Data
 //const CAR_API_BASE_URL = 'http://localhost:8080/alerts';
-const ALERT_API_BASE_URL = 'http://localhost:8080/alerts';
+const ALERT_API_BASE_URL = 'http://localhost:8080/commerce';
 
 const CSRF_TOKEN = document.cookie.match(new RegExp(`XSRF-TOKEN=([^;]+)`))[1];
 const instance = axios.create({
