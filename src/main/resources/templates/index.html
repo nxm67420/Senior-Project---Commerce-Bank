@@ -11,9 +11,12 @@ Logged in user: <b th:inline="text">[[${#httpServletRequest.remoteUser}]]</b>
 <form th:action="@{/logout}" method="POST">
     <input class="btn btn-primary" type="submit" value="Logout"/>
 </form>
-<h1>Welcome to Commerce Project!!!!</h1>
 
-<div id="react"></div>
+<!--Calls app.js-->
+<div id="react">
+
+
+</div>
 
 <script src="built/bundle.js"></script>
 

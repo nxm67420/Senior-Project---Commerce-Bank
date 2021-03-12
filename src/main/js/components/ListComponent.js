@@ -1,42 +1,51 @@
 //Import API <--> Backened
 import ApiService from "../services/ApiService";
-import axios from 'axios';
-
-//Design
+//Bootstrap
 import Button from 'react-bootstrap/Button';
 import Table from 'react-bootstrap/Table';
-
-//Import Connecting Comopnents, Can Redirect to Their File
-import AddComponent from "./AddComponent";
+//Import Connecting Components, Can Redirect to Their File
+import SortedAlertsComponent from "./SortedAlertsComponent";
 import EditComponent from "./EditComponent";
-
 //Import React
 const React = require('react');
+import React from 'react';
 
-//Component
-class ListComponent extends React.Component {
+//Class Component
+export default class ListComponent extends React.Component {
 
+    //Constructor
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             alerts: [],
-            message: "Listed Alerts"
+            checked: false,
         };
-        this.deleteAlert = this.deleteCar.bind(this);
-        this.editCar = this.editCar.bind(this);
-        this.addCar = this.addCar.bind(this);
-        this.reloadCarList = this.reloadCarList.bind(this);
-        this.addComponent = React.createRef();
-        this.editComponent = React.createRef();
+
     }
 
-    //Retrieves All Alerts
+    //Called After Render() //Retrieves info using API
+    // componentDidMount() {
+    //    // ApiService.fetchAlerts()
+    //     fetch("http://localhost:8080/alerts")
+    //         .then(res => {
+    //             const alerts = res.data.json();
+    //             this.setState({
+    //                 alerts: alerts,
+    //                 checked: true,
+    //             });
+    //         })
+    // }
+
     componentDidMount() {
-        ApiService.fetchAlerts()
-            .then(res => {
-                const alerts = res.data;
-                this.setState({ alerts: alerts });
-            })
+        // ApiService.fetchAlerts()
+        fetch('http://localhost:8080/alerts')
+            .then(res => res.json())
+            .then(json =>{
+                this.setState({
+                    alerts : json,
+                    checked : true,
+                })
+            });
     }
 
 
@@ -45,46 +54,62 @@ class ListComponent extends React.Component {
     //     this.editComponent.current.open();
     // }
 
+    //HTML && Javascript
     render() {
-        return (
-            <div>
-                <h1 className="text-center" style={style}>React Car Application</h1>
-                <h2 className="text-center">Car Details</h2>
-                <Button variant="primary" onClick={() => this.addAlert()}> Create File</Button>
-                {/*<AddComponent reloadCarList={this.reloadCarList} ref={this.addComponent}/>
-                <EditComponent reloadCarList={this.reloadCarList} ref={this.editComponent}/>*/}
-                <Table striped bordered hover>
-                    <thead>
-                    <tr>
-                        <th>Timestamp</th>
-                        <th>Hostname</th>
-                        <th>Application_ID</th>
-                        <th>File_Name</th>
-                        <th>Change Agent</th>
-                        <th>Change Component</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {
-                        this.state.alerts.map( //alert??
-                            car =>
-                                <tr key={alert.id}>
-                                    <td>{alert.id}</td>
-                                    <td>{alert.make}</td>
-                                    <td>{alert.model}</td>
-                                    <td>{alert.year}</td>
-                                    <td>
-                                        <Button variant="dark" onClick={() => this.deleteAlert(alert.id)}> Delete</Button>
-                                        {' '}
-                                        <Button variant="primary" onClick={() => this.editAlert(alert.id)}> Edit</Button>
-                                    </td>
-                                </tr>)
-                    }
-                    </tbody>
-                </Table>
-            </div>
-        )
-    }
-}
+        //Access Constructor Variables
+        const {checked, alerts} = this.state;
 
-export default ListComponent;
+        if (!checked) {
+            return <div>Loading...</div>;
+        }
+        else {
+            return (
+                <div>
+                    <h1 className="text-center" style={{color: aqua}}>React File Management</h1>
+                    <h2 className="text-center">File Details</h2>
+                    <Button variant="primary" onClick={() => this.addAlert()}> Create File</Button>
+                    <AddComponent reloadCarList={this.reloadCarList} ref={this.addComponent}/>
+                    <EditComponent reloadCarList={this.reloadCarList} ref={this.editComponent}/>
+                    <Table striped bordered hover>
+                        <thead>
+                        <tr>
+                            <th>Timestamp</th>
+                            <th>Hostname</th>
+                            <th>Application_ID</th>
+                            <th>File_Name</th>
+                            <th>Change Agent</th>
+                            <th>Change Component</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <ul>
+                            <!--For Each Object in Array-->
+                            {alerts.map(alert =>(
+                                <li key={alert.id}>
+                                    Name : {alert.hostname}
+                                </li>
+                            ))};
+                        </ul>
+                        {/*{*/}
+                        {/*    this.state.alert.map(*/}
+                        {/*        alerts =>*/}
+                        {/*            <tr key={alert.id}>*/}
+                        {/*                <td>{alert.id}</td>*/}
+                        {/*                <td>{alert.name}</td>*/}
+                        {/*                /!*<td>{alert.}</td>*!/*/}
+                        {/*                <td>*/}
+                        {/*                    <Button variant="dark"*/}
+                        {/*                            onClick={() => this.deleteAlert(alert.id)}> Delete</Button>*/}
+                        {/*                    {' '}*/}
+                        {/*                    <Button variant="primary"*/}
+                        {/*                            onClick={() => this.editAlert(alert.id)}> Edit</Button>*/}
+                        {/*                </td>*/}
+                        {/*            </tr>)*/}
+                        {/*}*/}
+                        </tbody>
+                    </Table>
+                </div>
+            );
+        }
+    }
+};

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository //Responsible for getting info TO && FROM the Database //CRUD && Queries on Database
 public interface UserDao extends CrudRepository<User, Long> { //<Trying To Access, Type of Primary Key>
-    User findByEmail(String email);
+    User findByemail(String email);
     User findByUserName(String userName);
     User findByRole(int role);
 }
