@@ -18,6 +18,9 @@ CREATE TABLE alert (
   hostname VARCHAR(255) NOT NULL,
   timestamp TIMESTAMP NOT NULL,
   checked BOOLEAN NOT NULL DEFAULT 0,
+  known BOOLEAN,
+  malicious BOOLEAN,
+  acknowledge_user VARCHAR(255),
   PRIMARY KEY (id)
 );
 

@@ -22,8 +22,10 @@ class UserList extends React.Component {
             alerts: [],
             filteredAlerts: [],
             currentAlerts: [],
-            checked: false
+            checked: false,
+            userId: []
         };
+        this.reloadAlerts = this.reloadAlerts.bind(this);
     }
 
     //Gets the user's alerts
@@ -34,6 +36,7 @@ class UserList extends React.Component {
         const res =
             await axios.get(`http://localhost:8080/users/${response.data}`);
         console.log(res);
+        this.setState({userId: res.data.id});
         const alerts =
             await axios.get(`http://localhost:8080/alerts/${res.data.id}`);
         console.log(alerts);
@@ -50,6 +53,26 @@ class UserList extends React.Component {
                     currentAlerts: alerts
                 });
             });
+    }
+
+    //Reloads alerts when an alert is acknowledged
+    reloadAlerts(alerts){
+        const filterAlerts = alerts.filter(alert => Date.now() - Date.parse(alert.timestamp) > 172800000);
+        if(this.state.checked) {
+            this.setState({
+                alerts: alerts,
+                filteredAlerts: filterAlerts,
+                currentAlerts: filterAlerts
+            });
+        }
+        else{
+            this.setState({
+                alerts: alerts,
+                filteredAlerts: filterAlerts,
+                currentAlerts: alerts
+            });
+        }
+        console.log(alerts);
     }
 
     //Changes the checked state when button is clicked, as well as filters table
@@ -115,7 +138,7 @@ class UserList extends React.Component {
                                     <td>{alert.change_process}</td>
                                     <td>{alert.timestamp}</td>
                                     <td>
-                                        <PopUp/>
+                                        <PopUp user={this.state.userId} id={alert.id} alert={alert} reloadAlerts={this.reloadAlerts} />
                                     </td>
                                 </tr> )
                     }
@@ -136,6 +159,10 @@ class UserList extends React.Component {
                         <th>Change Agent</th>
                         <th>Change Process</th>
                         <th>Timestamp</th>
+                        <th>Known Change</th>
+                        <th>Malicious Change</th>
+                        <th>Acknowledged User</th>
+                        <th>Acknowledged Time</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -149,6 +176,10 @@ class UserList extends React.Component {
                                     <td>{alert.change_agent}</td>
                                     <td>{alert.change_process}</td>
                                     <td>{alert.timestamp}</td>
+                                    <td>{alert.known.toString()}</td>
+                                    <td>{alert.malicious.toString()}</td>
+                                    <td>{alert.acknowledge_user}</td>
+                                    <td>{alert.acknowledge_time}</td>
                                 </tr> )
                     }
                     </tbody>
