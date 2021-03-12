@@ -4,6 +4,8 @@ import axios from "axios";
 import Table from 'react-bootstrap/Table';
 import ToggleButton from 'react-bootstrap/ToggleButton'
 import ButtonGroup from "react-bootstrap/ButtonGroup";
+import Button from 'react-bootstrap/Button';
+import PopUp from './PopUp';
 
 
 
@@ -85,7 +87,7 @@ class UserList extends React.Component {
                 <Table striped bordered hover>
                     <thead>
                     <tr>
-                        <th colSpan="6">
+                        <th colSpan="7">
                             Not Checked
                         </th>
                     </tr>
@@ -96,6 +98,7 @@ class UserList extends React.Component {
                         <th>Change Agent</th>
                         <th>Change Process</th>
                         <th>Timestamp</th>
+                        <th></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -111,6 +114,9 @@ class UserList extends React.Component {
                                     <td>{alert.change_agent}</td>
                                     <td>{alert.change_process}</td>
                                     <td>{alert.timestamp}</td>
+                                    <td>
+                                        <PopUp/>
+                                    </td>
                                 </tr> )
                     }
                     </tbody>
