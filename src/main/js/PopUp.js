@@ -2,22 +2,21 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import axios from "axios";
-import ButtonGroup from "react-bootstrap/ButtonGroup";
-import ToggleButton from "react-bootstrap/ToggleButton";
-import Table from "react-bootstrap/Table";
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown';
 import {useState} from "react";
 import ApiService from './services/ApiService';
-import UserList from "./UserList";
 
 function PopUp(props) {
     const [show, setShow] = useState(false);
 
+    // valueOne -> known
+    // valueTwo -> malicious
     const [valueOne,setValueOne]=useState(null);
     const [valueTwo,setValueTwo]=useState(null);
 
 
+    // Assigns valueOne to a Boolean
     const handleSelectOne=(e)=>{
         // console.log(e);
         if(e==='1'){
@@ -28,6 +27,7 @@ function PopUp(props) {
         }
     };
 
+    // Assigns valueTwo to a Boolean
     const handleSelectTwo=(e)=>{
         // console.log(e);
         if(e==='1'){
@@ -38,13 +38,18 @@ function PopUp(props) {
         }
     };
 
+    //Closes Modal
+    //If there was a selected value, clear it
     const handleClose = () => {
         setValueOne('');
         setValueTwo('');
         setShow(false);
     };
+
+    //Saves update
     const handleSave = ()=>{
         console.log(valueOne);
+        //Create new alert object to send PUT request with
         let alert = {
             id: props.alert.id,
             file: props.alert.file,
@@ -57,17 +62,40 @@ function PopUp(props) {
             malicious: valueTwo
         };
         console.log(alert);
+        //Send PUT request
         axios.put('http://localhost:8080/alerts/' + alert.id, alert)
             .then(() =>
+                    //Fetches updated list of alerts
                     axios.get(`http://localhost:8080/alerts/${props.user}`
             ))
             .then(res => {
+                //Reloads alert list with updated data
                 props.reloadAlerts(res.data);
             });
         setShow(false);
     };
 
     const handleShow = () => setShow(true);
+
+    //Prints the selection
+    const know = () => {
+        if(valueOne===true){
+            return "known";
+        }
+        else if(valueOne===false){
+            return "unknown";
+        }
+    };
+
+    //Prints the selection
+    const malicious = () => {
+        if(valueTwo===true){
+            return "malicious";
+        }
+        else if(valueTwo===false){
+            return "not malicious";
+        }
+    };
 
     return (
         <>
@@ -83,11 +111,12 @@ function PopUp(props) {
                         <Dropdown.Item eventKey="1">Known</Dropdown.Item>
                         <Dropdown.Item eventKey="2">Unknown</Dropdown.Item>
                     </DropdownButton>
-
+                    <b><span>Selected: {know()}</span></b>
                     <DropdownButton id="dropdown-item-button" title="Malicious?" onSelect={handleSelectTwo}>
                         <Dropdown.Item eventKey="1">Malicious</Dropdown.Item>
                         <Dropdown.Item eventKey="2">Not Malicious</Dropdown.Item>
                     </DropdownButton>
+                    <b><span>Selected: {malicious()}</span></b>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>

@@ -42517,13 +42517,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_bootstrap_Modal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap/Modal */ "./node_modules/react-bootstrap/esm/Modal.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var react_bootstrap_ButtonGroup__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap/ButtonGroup */ "./node_modules/react-bootstrap/esm/ButtonGroup.js");
-/* harmony import */ var react_bootstrap_ToggleButton__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap/ToggleButton */ "./node_modules/react-bootstrap/esm/ToggleButton.js");
-/* harmony import */ var react_bootstrap_Table__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap/Table */ "./node_modules/react-bootstrap/esm/Table.js");
-/* harmony import */ var react_bootstrap_DropdownButton__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-bootstrap/DropdownButton */ "./node_modules/react-bootstrap/esm/DropdownButton.js");
-/* harmony import */ var react_bootstrap_Dropdown__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-bootstrap/Dropdown */ "./node_modules/react-bootstrap/esm/Dropdown.js");
-/* harmony import */ var _services_ApiService__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./services/ApiService */ "./src/main/js/services/ApiService.js");
-/* harmony import */ var _UserList__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./UserList */ "./src/main/js/UserList.js");
+/* harmony import */ var react_bootstrap_DropdownButton__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap/DropdownButton */ "./node_modules/react-bootstrap/esm/DropdownButton.js");
+/* harmony import */ var react_bootstrap_Dropdown__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap/Dropdown */ "./node_modules/react-bootstrap/esm/Dropdown.js");
+/* harmony import */ var _services_ApiService__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./services/ApiService */ "./src/main/js/services/ApiService.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -42545,15 +42541,13 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-
-
-
-
 function PopUp(props) {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
       _useState2 = _slicedToArray(_useState, 2),
       show = _useState2[0],
-      setShow = _useState2[1];
+      setShow = _useState2[1]; // valueOne -> known
+  // valueTwo -> malicious
+
 
   var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(null),
       _useState4 = _slicedToArray(_useState3, 2),
@@ -42563,7 +42557,8 @@ function PopUp(props) {
   var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(null),
       _useState6 = _slicedToArray(_useState5, 2),
       valueTwo = _useState6[0],
-      setValueTwo = _useState6[1];
+      setValueTwo = _useState6[1]; // Assigns valueOne to a Boolean
+
 
   var handleSelectOne = function handleSelectOne(e) {
     // console.log(e);
@@ -42572,7 +42567,8 @@ function PopUp(props) {
     } else if (e === '2') {
       setValueOne(false);
     }
-  };
+  }; // Assigns valueTwo to a Boolean
+
 
   var handleSelectTwo = function handleSelectTwo(e) {
     // console.log(e);
@@ -42581,16 +42577,20 @@ function PopUp(props) {
     } else if (e === '2') {
       setValueTwo(false);
     }
-  };
+  }; //Closes Modal
+  //If there was a selected value, clear it
+
 
   var handleClose = function handleClose() {
     setValueOne('');
     setValueTwo('');
     setShow(false);
-  };
+  }; //Saves update
+
 
   var handleSave = function handleSave() {
-    console.log(valueOne);
+    console.log(valueOne); //Create new alert object to send PUT request with
+
     var alert = {
       id: props.alert.id,
       file: props.alert.file,
@@ -42602,10 +42602,14 @@ function PopUp(props) {
       known: valueOne,
       malicious: valueTwo
     };
-    console.log(alert);
+    console.log(alert); //Send PUT request
+
     axios__WEBPACK_IMPORTED_MODULE_3___default.a.put('http://localhost:8080/alerts/' + alert.id, alert).then(function () {
-      return axios__WEBPACK_IMPORTED_MODULE_3___default.a.get("http://localhost:8080/alerts/".concat(props.user));
+      return (//Fetches updated list of alerts
+        axios__WEBPACK_IMPORTED_MODULE_3___default.a.get("http://localhost:8080/alerts/".concat(props.user))
+      );
     }).then(function (res) {
+      //Reloads alert list with updated data
       props.reloadAlerts(res.data);
     });
     setShow(false);
@@ -42613,6 +42617,22 @@ function PopUp(props) {
 
   var handleShow = function handleShow() {
     return setShow(true);
+  };
+
+  var know = function know() {
+    if (valueOne === true) {
+      return "known";
+    } else if (valueOne === false) {
+      return "unknown";
+    }
+  };
+
+  var malicious = function malicious() {
+    if (valueTwo === true) {
+      return "malicious";
+    } else if (valueTwo === false) {
+      return "not malicious";
+    }
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
@@ -42623,23 +42643,23 @@ function PopUp(props) {
     onHide: handleClose
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Modal__WEBPACK_IMPORTED_MODULE_2__["default"].Header, {
     closeButton: true
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Modal__WEBPACK_IMPORTED_MODULE_2__["default"].Title, null, "Acknowledgement")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Modal__WEBPACK_IMPORTED_MODULE_2__["default"].Body, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_DropdownButton__WEBPACK_IMPORTED_MODULE_7__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Modal__WEBPACK_IMPORTED_MODULE_2__["default"].Title, null, "Acknowledgement")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Modal__WEBPACK_IMPORTED_MODULE_2__["default"].Body, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_DropdownButton__WEBPACK_IMPORTED_MODULE_4__["default"], {
     id: "dropdown-item-button",
     title: "Known Change?",
     onSelect: handleSelectOne
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Dropdown__WEBPACK_IMPORTED_MODULE_8__["default"].Item, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Dropdown__WEBPACK_IMPORTED_MODULE_5__["default"].Item, {
     eventKey: "1"
-  }, "Known"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Dropdown__WEBPACK_IMPORTED_MODULE_8__["default"].Item, {
+  }, "Known"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Dropdown__WEBPACK_IMPORTED_MODULE_5__["default"].Item, {
     eventKey: "2"
-  }, "Unknown")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_DropdownButton__WEBPACK_IMPORTED_MODULE_7__["default"], {
+  }, "Unknown")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Selected: ", know())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_DropdownButton__WEBPACK_IMPORTED_MODULE_4__["default"], {
     id: "dropdown-item-button",
     title: "Malicious?",
     onSelect: handleSelectTwo
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Dropdown__WEBPACK_IMPORTED_MODULE_8__["default"].Item, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Dropdown__WEBPACK_IMPORTED_MODULE_5__["default"].Item, {
     eventKey: "1"
-  }, "Malicious"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Dropdown__WEBPACK_IMPORTED_MODULE_8__["default"].Item, {
+  }, "Malicious"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Dropdown__WEBPACK_IMPORTED_MODULE_5__["default"].Item, {
     eventKey: "2"
-  }, "Not Malicious"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Modal__WEBPACK_IMPORTED_MODULE_2__["default"].Footer, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
+  }, "Not Malicious")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Selected: ", malicious()))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Modal__WEBPACK_IMPORTED_MODULE_2__["default"].Footer, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
     variant: "secondary",
     onClick: handleClose
   }, "Close"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
