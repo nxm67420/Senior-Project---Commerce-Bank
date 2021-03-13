@@ -33,7 +33,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/").hasAnyAuthority("USER","ADMIN")
                 .antMatchers("/alerts").hasAnyAuthority("USER","ADMIN")
-                .antMatchers(HttpMethod.POST, "/alerts").hasAnyAuthority("ADMIN")
+//                .antMatchers(HttpMethod.POST, "/alerts").permitAll()
                 .antMatchers(HttpMethod.PUT, "/alerts/**").hasAnyAuthority("USER","ADMIN")
                 .antMatchers("/users").hasAnyAuthority("ADMIN")
                 .and()
@@ -47,9 +47,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID")
                 .permitAll();
-        http
-                .csrf()
-                .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+
+        http.cors().and().csrf().disable();
 
     }
 }

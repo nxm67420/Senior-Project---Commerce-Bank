@@ -5,6 +5,7 @@ import edu.ucmo.commerce.dao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,5 +21,15 @@ public class UserController {
         List<User> list = new ArrayList<>();
         userDao.findAll().iterator().forEachRemaining(list::add);
         return list;
+    }
+
+    @GetMapping("/{userName}")
+    public User getUser(@PathVariable String userName){
+        return userDao.findByUserName(userName);
+    }
+
+    @GetMapping("/username/request")
+    public String currentUsername(Principal principal){
+        return principal.getName();
     }
 }
