@@ -42617,7 +42617,8 @@ function PopUp(props) {
 
   var handleShow = function handleShow() {
     return setShow(true);
-  };
+  }; //Prints the selection
+
 
   var know = function know() {
     if (valueOne === true) {
@@ -42625,7 +42626,8 @@ function PopUp(props) {
     } else if (valueOne === false) {
       return "unknown";
     }
-  };
+  }; //Prints the selection
+
 
   var malicious = function malicious() {
     if (valueTwo === true) {
@@ -42693,6 +42695,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_bootstrap_ButtonGroup__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap/ButtonGroup */ "./node_modules/react-bootstrap/esm/ButtonGroup.js");
 /* harmony import */ var react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap/Button */ "./node_modules/react-bootstrap/esm/Button.js");
 /* harmony import */ var _PopUp__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./PopUp */ "./src/main/js/PopUp.js");
+/* harmony import */ var _services_ApiService__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./services/ApiService */ "./src/main/js/services/ApiService.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -42718,6 +42721,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
 
 
 
@@ -42759,40 +42763,15 @@ var UserList = /*#__PURE__*/function (_React$Component) {
     key: "getData",
     value: function () {
       var _getData = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-        var response, res, alerts;
         return regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _context.next = 2;
-                return axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("http://localhost:8080/users/username/request");
-
-              case 2:
-                response = _context.sent;
-                console.log(response.data);
-                _context.next = 6;
-                return axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("http://localhost:8080/users/".concat(response.data));
-
-              case 6:
-                res = _context.sent;
-                console.log(res);
-                this.setState({
-                  userId: res.data.id
-                });
-                _context.next = 11;
-                return axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("http://localhost:8080/alerts/".concat(res.data.id));
-
-              case 11:
-                alerts = _context.sent;
-                console.log(alerts);
-                return _context.abrupt("return", alerts);
-
-              case 14:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, this);
+        }, _callee);
       }));
 
       function getData() {
@@ -42806,7 +42785,7 @@ var UserList = /*#__PURE__*/function (_React$Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      this.getData().then(function (res) {
+      _services_ApiService__WEBPACK_IMPORTED_MODULE_8__["default"].fetchAlerts().then(function (res) {
         var alerts = res.data;
         var filterAlerts = res.data.filter(function (alert) {
           return Date.now() - Date.parse(alert.timestamp) > 172800000;
@@ -42818,6 +42797,12 @@ var UserList = /*#__PURE__*/function (_React$Component) {
           currentAlerts: alerts
         });
       });
+      _services_ApiService__WEBPACK_IMPORTED_MODULE_8__["default"].getUser().then(function (res) {
+        _this2.setState({
+          userId: res.data.id
+        });
+      });
+      console.log(this.state.userId);
     } //Reloads alerts when an alert is acknowledged
 
   }, {
@@ -42948,13 +42933,17 @@ ReactDOM.render( /*#__PURE__*/React.createElement(App, null), document.getElemen
 /*!********************************************!*\
   !*** ./src/main/js/services/ApiService.js ***!
   \********************************************/
-/*! no exports provided */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -42977,9 +42966,84 @@ var ApiService = /*#__PURE__*/function () {
 
   _createClass(ApiService, [{
     key: "fetchAlerts",
-    value: function fetchAlerts() {
-      return instance.get(ALERT_API_BASE_URL);
-    }
+    value: function () {
+      var _fetchAlerts = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+        var response, res, alerts;
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("http://localhost:8080/users/username/request");
+
+              case 2:
+                response = _context.sent;
+                console.log(response.data);
+                _context.next = 6;
+                return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("http://localhost:8080/users/".concat(response.data));
+
+              case 6:
+                res = _context.sent;
+                console.log(res);
+                _context.next = 10;
+                return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("http://localhost:8080/alerts/".concat(res.data.id));
+
+              case 10:
+                alerts = _context.sent;
+                console.log(alerts);
+                return _context.abrupt("return", alerts);
+
+              case 13:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }));
+
+      function fetchAlerts() {
+        return _fetchAlerts.apply(this, arguments);
+      }
+
+      return fetchAlerts;
+    }()
+  }, {
+    key: "getUser",
+    value: function () {
+      var _getUser = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+        var response, res;
+        return regeneratorRuntime.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("http://localhost:8080/users/username/request");
+
+              case 2:
+                response = _context2.sent;
+                console.log(response.data);
+                _context2.next = 6;
+                return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("http://localhost:8080/users/".concat(response.data));
+
+              case 6:
+                res = _context2.sent;
+                console.log(res);
+                return _context2.abrupt("return", res);
+
+              case 9:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }));
+
+      function getUser() {
+        return _getUser.apply(this, arguments);
+      }
+
+      return getUser;
+    }()
   }, {
     key: "editAlert",
     value: function editAlert(alert) {
@@ -42989,6 +43053,8 @@ var ApiService = /*#__PURE__*/function () {
 
   return ApiService;
 }();
+
+/* harmony default export */ __webpack_exports__["default"] = (new ApiService());
 
 /***/ })
 

@@ -8,10 +8,31 @@ const instance = axios.create({
 });
 
 class ApiService{
-    fetchAlerts(){
-        return instance.get(ALERT_API_BASE_URL)
+    async fetchAlerts() {
+        const response =
+            await axios.get("http://localhost:8080/users/username/request");
+        console.log(response.data);
+        const res =
+            await axios.get(`http://localhost:8080/users/${response.data}`);
+        console.log(res);
+        const alerts =
+            await axios.get(`http://localhost:8080/alerts/${res.data.id}`);
+        console.log(alerts);
+        return alerts;
+    }
+
+    async getUser() {
+        const response =
+            await axios.get("http://localhost:8080/users/username/request");
+        console.log(response.data);
+        const res =
+            await axios.get(`http://localhost:8080/users/${response.data}`);
+        console.log(res);
+        return res;
     }
     editAlert(alert) {
         return instance.put(ALERT_API_BASE_URL + '/' + alert.id, alert);
     }
 }
+
+export default new ApiService();

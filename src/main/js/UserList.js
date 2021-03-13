@@ -6,6 +6,7 @@ import ToggleButton from 'react-bootstrap/ToggleButton'
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Button from 'react-bootstrap/Button';
 import PopUp from './PopUp';
+import ApiService from "./services/ApiService";
 
 
 
@@ -30,21 +31,21 @@ class UserList extends React.Component {
 
     //Gets the user's alerts
     async getData() {
-        const response =
-            await axios.get("http://localhost:8080/users/username/request");
-        console.log(response.data);
-        const res =
-            await axios.get(`http://localhost:8080/users/${response.data}`);
-        console.log(res);
-        this.setState({userId: res.data.id});
-        const alerts =
-            await axios.get(`http://localhost:8080/alerts/${res.data.id}`);
-        console.log(alerts);
-        return alerts;
+        // const response =
+        //     await axios.get("http://localhost:8080/users/username/request");
+        // console.log(response.data);
+        // const res =
+        //     await axios.get(`http://localhost:8080/users/${response.data}`);
+        // console.log(res);
+        // this.setState({userId: res.data.id});
+        // const alerts =
+        //     await axios.get(`http://localhost:8080/alerts/${res.data.id}`);
+        // console.log(alerts);
+        // return alerts;
     }
 
     componentDidMount() {
-            this.getData().then(res => {
+            ApiService.fetchAlerts().then(res => {
                 const alerts = res.data;
                 const filterAlerts = res.data.filter(alert => Date.now() - Date.parse(alert.timestamp) > 172800000);
                 this.setState({
@@ -53,6 +54,14 @@ class UserList extends React.Component {
                     currentAlerts: alerts
                 });
             });
+
+            ApiService.getUser().then(res => {
+                this.setState({
+                    userId: res.data.id
+                })
+
+            });
+            console.log(this.state.userId);
     }
 
     //Reloads alerts when an alert is acknowledged
