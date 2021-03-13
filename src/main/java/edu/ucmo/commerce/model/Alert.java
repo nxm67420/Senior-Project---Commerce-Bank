@@ -55,6 +55,7 @@ public class Alert {
         this.change_process = change_process;
         this.checked = false;
     }
+
     public Alert(){
     }
 

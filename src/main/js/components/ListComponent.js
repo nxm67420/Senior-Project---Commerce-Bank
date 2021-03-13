@@ -13,14 +13,13 @@ import React from 'react';
 //Class Component
 export default class ListComponent extends React.Component {
 
-    //Constructor
+    //Constructor Method
     constructor(props) {
         super(props);
         this.state = {
             alerts: [],
             checked: false,
         };
-
     }
 
     //Called After Render() //Retrieves info using API
@@ -36,6 +35,7 @@ export default class ListComponent extends React.Component {
     //         })
     // }
 
+    //Loads After Page
     componentDidMount() {
         // ApiService.fetchAlerts()
         fetch('http://localhost:8080/alerts')

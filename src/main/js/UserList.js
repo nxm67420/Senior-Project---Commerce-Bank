@@ -38,6 +38,8 @@ class UserList extends React.Component {
         return alerts;
     }
 
+
+
     componentDidMount() {
             this.getData().then(res => {
                 const alerts = res.data;

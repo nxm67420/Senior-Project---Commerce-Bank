@@ -13,6 +13,7 @@ public interface UserDao extends CrudRepository<User, Long> { //<Trying To Acces
     //Sends Alert via Email to all role = "Admin" && Registered Emails
     User findByRoleAndEmail(String role, String email);
 
+    //Find User according to via Email
     User findByEmail(String email);
 
     //Used in Login Verification

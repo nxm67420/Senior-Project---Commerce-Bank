@@ -16,30 +16,30 @@ class ApiService{
     //Fetches ALL Alerts
     //Maybe Replacing ALL instance.get into axios.get ???
     fetchAlerts(){
-        return axios.get(ALERT_API_BASE_URL)
+        return  instance.get(ALERT_API_BASE_URL)
     }
 
     //Fetches Alerts according to Specific ID
     fetchAlertById(alertId){
-        return axios.get(ALERT_API_BASE_URL + '/' + alertId);
+        return instance.get(ALERT_API_BASE_URL + '/' + alertId);
     }
 
     //Deletes Alert according to Specific ID
     deleteAlert(alertId){
-        return axios.delete(ALERT_API_BASE_URL + '/' + alertId);
+        return instance.delete(ALERT_API_BASE_URL + '/' + alertId);
     }
 
     //Add File /* Not essential just yet*/
     //Will only be accessible through Admin, Higher Privilege
     //Will Assign File to specific users
     addAlert(alert){
-        return axios.post("" + ALERT_API_BASE_URL, alert)
+        return instance.post("" + ALERT_API_BASE_URL, alert)
     }
 
 
     //Edit Specific File according to Specific ID || Application ID
     editAlert(alert){
-        return axios.put(ALERT_API_BASE_URL + '/' + alert.id, alert);
+        return instance.put(ALERT_API_BASE_URL + '/' + alert.id, alert);
     }
 }
 

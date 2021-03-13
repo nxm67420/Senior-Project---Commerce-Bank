@@ -16,6 +16,7 @@ public class UserController {
     @Autowired
     private UserDao userDao;
 
+    //Returns List of Users
     @GetMapping
     public List<User> listUsers(){
         List<User> list = new ArrayList<>();
@@ -23,6 +24,7 @@ public class UserController {
         return list;
     }
 
+    //Returns Users By Specific Username
     @GetMapping("/{userName}")
     public User getUser(@PathVariable String userName){
         return userDao.findByUserName(userName);

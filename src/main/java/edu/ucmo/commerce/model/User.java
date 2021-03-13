@@ -51,7 +51,6 @@ public class User {
         this.firstName = firstName;
         this.lastName = lastName;
         this.role = role;
-
     }
 
     public Integer getId() {
