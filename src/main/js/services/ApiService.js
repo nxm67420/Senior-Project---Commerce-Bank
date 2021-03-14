@@ -1,10 +1,9 @@
 //'Axios' Handles our GET/POST/DELETE Request through API
 //Connect To our Dao Controllers
+//Not working Nick Moore...
 import axios from 'axios';
-
 //Base URL Link to Retrieve Data
 const ALERT_API_BASE_URL = 'http://localhost:8080/alerts';
-
 const CSRF_TOKEN = document.cookie.match(new RegExp(`XSRF-TOKEN=([^;]+)`))[1];
 const instance = axios.create({
     headers: { "X-XSRF-TOKEN": CSRF_TOKEN }
