@@ -37146,7 +37146,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _UserList__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./UserList */ "./src/main/js/UserList.js");
 /* harmony import */ var _components_ListComponent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/ListComponent */ "./src/main/js/components/ListComponent.js");
-/* harmony import */ var _components_ListComponent__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_components_ListComponent__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 
 
@@ -37154,25 +37153,11 @@ var ReactDOM = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/in
 
 
 
- //Returns JSX
+ //Not Working Nick Moore...
+//Returns JSX
 
 function App() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["BrowserRouter"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-mid-6"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
-    className: "text-center"
-  }, "Nothing Works"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Route"], {
-    path: "/",
-    exact: true,
-    component: _components_ListComponent__WEBPACK_IMPORTED_MODULE_2___default.a
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Route"], {
-    path: "/itachi",
-    component: _components_ListComponent__WEBPACK_IMPORTED_MODULE_2___default.a
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Route"], {
-    path: "/index",
-    exact: true,
-    component: _UserList__WEBPACK_IMPORTED_MODULE_1__["default"]
-  })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UserList__WEBPACK_IMPORTED_MODULE_1__["default"], null), ",", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_ListComponent__WEBPACK_IMPORTED_MODULE_2___default.a, null));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UserList__WEBPACK_IMPORTED_MODULE_1__["default"], null), ",", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_ListComponent__WEBPACK_IMPORTED_MODULE_2__["default"], null));
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (App);
@@ -37184,10 +37169,209 @@ ReactDOM.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.creat
 /*!*************************************************!*\
   !*** ./src/main/js/components/ListComponent.js ***!
   \*************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /Users/nicholasmoore/Desktop/Spring21_Commerce/src/main/js/components/ListComponent.js: Unexpected token (81:29)\n\n  79 |                         <tbody>\n  80 |                         <ul>\n> 81 |                             <!--For Each Object in Array-->\n     |                              ^\n  82 |                             {alerts.map(alert =>(\n  83 |                                 <li key={alert.id}>\n  84 |                                     Name : {alert.hostname}\n    at Object._raise (/Users/nicholasmoore/Desktop/Spring21_Commerce/node_modules/@babel/parser/lib/index.js:766:17)\n    at Object.raiseWithData (/Users/nicholasmoore/Desktop/Spring21_Commerce/node_modules/@babel/parser/lib/index.js:759:17)\n    at Object.raise (/Users/nicholasmoore/Desktop/Spring21_Commerce/node_modules/@babel/parser/lib/index.js:753:17)\n    at Object.unexpected (/Users/nicholasmoore/Desktop/Spring21_Commerce/node_modules/@babel/parser/lib/index.js:8966:16)\n    at Object.jsxParseIdentifier (/Users/nicholasmoore/Desktop/Spring21_Commerce/node_modules/@babel/parser/lib/index.js:4492:12)\n    at Object.jsxParseNamespacedName (/Users/nicholasmoore/Desktop/Spring21_Commerce/node_modules/@babel/parser/lib/index.js:4502:23)\n    at Object.jsxParseElementName (/Users/nicholasmoore/Desktop/Spring21_Commerce/node_modules/@babel/parser/lib/index.js:4513:21)\n    at Object.jsxParseOpeningElementAt (/Users/nicholasmoore/Desktop/Spring21_Commerce/node_modules/@babel/parser/lib/index.js:4599:22)\n    at Object.jsxParseElementAt (/Users/nicholasmoore/Desktop/Spring21_Commerce/node_modules/@babel/parser/lib/index.js:4632:33)\n    at Object.jsxParseElementAt (/Users/nicholasmoore/Desktop/Spring21_Commerce/node_modules/@babel/parser/lib/index.js:4648:32)");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _services_ApiService__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../services/ApiService */ "./src/main/js/services/ApiService.js");
+/* harmony import */ var react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap/Button */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var react_bootstrap_Table__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap/Table */ "./node_modules/react-bootstrap/esm/Table.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+ //Import Connecting Components, Can Redirect to Their File
+//Wont Working Nick Moore...
+//Design Tools
+
+var style = {
+  color: 'aqua',
+  margin: '10px'
+}; //Class Component
+
+var ListComponent = /*#__PURE__*/function (_React$Component) {
+  _inherits(ListComponent, _React$Component);
+
+  var _super = _createSuper(ListComponent);
+
+  //Constructor Method
+  function ListComponent(props) {
+    var _this;
+
+    _classCallCheck(this, ListComponent);
+
+    _this = _super.call(this, props);
+    _this.state = {
+      alerts: [],
+      checked: false
+    };
+    return _this;
+  } //Called After Render() //Retrieves info using API
+  // componentDidMount() {
+  //    // ApiService.fetchAlerts()
+  //     fetch("http://localhost:8080/alerts")
+  //         .then(res => {
+  //             const alerts = res.data.json();
+  //             this.setState({
+  //                 alerts: alerts,
+  //                 checked: true,
+  //             });
+  //         })
+  // }
+  //Loads After Page
+
+
+  _createClass(ListComponent, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      _services_ApiService__WEBPACK_IMPORTED_MODULE_1__["default"].fetchAlerts().then(function (json) {
+        _this2.setState({
+          alerts: json.data,
+          checked: true
+        });
+      });
+    } //JSX
+
+  }, {
+    key: "render",
+    value: function render() {
+      //Access Constructor Variables
+      var _this$state = this.state,
+          checked = _this$state.checked,
+          alerts = _this$state.alerts;
+
+      if (!checked) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Loading...");
+      } else {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+          className: "text-center",
+          style: style
+        }, "React File Management"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+          className: "text-center"
+        }, "File Details"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_2__["default"], {
+          variant: "primary"
+        }, " Create File"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Table__WEBPACK_IMPORTED_MODULE_3__["default"], {
+          striped: true,
+          bordered: true,
+          hover: true
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Timestamp"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Hostname"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Application_ID"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "File_Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Change Agent"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Change Component"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.state.alerts.map(function (alert) {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+            key: alert.id
+          }, "Name : ", alert.hostname);
+        }), ";"))));
+      }
+    }
+  }]);
+
+  return ListComponent;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+;
+/* harmony default export */ __webpack_exports__["default"] = (ListComponent);
+
+/***/ }),
+
+/***/ "./src/main/js/services/ApiService.js":
+/*!********************************************!*\
+  !*** ./src/main/js/services/ApiService.js ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+//'Axios' Handles our GET/POST/DELETE Request through API
+//Connect To our Dao Controllers
+//Not working Nick Moore...
+ //Base URL Link to Retrieve Data
+
+var ALERT_API_BASE_URL = 'http://localhost:8080/alerts';
+var CSRF_TOKEN = document.cookie.match(new RegExp("XSRF-TOKEN=([^;]+)"))[1];
+var instance = axios__WEBPACK_IMPORTED_MODULE_0___default.a.create({
+  headers: {
+    "X-XSRF-TOKEN": CSRF_TOKEN
+  }
+});
+
+var ApiService = /*#__PURE__*/function () {
+  function ApiService() {
+    _classCallCheck(this, ApiService);
+  }
+
+  _createClass(ApiService, [{
+    key: "fetchAlerts",
+
+    /* Methods GET/POST/ DELETE etc... */
+    //Fetches ALL Alerts
+    value: function fetchAlerts() {
+      return instance.get(ALERT_API_BASE_URL);
+    } //Fetches Alerts according to Specific ID
+
+  }, {
+    key: "fetchAlertById",
+    value: function fetchAlertById(alertId) {
+      return instance.get(ALERT_API_BASE_URL + '/' + alertId);
+    } //Deletes Alert according to Specific ID
+
+  }, {
+    key: "deleteAlert",
+    value: function deleteAlert(alertId) {
+      return instance["delete"](ALERT_API_BASE_URL + '/' + alertId);
+    } //Add File /* Not essential just yet*/
+    //Will only be accessible through Admin, Higher Privilege
+    //Will Assign File to specific users
+
+  }, {
+    key: "addAlert",
+    value: function addAlert(alert) {
+      return instance.post("" + ALERT_API_BASE_URL, alert);
+    } //Edit Specific File according to Specific ID || Application ID
+
+  }, {
+    key: "editAlert",
+    value: function editAlert(alert) {
+      return instance.put(ALERT_API_BASE_URL + '/' + alert.id, alert);
+    }
+  }]);
+
+  return ApiService;
+}();
+
+/* harmony default export */ __webpack_exports__["default"] = (new ApiService());
 
 /***/ })
 
