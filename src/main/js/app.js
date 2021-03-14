@@ -9,16 +9,16 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 function App() {
     return (
         <div>
-            <Router>
-                <div className={"col-mid-6"}>
-                    <h1 className="text-center">Nothing Works</h1>
-                    <Switch>
-                        <Route path="/" exact component={ListComponent}/>
-                        <Route path="/itachi" component={ListComponent}/>
-                        <Route path="/index" exact component={UserList}/>
-                    </Switch>
-                </div>
-            </Router>
+            {/*<Router>*/}
+            {/*    <div className={"col-mid-6"}>*/}
+            {/*        <h1 className="text-center">Nothing Works</h1>*/}
+            {/*        <Switch>*/}
+            {/*            <Route path="/" exact component={ListComponent}/>*/}
+            {/*            <Route path="/itachi" component={ListComponent}/>*/}
+            {/*            <Route path="/index" exact component={UserList}/>*/}
+            {/*        </Switch>*/}
+            {/*    </div>*/}
+            {/*</Router>*/}
             <UserList/>,
             <ListComponent/>
         </div>

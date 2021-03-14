@@ -9,7 +9,7 @@ import Table from 'react-bootstrap/Table';
 const style = {
     color: 'aqua',
     margin: '10px'
-}
+};
 
 //Class Component
 class ListComponent extends React.Component {
@@ -39,11 +39,9 @@ class ListComponent extends React.Component {
     //Loads After Page
     componentDidMount() {
          ApiService.fetchAlerts()
-        // fetch('http://localhost:8080/alerts')
-            .then(res => res.json())
             .then(json =>{
                 this.setState({
-                    alerts : json,
+                    alerts : json.data,
                     checked : true,
                 })
             });
@@ -79,8 +77,7 @@ class ListComponent extends React.Component {
                         </thead>
                         <tbody>
                         <ul>
-                            <!--For Each Object in Array-->
-                            {alerts.map(alert =>(
+                            {this.state.alerts.map(alert =>(
                                 <li key={alert.id}>
                                     Name : {alert.hostname}
                                 </li>
