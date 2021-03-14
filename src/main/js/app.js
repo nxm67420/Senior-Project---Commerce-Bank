@@ -1,12 +1,24 @@
-const React = require('react');
+import React from 'react';
 const ReactDOM = require('react-dom');
 import UserList from "./UserList";
 import ListComponent from "./components/ListComponent";
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
+//Returns JSX
 function App() {
     return (
         <div>
-            <UserList />,
+            <Router>
+                <div className={"col-mid-6"}>
+                    <h1 className="text-center">Nothing Works</h1>
+                    <Switch>
+                        <Route path="/" exact component={ListComponent}/>
+                        <Route path="/itachi" component={ListComponent}/>
+                        <Route path="/index" exact component={UserList}/>
+                    </Switch>
+                </div>
+            </Router>
+            <UserList/>,
             <ListComponent/>
         </div>
     );
@@ -14,7 +26,5 @@ function App() {
 
 export default App;
 
-ReactDOM.render(
-    <App />,
-    document.getElementById('react')
-);
+ReactDOM.render(<App/>,
+    document.getElementById('react'));

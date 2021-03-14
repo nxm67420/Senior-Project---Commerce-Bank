@@ -1,17 +1,17 @@
-//Import API <--> Backened
+import React from 'react';
 import ApiService from "../services/ApiService";
-//Bootstrap
 import Button from 'react-bootstrap/Button';
 import Table from 'react-bootstrap/Table';
 //Import Connecting Components, Can Redirect to Their File
-import SortedAlertsComponent from "./SortedAlertsComponent";
-import EditComponent from "./EditComponent";
-//Import React
-const React = require('react');
-import React from 'react';
+
+//Design Tools
+const style = {
+    color: 'aqua',
+    margin: '10px'
+}
 
 //Class Component
-export default class ListComponent extends React.Component {
+class ListComponent extends React.Component {
 
     //Constructor Method
     constructor(props) {
@@ -37,8 +37,8 @@ export default class ListComponent extends React.Component {
 
     //Loads After Page
     componentDidMount() {
-        // ApiService.fetchAlerts()
-        fetch('http://localhost:8080/alerts')
+         ApiService.fetchAlerts()
+        // fetch('http://localhost:8080/alerts')
             .then(res => res.json())
             .then(json =>{
                 this.setState({
@@ -49,12 +49,7 @@ export default class ListComponent extends React.Component {
     }
 
 
-    // editCar(id) {
-    //     window.localStorage.setItem("alertId", id); //{Key, Value} : This is how we pass values to other Components
-    //     this.editComponent.current.open();
-    // }
-
-    //HTML && Javascript
+    //JSX
     render() {
         //Access Constructor Variables
         const {checked, alerts} = this.state;
@@ -65,11 +60,11 @@ export default class ListComponent extends React.Component {
         else {
             return (
                 <div>
-                    <h1 className="text-center" style={{color: aqua}}>React File Management</h1>
+                    <h1 className="text-center" style={style}>React File Management</h1>
                     <h2 className="text-center">File Details</h2>
-                    <Button variant="primary" onClick={() => this.addAlert()}> Create File</Button>
-                    <AddComponent reloadCarList={this.reloadCarList} ref={this.addComponent}/>
-                    <EditComponent reloadCarList={this.reloadCarList} ref={this.editComponent}/>
+                    <Button variant="primary" > Create File</Button>
+                    {/*<AddComponent reloadCarList={this.reloadCarList} ref={this.addComponent}/>*/}
+                    {/*<EditComponent reloadCarList={this.reloadCarList} ref={this.editComponent}/>*/}
                     <Table striped bordered hover>
                         <thead>
                         <tr>
@@ -113,3 +108,5 @@ export default class ListComponent extends React.Component {
         }
     }
 };
+
+export default ListComponent;

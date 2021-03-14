@@ -3,7 +3,7 @@
 import axios from 'axios';
 
 //Base URL Link to Retrieve Data
-const ALERT_API_BASE_URL = "http://localhost:8080/alerts";
+const ALERT_API_BASE_URL = 'http://localhost:8080/alerts';
 
 const CSRF_TOKEN = document.cookie.match(new RegExp(`XSRF-TOKEN=([^;]+)`))[1];
 const instance = axios.create({
@@ -14,7 +14,6 @@ class ApiService{
     /* Methods GET/POST/ DELETE etc... */
 
     //Fetches ALL Alerts
-    //Maybe Replacing ALL instance.get into axios.get ???
     fetchAlerts(){
         return  instance.get(ALERT_API_BASE_URL)
     }
