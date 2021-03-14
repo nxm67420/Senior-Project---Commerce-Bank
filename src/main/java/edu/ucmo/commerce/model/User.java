@@ -141,7 +141,7 @@ public class User {
                 ", password ='" + password + '\'' +
                 ", firstName ='" + firstName + '\'' +
                 ", lastName ='" + lastName + '\'' +
-                ", roles =" + role +
+                ", roles =" + role + '\'' +
                 '}';
     }
 }
