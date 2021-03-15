@@ -10,7 +10,7 @@ import {Nav, Navbar} from "react-bootstrap";
 
 
 
-class UserList extends React.Component {
+class AdminList extends React.Component {
 
     constructor (props){
         super(props);
@@ -41,20 +41,20 @@ class UserList extends React.Component {
     }
 
     componentDidMount() {
-            this.getData().then(res => {
-                const alerts = res.data;
-                const filterAlerts = res.data.filter(alert => Date.now() - Date.parse(alert.timestamp) > 172800000);
-                const unchecked = res.data.filter(alert => alert.checked === false);
-                const checked = res.data.filter(alert => alert.checked === true);
-                this.setState({
-                    alerts: alerts,
-                    filteredAlerts: filterAlerts,
-                    checkedAlerts: checked,
-                    uncheckedAlerts: unchecked,
-                    currentAlerts: unchecked
-                });
+        this.getData().then(res => {
+            const alerts = res.data;
+            const filterAlerts = res.data.filter(alert => Date.now() - Date.parse(alert.timestamp) > 172800000);
+            const unchecked = res.data.filter(alert => alert.checked === false);
+            const checked = res.data.filter(alert => alert.checked === true);
+            this.setState({
+                alerts: alerts,
+                filteredAlerts: filterAlerts,
+                checkedAlerts: checked,
+                uncheckedAlerts: unchecked,
+                currentAlerts: unchecked
             });
-            console.log(this.state.currentAlerts);
+        });
+        console.log(this.state.currentAlerts);
     }
 
     checked() {
@@ -79,6 +79,7 @@ class UserList extends React.Component {
     render() {
         return (
             <div>
+                Admin
                 <Navbar bg="dark" variant="dark">
                     <Navbar.Brand href="/"> File System </Navbar.Brand>
                     <Navbar.Toggle />
@@ -114,15 +115,15 @@ class UserList extends React.Component {
                     {
                         this.state.currentAlerts.sort((a, b) => a.timestamp < b.timestamp ? 1 : -1)
                             .map(
-                            alert =>
-                                <tr key={alert.id}>
-                                    <td>{alert.file}</td>
-                                    <td>{alert.hostname}</td>
-                                    <td>{alert.application_id}</td>
-                                    <td>{alert.change_agent}</td>
-                                    <td>{alert.change_process}</td>
-                                    <td>{alert.timestamp}</td>
-                                </tr> )
+                                alert =>
+                                    <tr key={alert.id}>
+                                        <td>{alert.file}</td>
+                                        <td>{alert.hostname}</td>
+                                        <td>{alert.application_id}</td>
+                                        <td>{alert.change_agent}</td>
+                                        <td>{alert.change_process}</td>
+                                        <td>{alert.timestamp}</td>
+                                    </tr> )
                     }
                     </tbody>
                 </Table>
@@ -131,4 +132,4 @@ class UserList extends React.Component {
     }
 }
 
-export default UserList;
+export default AdminList;
