@@ -18,12 +18,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
-    private MyUserDetalisService userDetalisService;
+    private MyUserDetalisService userDetailsService;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception{
         auth
-                .userDetailsService(userDetalisService)
+                .userDetailsService(userDetailsService)
                 .passwordEncoder(bCryptPasswordEncoder);
     }
 
@@ -31,9 +31,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception{
         http
                 .authorizeRequests()
+                .antMatchers(HttpMethod.POST, "/alerts").permitAll()
                 .antMatchers("/").hasAnyAuthority("USER","ADMIN")
                 .antMatchers("/alerts").hasAnyAuthority("USER","ADMIN")
-//                .antMatchers(HttpMethod.POST, "/alerts").permitAll()
                 .antMatchers(HttpMethod.PUT, "/alerts/**").hasAnyAuthority("USER","ADMIN")
                 .antMatchers("/users").hasAnyAuthority("ADMIN")
                 .and()

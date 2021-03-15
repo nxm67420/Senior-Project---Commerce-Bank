@@ -19,5 +19,8 @@ REPLACE INTO `application_users` (`application_user_id`, `user_id`, `application
 REPLACE INTO `application_users` (`application_user_id`, `user_id`, `application_id`) VALUES (NULL, 1, '500');
 REPLACE INTO `application_users` (`application_user_id`, `user_id`, `application_id`) VALUES (NULL, 2, '500');
 REPLACE INTO `application_users` (`application_user_id`, `user_id`, `application_id`) VALUES (NULL, 1, 'xyz');
+REPLACE INTO `application_users` (`application_user_id`, `user_id`, `application_id`) VALUES (NULL, 1, 'abc');
+REPLACE INTO `application_users` (`application_user_id`, `user_id`, `application_id`) VALUES (NULL, 2, 'abc');
+
 
 
