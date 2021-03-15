@@ -4,6 +4,7 @@ import axios from "axios";
 import Table from 'react-bootstrap/Table';
 import ToggleButton from 'react-bootstrap/ToggleButton'
 import ButtonGroup from "react-bootstrap/ButtonGroup";
+import NavigationBar from "./NavigationBar";
 
 
 
@@ -71,17 +72,18 @@ class UserList extends React.Component {
     render() {
         return (
             <div>
-                <ButtonGroup toggle className="mb-2">
-                    <ToggleButton
-                        type="checkbox"
-                        variant="primary"
-                        checked={this.state.checked}
-                        value="1"
-                        onChange={this.setChecked.bind(this)}
-                    >
-                        Two Days
-                    </ToggleButton>
-                </ButtonGroup>
+                <NavigationBar/>
+                {/*<ButtonGroup toggle className="mb-2">*/}
+                {/*    <ToggleButton*/}
+                {/*        type="checkbox"*/}
+                {/*        variant="primary"*/}
+                {/*        checked={this.state.checked}*/}
+                {/*        value="1"*/}
+                {/*        onChange={this.setChecked.bind(this)}*/}
+                {/*    >*/}
+                {/*        Two Days*/}
+                {/*    </ToggleButton>*/}
+                {/*</ButtonGroup>*/}
                 <Table striped bordered hover>
                     <thead>
                     <tr>

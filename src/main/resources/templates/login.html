@@ -10,9 +10,10 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.0/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <style></style>
 </head>
 
-<body>
+<body th:style="'background:url(' + @{/images/login.jpeg} + ');'">
 <div class="container" style="margin-top: 200px">
 
     <form th:action="@{/login}" method="POST" class="form-signin">
