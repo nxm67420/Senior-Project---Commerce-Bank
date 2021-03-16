@@ -49037,6 +49037,179 @@ var Footer = /*#__PURE__*/function (_React$Component) {
 
 /***/ }),
 
+/***/ "./src/main/js/PopUp.js":
+/*!******************************!*\
+  !*** ./src/main/js/PopUp.js ***!
+  \******************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap/Button */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var react_bootstrap_Modal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap/Modal */ "./node_modules/react-bootstrap/esm/Modal.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var react_bootstrap_DropdownButton__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap/DropdownButton */ "./node_modules/react-bootstrap/esm/DropdownButton.js");
+/* harmony import */ var react_bootstrap_Dropdown__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap/Dropdown */ "./node_modules/react-bootstrap/esm/Dropdown.js");
+/* harmony import */ var _services_ApiService__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./services/ApiService */ "./src/main/js/services/ApiService.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+
+
+
+
+function PopUp(props) {
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      show = _useState2[0],
+      setShow = _useState2[1]; // valueOne -> known
+  // valueTwo -> malicious
+
+
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(null),
+      _useState4 = _slicedToArray(_useState3, 2),
+      valueOne = _useState4[0],
+      setValueOne = _useState4[1];
+
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(null),
+      _useState6 = _slicedToArray(_useState5, 2),
+      valueTwo = _useState6[0],
+      setValueTwo = _useState6[1]; // Assigns valueOne to a Boolean
+
+
+  var handleSelectOne = function handleSelectOne(e) {
+    // console.log(e);
+    if (e === '1') {
+      setValueOne(true);
+    } else if (e === '2') {
+      setValueOne(false);
+    }
+  }; // Assigns valueTwo to a Boolean
+
+
+  var handleSelectTwo = function handleSelectTwo(e) {
+    // console.log(e);
+    if (e === '1') {
+      setValueTwo(true);
+    } else if (e === '2') {
+      setValueTwo(false);
+    }
+  }; //Closes Modal
+  //If there was a selected value, clear it
+
+
+  var handleClose = function handleClose() {
+    setValueOne('');
+    setValueTwo('');
+    setShow(false);
+  }; //Saves update
+
+
+  var handleSave = function handleSave() {
+    console.log(valueOne); //Create new alert object to send PUT request with
+
+    var alert = {
+      id: props.alert.id,
+      file: props.alert.file,
+      hostname: props.alert.hostname,
+      application_id: props.alert.application_id,
+      change_agent: props.alert.change_agent,
+      change_process: props.alert.change_process,
+      timestamp: props.alert.timestamp,
+      known: valueOne,
+      malicious: valueTwo
+    };
+    console.log(alert); //Send PUT request
+
+    axios__WEBPACK_IMPORTED_MODULE_3___default.a.put('http://localhost:8080/alerts/' + alert.id, alert).then(function () {
+      return (//Fetches updated list of alerts
+        axios__WEBPACK_IMPORTED_MODULE_3___default.a.get("http://localhost:8080/alerts/".concat(props.user))
+      );
+    }).then(function (res) {
+      //Reloads alert list with updated data
+      props.reloadAlerts(res.data);
+    });
+    setShow(false);
+  };
+
+  var handleShow = function handleShow() {
+    return setShow(true);
+  }; //Prints the selection
+
+
+  var know = function know() {
+    if (valueOne === true) {
+      return "known";
+    } else if (valueOne === false) {
+      return "unknown";
+    }
+  }; //Prints the selection
+
+
+  var malicious = function malicious() {
+    if (valueTwo === true) {
+      return "malicious";
+    } else if (valueTwo === false) {
+      return "not malicious";
+    }
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    variant: "primary",
+    onClick: handleShow
+  }, "Acknowledge Alert"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Modal__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    show: show,
+    onHide: handleClose
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Modal__WEBPACK_IMPORTED_MODULE_2__["default"].Header, {
+    closeButton: true
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Modal__WEBPACK_IMPORTED_MODULE_2__["default"].Title, null, "Acknowledgement")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Modal__WEBPACK_IMPORTED_MODULE_2__["default"].Body, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_DropdownButton__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    id: "dropdown-item-button",
+    title: "Known Change?",
+    onSelect: handleSelectOne
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Dropdown__WEBPACK_IMPORTED_MODULE_5__["default"].Item, {
+    eventKey: "1"
+  }, "Known"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Dropdown__WEBPACK_IMPORTED_MODULE_5__["default"].Item, {
+    eventKey: "2"
+  }, "Unknown")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Selected: ", know())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_DropdownButton__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    id: "dropdown-item-button",
+    title: "Malicious?",
+    onSelect: handleSelectTwo
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Dropdown__WEBPACK_IMPORTED_MODULE_5__["default"].Item, {
+    eventKey: "1"
+  }, "Malicious"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Dropdown__WEBPACK_IMPORTED_MODULE_5__["default"].Item, {
+    eventKey: "2"
+  }, "Not Malicious")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Selected: ", malicious()))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Modal__WEBPACK_IMPORTED_MODULE_2__["default"].Footer, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    variant: "secondary",
+    onClick: handleClose
+  }, "Close"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    variant: "primary",
+    onClick: handleSave,
+    disabled: valueOne === null || valueTwo === null
+  }, "Save Changes"))));
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (PopUp);
+
+/***/ }),
+
 /***/ "./src/main/js/UserList.js":
 /*!*********************************!*\
   !*** ./src/main/js/UserList.js ***!
@@ -49053,6 +49226,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_bootstrap_Table__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap/Table */ "./node_modules/react-bootstrap/esm/Table.js");
 /* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/index.js");
 /* harmony import */ var _AdminList__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./AdminList */ "./src/main/js/AdminList.js");
+/* harmony import */ var _PopUp__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./PopUp */ "./src/main/js/PopUp.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -49085,6 +49259,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var UserList = /*#__PURE__*/function (_React$Component) {
   _inherits(UserList, _React$Component);
 
@@ -49105,13 +49280,43 @@ var UserList = /*#__PURE__*/function (_React$Component) {
       filteredAlerts: [],
       currentAlerts: [],
       checked: false,
-      role: []
+      role: [],
+      userId: []
     };
+    _this.reloadAlerts = _this.reloadAlerts.bind(_assertThisInitialized(_this));
     return _this;
-  } //Gets the user's alerts
-
+  }
 
   _createClass(UserList, [{
+    key: "reloadAlerts",
+    value: function reloadAlerts(alerts) {
+      var unchecked = alerts.filter(function (alert) {
+        return alert.checked === false;
+      });
+      var checked = alerts.filter(function (alert) {
+        return alert.checked === true;
+      });
+
+      if (this.state.checked) {
+        this.setState({
+          alerts: alerts,
+          checkedAlerts: checked,
+          uncheckedAlerts: unchecked,
+          currentAlerts: checked
+        });
+      } else {
+        this.setState({
+          alerts: alerts,
+          checkedAlerts: checked,
+          uncheckedAlerts: unchecked,
+          currentAlerts: unchecked
+        });
+      }
+
+      console.log(alerts);
+    } //Gets the user's alerts
+
+  }, {
     key: "getData",
     value: function () {
       var _getData = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
@@ -49195,10 +49400,12 @@ var UserList = /*#__PURE__*/function (_React$Component) {
 
       this.userRole().then(function (res) {
         var role = res.data.role;
+        var id = res.data.id;
         console.log(role);
 
         _this2.setState({
-          role: role
+          role: role,
+          userId: id
         });
       });
       this.getData().then(function (res) {
@@ -49223,19 +49430,23 @@ var UserList = /*#__PURE__*/function (_React$Component) {
     key: "checked",
     value: function checked() {
       this.setState({
-        currentAlerts: this.state.checkedAlerts
+        currentAlerts: this.state.checkedAlerts,
+        checked: true
       });
     }
   }, {
     key: "unchecked",
     value: function unchecked() {
       this.setState({
-        currentAlerts: this.state.uncheckedAlerts
+        currentAlerts: this.state.uncheckedAlerts,
+        checked: false
       });
     }
   }, {
     key: "render",
     value: function render() {
+      var _this3 = this;
+
       if (this.state.role === 'ADMIN') {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_AdminList__WEBPACK_IMPORTED_MODULE_4__["default"], null);
       } else {
@@ -49267,7 +49478,12 @@ var UserList = /*#__PURE__*/function (_React$Component) {
         }).map(function (alert) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
             key: alert.id
-          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, alert.file), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, alert.hostname), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, alert.application_id), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, alert.change_agent), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, alert.change_process), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, alert.timestamp));
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, alert.file), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, alert.hostname), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, alert.application_id), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, alert.change_agent), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, alert.change_process), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, alert.timestamp), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_PopUp__WEBPACK_IMPORTED_MODULE_5__["default"], {
+            user: _this3.state.userId,
+            id: alert.id,
+            alert: alert,
+            reloadAlerts: _this3.reloadAlerts
+          })));
         }))));
       }
     }
@@ -49304,6 +49520,91 @@ function App() {
 
 /* harmony default export */ __webpack_exports__["default"] = (App);
 ReactDOM.render( /*#__PURE__*/React.createElement(App, null), document.getElementById('react'));
+
+/***/ }),
+
+/***/ "./src/main/js/services/ApiService.js":
+/*!********************************************!*\
+  !*** ./src/main/js/services/ApiService.js ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+var CAR_API_BASE_URL = 'http://localhost:8080/alerts';
+var CSRF_TOKEN = document.cookie.match(new RegExp("XSRF-TOKEN=([^;]+)"))[1];
+var instance = axios__WEBPACK_IMPORTED_MODULE_0___default.a.create({
+  headers: {
+    "X-XSRF-TOKEN": CSRF_TOKEN
+  }
+});
+
+var ApiService = /*#__PURE__*/function () {
+  function ApiService() {
+    _classCallCheck(this, ApiService);
+  }
+
+  _createClass(ApiService, [{
+    key: "getRole",
+    value: function () {
+      var _getRole = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+        var response, res;
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("http://localhost:8080/users/username/request");
+
+              case 2:
+                response = _context.sent;
+                _context.next = 5;
+                return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("http://localhost:8080/users/".concat(response.data));
+
+              case 5:
+                res = _context.sent;
+                console.log(res);
+                return _context.abrupt("return", res);
+
+              case 8:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }));
+
+      function getRole() {
+        return _getRole.apply(this, arguments);
+      }
+
+      return getRole;
+    }()
+  }, {
+    key: "fetchAlerts",
+    value: function fetchAlerts() {
+      return instance.get(CAR_API_BASE_URL);
+    }
+  }]);
+
+  return ApiService;
+}();
+
+/* harmony default export */ __webpack_exports__["default"] = (new ApiService());
 
 /***/ })
 

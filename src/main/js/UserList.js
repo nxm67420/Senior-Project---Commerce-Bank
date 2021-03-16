@@ -3,6 +3,7 @@ import axios from "axios";
 import Table from 'react-bootstrap/Table';
 import {Nav, Navbar} from "react-bootstrap";
 import AdminList from "./AdminList";
+import PopUp from "./PopUp";
 
 
 class UserList extends React.Component {
@@ -18,10 +19,34 @@ class UserList extends React.Component {
             filteredAlerts: [],
             currentAlerts: [],
             checked: false,
-            role: []
+            role: [],
+            userId: []
         };
+        this.reloadAlerts = this.reloadAlerts.bind(this);
     }
 
+
+    reloadAlerts(alerts){
+        const unchecked = alerts.filter(alert => alert.checked === false);
+        const checked = alerts.filter(alert => alert.checked === true);
+        if(this.state.checked){
+        this.setState({
+            alerts: alerts,
+            checkedAlerts: checked,
+            uncheckedAlerts: unchecked,
+            currentAlerts: checked
+        });
+        }
+        else{
+            this.setState({
+                alerts: alerts,
+                checkedAlerts: checked,
+                uncheckedAlerts: unchecked,
+                currentAlerts: unchecked
+            });
+        }
+        console.log(alerts);
+    }
     //Gets the user's alerts
     async getData() {
         const response =
@@ -44,9 +69,11 @@ class UserList extends React.Component {
     componentDidMount() {
         this.userRole().then(res => {
            const role = res.data.role;
+           const id = res.data.id;
            console.log(role);
            this.setState({
-               role: role
+               role: role,
+               userId: id
            })
         });
             this.getData().then(res => {
@@ -65,13 +92,15 @@ class UserList extends React.Component {
 
     checked() {
         this.setState({
-            currentAlerts: this.state.checkedAlerts
+            currentAlerts: this.state.checkedAlerts,
+            checked: true
         })
     }
 
     unchecked() {
         this.setState({
-            currentAlerts: this.state.uncheckedAlerts
+            currentAlerts: this.state.uncheckedAlerts,
+            checked: false
         })
     }
 
@@ -128,6 +157,9 @@ class UserList extends React.Component {
                                             <td>{alert.change_agent}</td>
                                             <td>{alert.change_process}</td>
                                             <td>{alert.timestamp}</td>
+                                            <td>
+                                                <PopUp user={this.state.userId} id={alert.id} alert={alert} reloadAlerts={this.reloadAlerts} />
+                                            </td>
                                         </tr>)
                         }
                         </tbody>

@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 
+import java.security.Principal;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -72,6 +74,18 @@ public class AlertController {
             alertDao.findAlertByApplicationId(String.valueOf(application.getApplicationId())).iterator().forEachRemaining(list::add);
         }
         return list;
+    }
+
+    @PutMapping("/{id}")
+    public Alert update(@RequestBody Alert alertUpdate, Principal principal){
+        Optional<Alert> optionalAlert = alertDao.findById(alertUpdate.getId());
+        if(optionalAlert.isPresent()){
+            alertUpdate.setAcknowledge_time(new Timestamp(System.currentTimeMillis()));
+            alertUpdate.setAcknowledge_user(principal.getName());
+            alertUpdate.setChecked(true);
+            alertDao.save(alertUpdate);
+        }
+        return alertUpdate;
     }
 
 }
