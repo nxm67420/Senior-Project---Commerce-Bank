@@ -1,10 +1,6 @@
 import React, {useState} from 'react';
-import ReactDOM from 'react-dom';
 import axios from "axios";
 import Table from 'react-bootstrap/Table';
-import ToggleButton from 'react-bootstrap/ToggleButton'
-import ButtonGroup from "react-bootstrap/ButtonGroup";
-import NavigationBar from "./NavigationBar";
 import {Nav, Navbar} from "react-bootstrap";
 
 
@@ -28,14 +24,8 @@ class AdminList extends React.Component {
 
     //Gets the user's alerts
     async getData() {
-        const response =
-            await axios.get("http://localhost:8080/users/username/request");
-        console.log(response.data);
-        const res =
-            await axios.get(`http://localhost:8080/users/${response.data}`);
-        console.log(res);
         const alerts =
-            await axios.get(`http://localhost:8080/alerts/${res.data.id}`);
+            await axios.get(`http://localhost:8080/alerts/`);
         console.log(alerts);
         return alerts;
     }
@@ -89,17 +79,6 @@ class AdminList extends React.Component {
                         <Nav.Link href="#filter" onSelect={this.filtered.bind(this)} style={{marginRight: "120px"}}>Red Alerts (+2 Days Old)</Nav.Link>
                     </Nav>
                 </Navbar>
-                {/*<ButtonGroup toggle className="mb-2">*/}
-                {/*    <ToggleButton*/}
-                {/*        type="checkbox"*/}
-                {/*        variant="primary"*/}
-                {/*        checked={this.state.checked}*/}
-                {/*        value="1"*/}
-                {/*        onChange={this.setChecked.bind(this)}*/}
-                {/*    >*/}
-                {/*        Two Days*/}
-                {/*    </ToggleButton>*/}
-                {/*</ButtonGroup>*/}
                 <Table striped bordered hover>
                     <thead>
                     <tr>
