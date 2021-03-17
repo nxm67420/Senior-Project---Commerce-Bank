@@ -49759,13 +49759,7 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
 
-var CAR_API_BASE_URL = 'http://localhost:8080/alerts';
-var CSRF_TOKEN = document.cookie.match(new RegExp("XSRF-TOKEN=([^;]+)"))[1];
-var instance = axios__WEBPACK_IMPORTED_MODULE_0___default.a.create({
-  headers: {
-    "X-XSRF-TOKEN": CSRF_TOKEN
-  }
-});
+var ALERT_API_BASE_URL = 'http://localhost:8080/alerts';
 
 var ApiService = /*#__PURE__*/function () {
   function ApiService() {
@@ -49811,7 +49805,7 @@ var ApiService = /*#__PURE__*/function () {
   }, {
     key: "fetchAlerts",
     value: function fetchAlerts() {
-      return instance.get(CAR_API_BASE_URL);
+      return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(ALERT_API_BASE_URL);
     }
   }]);
 
