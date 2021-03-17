@@ -8,7 +8,18 @@ const instance = axios.create({
 });
 
 class ApiService{
+
+    async getRole() {
+        const response =
+           await axios.get("http://localhost:8080/users/username/request");
+        const res =
+           await axios.get(`http://localhost:8080/users/${response.data}`);
+        console.log(res);
+        return res;
+    }
     fetchAlerts(){
         return instance.get(CAR_API_BASE_URL)
     }
 }
+
+export default new ApiService();

@@ -1,6 +1,7 @@
 package edu.ucmo.commerce.model;
 
 import javax.persistence.*;
+import java.sql.Time;
 import java.sql.Timestamp;
 
 @Entity
@@ -24,6 +25,38 @@ public class Alert {
     private String change_process;
     @Column
     private Boolean checked;
+    @Column
+    private Boolean known;
+    @Column
+    private Boolean malicious;
+    @Column
+    private Timestamp acknowledge_time;
+    @Column
+    private String acknowledge_user;
+
+    public Alert(
+            Timestamp timestamp,
+            String hostname,
+            String application_id,
+            String file,
+            String change_agent,
+            String change_process,
+            Boolean known,
+            Boolean malicious,
+            Timestamp acknowledge_time,
+            String acknowledge_user) {
+        this.timestamp = timestamp;
+        this.hostname = hostname;
+        this.application_id = application_id;
+        this.file = file;
+        this.change_agent = change_agent;
+        this.change_process = change_process;
+        this.checked = true;
+        this.known = known;
+        this.malicious = malicious;
+        this.acknowledge_time = acknowledge_time;
+        this.acknowledge_user=acknowledge_user;
+    }
 
     public Alert(
             Timestamp timestamp,
@@ -39,6 +72,10 @@ public class Alert {
         this.change_agent = change_agent;
         this.change_process = change_process;
         this.checked = false;
+        this.known = null;
+        this.malicious = null;
+        this.acknowledge_time = null;
+        this.acknowledge_user=null;
     }
 
     public Alert(
@@ -54,6 +91,10 @@ public class Alert {
         this.change_agent = change_agent;
         this.change_process = change_process;
         this.checked = false;
+        this.known = null;
+        this.malicious = null;
+        this.acknowledge_time = new Timestamp(System.currentTimeMillis());
+        this.acknowledge_user = null;
     }
     public Alert(){
     }
@@ -102,6 +143,22 @@ public class Alert {
         return change_agent;
     }
 
+    public Boolean getKnown() {
+        return known;
+    }
+
+    public void setKnown(Boolean known) {
+        this.known = known;
+    }
+
+    public Boolean getMalicious() {
+        return malicious;
+    }
+
+    public void setMalicious(Boolean malicious) {
+        this.malicious = malicious;
+    }
+
     public void setChange_agent(String change_agent) {
         this.change_agent = change_agent;
     }
@@ -114,18 +171,38 @@ public class Alert {
         this.change_process = change_process;
     }
 
+    public Timestamp getAcknowledge_time() {
+        return acknowledge_time;
+    }
+
+    public void setAcknowledge_time(Timestamp acknowledge_time) {
+        this.acknowledge_time = acknowledge_time;
+    }
+
     @Override
     public String toString() {
         return "Alert{" +
                 "id=" + id +
                 ", timestamp=" + timestamp +
                 ", hostname='" + hostname + '\'' +
-                ", application_id=" + application_id +
+                ", application_id='" + application_id + '\'' +
                 ", file='" + file + '\'' +
                 ", change_agent='" + change_agent + '\'' +
                 ", change_process='" + change_process + '\'' +
-                ", checked='" + checked + '\'' +
+                ", checked=" + checked +
+                ", known=" + known +
+                ", malicious=" + malicious +
+                ", acknowledge_time=" + acknowledge_time +
+                ", acknowledge_user='" + acknowledge_user + '\'' +
                 '}';
+    }
+
+    public String getAcknowledge_user() {
+        return acknowledge_user;
+    }
+
+    public void setAcknowledge_user(String acknowledge_user) {
+        this.acknowledge_user = acknowledge_user;
     }
 
     public Boolean getChecked() {
