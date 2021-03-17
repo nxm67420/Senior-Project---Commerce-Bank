@@ -33,7 +33,7 @@ class AdminList extends React.Component {
     componentDidMount() {
         this.getData().then(res => {
             const alerts = res.data;
-            const filterAlerts = res.data.filter(alert => Date.now() - Date.parse(alert.timestamp) > 172800000);
+            const filterAlerts = res.data.filter(alert => alert.checked === false).filter(alert => Date.now() - Date.parse(alert.timestamp) > 172800000);
             const unchecked = res.data.filter(alert => alert.checked === false);
             const checked = res.data.filter(alert => alert.checked === true);
             this.setState({

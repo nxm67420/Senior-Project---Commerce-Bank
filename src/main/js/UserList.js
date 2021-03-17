@@ -4,6 +4,8 @@ import Table from 'react-bootstrap/Table';
 import {Nav, Navbar} from "react-bootstrap";
 import AdminList from "./AdminList";
 import PopUp from "./PopUp";
+import Checked from "./Checked";
+import UnChecked from "./UnChecked";
 
 
 class UserList extends React.Component {
@@ -110,64 +112,77 @@ class UserList extends React.Component {
         if(this.state.role === 'ADMIN'){
             return <AdminList/>
         }
-        else {
-            return (
-                <div>
-                    <Navbar bg="dark" variant="dark">
-                        <Navbar.Brand href="/"> File System </Navbar.Brand>
-                        <Navbar.Toggle/>
-                        <Nav className="mr-auto">
-                            <Nav.Link href="#unacknowledge" onSelect={this.unchecked.bind(this)}
-                                      style={{marginRight: "120px"}}>Unacknowledged Alerts</Nav.Link>
-                            <Nav.Link href="#acknowledge" onSelect={this.checked.bind(this)}
-                                      style={{marginRight: "120px"}}>Acknowledged Alerts</Nav.Link>
-                        </Nav>
-                    </Navbar>
-                    {/*<ButtonGroup toggle className="mb-2">*/}
-                    {/*    <ToggleButton*/}
-                    {/*        type="checkbox"*/}
-                    {/*        variant="primary"*/}
-                    {/*        checked={this.state.checked}*/}
-                    {/*        value="1"*/}
-                    {/*        onChange={this.setChecked.bind(this)}*/}
-                    {/*    >*/}
-                    {/*        Two Days*/}
-                    {/*    </ToggleButton>*/}
-                    {/*</ButtonGroup>*/}
-                    <Table striped bordered hover>
-                        <thead>
-                        <tr>
-                            <th>File</th>
-                            <th>Hostname</th>
-                            <th>Application ID</th>
-                            <th>Change Agent</th>
-                            <th>Change Process</th>
-                            <th>Timestamp</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {
-                            this.state.currentAlerts.sort((a, b) => a.timestamp < b.timestamp ? 1 : -1)
-                                .map(
-                                    alert =>
-                                        <tr key={alert.id}>
-                                            <td>{alert.file}</td>
-                                            <td>{alert.hostname}</td>
-                                            <td>{alert.application_id}</td>
-                                            <td>{alert.change_agent}</td>
-                                            <td>{alert.change_process}</td>
-                                            <td>{alert.timestamp}</td>
-                                            <td>
-                                                <PopUp user={this.state.userId} id={alert.id} alert={alert} reloadAlerts={this.reloadAlerts} />
-                                            </td>
-                                        </tr>)
-                        }
-                        </tbody>
-                    </Table>
-                </div>
-            );
+         else {
+             let table;
+            // Used to conditionally render items that are on the difference between acknowledged and unacknowledgd
+            if(this.state.checked){
+                table =  <Checked currentAlerts={this.state.checkedAlerts}/>
+            }
+            else {
+                console.log(this.state.currentAlerts);
+                console.log(this.state.uncheckedAlerts);
+                table = <UnChecked currentAlerts={this.state.currentAlerts} reloadAlerts={this.reloadAlerts}/>
+            }
+                console.log(this.state.checked);
+                return (
+                    <div>
+                        <Navbar bg="dark" variant="dark">
+                            <Navbar.Brand href="/"> File System </Navbar.Brand>
+                            <Navbar.Toggle/>
+                            <Nav className="mr-auto">
+                                <Nav.Link href="#unacknowledge" onSelect={this.unchecked.bind(this)}
+                                          style={{marginRight: "120px"}}>Unacknowledged Alerts</Nav.Link>
+                                <Nav.Link href="#acknowledge" onSelect={this.checked.bind(this)}
+                                          style={{marginRight: "120px"}}>Acknowledged Alerts</Nav.Link>
+                            </Nav>
+                        </Navbar>
+                        {/*<ButtonGroup toggle className="mb-2">*/}
+                        {/*    <ToggleButton*/}
+                        {/*        type="checkbox"*/}
+                        {/*        variant="primary"*/}
+                        {/*        checked={this.state.checked}*/}
+                        {/*        value="1"*/}
+                        {/*        onChange={this.setChecked.bind(this)}*/}
+                        {/*    >*/}
+                        {/*        Two Days*/}
+                        {/*    </ToggleButton>*/}
+                        {/*</ButtonGroup>*/}
+                        {/*<Table striped bordered hover>*/}
+                        {/*    <thead>*/}
+                        {/*    <tr>*/}
+                        {/*        <th>File</th>*/}
+                        {/*        <th>Hostname</th>*/}
+                        {/*        <th>Application ID</th>*/}
+                        {/*        <th>Change Agent</th>*/}
+                        {/*        <th>Change Process</th>*/}
+                        {/*        <th>Timestamp</th>*/}
+                        {/*    </tr>*/}
+                        {/*    </thead>*/}
+                        {/*    <tbody>*/}
+                        {/*    {*/}
+                        {/*        this.state.currentAlerts.sort((a, b) => a.timestamp < b.timestamp ? 1 : -1)*/}
+                        {/*            .map(*/}
+                        {/*                alert =>*/}
+                        {/*                    <tr key={alert.id}>*/}
+                        {/*                        <td>{alert.file}</td>*/}
+                        {/*                        <td>{alert.hostname}</td>*/}
+                        {/*                        <td>{alert.application_id}</td>*/}
+                        {/*                        <td>{alert.change_agent}</td>*/}
+                        {/*                        <td>{alert.change_process}</td>*/}
+                        {/*                        <td>{alert.timestamp}</td>*/}
+                        {/*                        <td>*/}
+                        {/*                            <PopUp user={this.state.userId} id={alert.id} alert={alert} reloadAlerts={this.reloadAlerts} />*/}
+                        {/*                        </td>*/}
+                        {/*                    </tr>)*/}
+                        {/*    }*/}
+                        {/*    </tbody>*/}
+                        {/*</Table>*/}
+                        {table}
+                    </div>
+                );
+            }
         }
-    }
+
 }
 
 export default UserList;
