@@ -1,11 +1,9 @@
 import React from 'react';
-import axios from "axios";
-import Table from 'react-bootstrap/Table';
 import {Nav, Navbar} from "react-bootstrap";
 import AdminList from "./AdminList";
-import PopUp from "./PopUp";
 import Checked from "./Checked";
 import UnChecked from "./UnChecked";
+import ApiService from "./services/ApiService";
 
 
 class UserList extends React.Component {
@@ -49,27 +47,9 @@ class UserList extends React.Component {
         }
         console.log(alerts);
     }
-    //Gets the user's alerts
-    async getData() {
-        const response =
-            await axios.get("http://localhost:8080/users/username/request");
-        console.log(response.data);
-        const res =
-            await axios.get(`http://localhost:8080/users/${response.data}`);
-        console.log(res);
-        const alerts =
-            await axios.get(`http://localhost:8080/alerts/${res.data.id}`);
-        console.log(alerts);
-        return alerts;
-    }
-
-    async userRole() {
-        const res = await axios.get("http://localhost:8080/users/username/request");
-        return await axios.get(`http://localhost:8080/users/${res.data}`);
-    }
 
     componentDidMount() {
-        this.userRole().then(res => {
+        ApiService.getRole().then(res => {
            const role = res.data.role;
            const id = res.data.id;
            console.log(role);
@@ -78,7 +58,7 @@ class UserList extends React.Component {
                userId: id
            })
         });
-            this.getData().then(res => {
+            ApiService.getData().then(res => {
                 const alerts = res.data;
                 const unchecked = res.data.filter(alert => alert.checked === false);
                 const checked = res.data.filter(alert => alert.checked === true);

@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import axios from "axios";
 import Table from 'react-bootstrap/Table';
 import {Nav, Navbar} from "react-bootstrap";
+import ApiService from "./services/ApiService";
 
 
 
@@ -22,16 +22,8 @@ class AdminList extends React.Component {
         };
     }
 
-    //Gets the user's alerts
-    async getData() {
-        const alerts =
-            await axios.get(`http://localhost:8080/alerts/`);
-        console.log(alerts);
-        return alerts;
-    }
-
     componentDidMount() {
-        this.getData().then(res => {
+        ApiService.fetchAlerts().then(res => {
             const alerts = res.data;
             const filterAlerts = res.data.filter(alert => alert.checked === false).filter(alert => Date.now() - Date.parse(alert.timestamp) > 172800000);
             const unchecked = res.data.filter(alert => alert.checked === false);

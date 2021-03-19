@@ -1,7 +1,6 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import axios from "axios";
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown';
 import {useState} from "react";
@@ -63,11 +62,10 @@ function PopUp(props) {
         };
         console.log(alert);
         //Send PUT request
-        axios.put('http://localhost:8080/alerts/' + alert.id, alert)
+        ApiService.acknowledge(alert)
             .then(() =>
                 //Fetches updated list of alerts
-                axios.get(`http://localhost:8080/alerts/${props.user}`
-                ))
+                ApiService.getData())
             .then(res => {
                 //Reloads alert list with updated data
                 props.reloadAlerts(res.data);

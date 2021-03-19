@@ -1,8 +1,5 @@
 import React from 'react';
-import axios from "axios";
 import Table from 'react-bootstrap/Table';
-import {Nav, Navbar} from "react-bootstrap";
-import AdminList from "./AdminList";
 import PopUp from "./PopUp";
 
 
