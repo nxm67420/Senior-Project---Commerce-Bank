@@ -1,9 +1,8 @@
 import React from 'react';
 import Table from 'react-bootstrap/Table';
-import PopUp from "./PopUp";
 
 
-class UnChecked extends React.Component {
+class UnCheckedAdmin extends React.Component {
 
     constructor (props){
         super(props);
@@ -50,9 +49,6 @@ class UnChecked extends React.Component {
                                     <td>{alert.change_agent}</td>
                                     <td>{alert.change_process}</td>
                                     <td>{alert.timestamp}</td>
-                                    <td>
-                                        <PopUp user={this.props.userId} id={alert.id} alert={alert} reloadAlerts={this.props.reloadAlerts} />
-                                    </td>
                                 </tr>)
                 }
                 </tbody>
@@ -62,4 +58,4 @@ class UnChecked extends React.Component {
 
 }
 
-export default UnChecked;
+export default UnCheckedAdmin;

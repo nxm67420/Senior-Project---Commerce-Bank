@@ -16,6 +16,10 @@ REPLACE INTO users (user_id, user_name, email, password, first_name, last_name, 
 VALUES (2, 'admin', 'admin@acme.com',
         '$2y$10$A50PPo/tm3skv9iguM4UpOJg3ZUulV0XMB3iuGpx7po4k9OcFrREO',
         'Program', 'Admin', 'ADMIN');
+REPLACE INTO users (user_id, user_name, email, password, first_name, last_name, role)
+VALUES (3, 'hunter', 'admin@acme.com',
+        '$2y$10$A50PPo/tm3skv9iguM4UpOJg3ZUulV0XMB3iuGpx7po4k9OcFrREO',
+        'Hunter', 'Ehrenfeld', 'USER');
 
 REPLACE INTO `application_users` (`application_user_id`, `user_id`, `application_id`) VALUES (NULL, 1, '255');
 REPLACE INTO `application_users` (`application_user_id`, `user_id`, `application_id`) VALUES (NULL, 1, '500');
@@ -23,6 +27,7 @@ REPLACE INTO `application_users` (`application_user_id`, `user_id`, `application
 REPLACE INTO `application_users` (`application_user_id`, `user_id`, `application_id`) VALUES (NULL, 1, 'xyz');
 REPLACE INTO `application_users` (`application_user_id`, `user_id`, `application_id`) VALUES (NULL, 1, 'abc');
 REPLACE INTO `application_users` (`application_user_id`, `user_id`, `application_id`) VALUES (NULL, 2, 'abc');
+REPLACE INTO `application_users` (`application_user_id`, `user_id`, `application_id`) VALUES (NULL, 3, '525');
 
 
 
