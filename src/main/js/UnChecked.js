@@ -54,7 +54,7 @@ class UnChecked extends React.Component {
                                     <td>{alert.change_process}</td>
                                     <td>{alert.timestamp}</td>
                                     <td>
-                                        <PopUp user={this.state.userId} id={alert.id} alert={alert} reloadAlerts={this.props.reloadAlerts} />
+                                        <PopUp user={this.props.userId} id={alert.id} alert={alert} reloadAlerts={this.props.reloadAlerts} />
                                     </td>
                                 </tr>)
                 }

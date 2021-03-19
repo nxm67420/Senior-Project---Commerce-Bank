@@ -121,7 +121,7 @@ class UserList extends React.Component {
             else {
                 console.log(this.state.currentAlerts);
                 console.log(this.state.uncheckedAlerts);
-                table = <UnChecked currentAlerts={this.state.currentAlerts} reloadAlerts={this.reloadAlerts}/>
+                table = <UnChecked currentAlerts={this.state.currentAlerts} reloadAlerts={this.reloadAlerts} userId={this.state.userId}/>
             }
                 console.log(this.state.checked);
                 return (
