@@ -27,8 +27,8 @@ class ApiService{
         return alerts;
     }
 
-    fetchAlerts(){
-        return axios.get(ALERT_API_BASE_URL)
+    async fetchAlerts(){
+         return await axios.get(ALERT_API_BASE_URL)
     }
 
     acknowledge(alert){
