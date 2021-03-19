@@ -49405,7 +49405,7 @@ var UnChecked = /*#__PURE__*/function (_React$Component) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
           key: alert.id
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, alert.file), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, alert.hostname), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, alert.application_id), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, alert.change_agent), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, alert.change_process), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, alert.timestamp), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_PopUp__WEBPACK_IMPORTED_MODULE_5__["default"], {
-          user: _this2.state.userId,
+          user: _this2.props.userId,
           id: alert.id,
           alert: alert,
           reloadAlerts: _this2.props.reloadAlerts
@@ -49674,7 +49674,8 @@ var UserList = /*#__PURE__*/function (_React$Component) {
           console.log(this.state.uncheckedAlerts);
           table = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UnChecked__WEBPACK_IMPORTED_MODULE_7__["default"], {
             currentAlerts: this.state.currentAlerts,
-            reloadAlerts: this.reloadAlerts
+            reloadAlerts: this.reloadAlerts,
+            userId: this.state.userId
           });
         }
 
