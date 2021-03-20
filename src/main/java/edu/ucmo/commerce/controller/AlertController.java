@@ -98,17 +98,6 @@ public class AlertController {
         return optionalAlert.orElse(null); //THEN Return
     }
 
-    //Return (Alerts.Checked == False)
-    //Working
-    @GetMapping(value = "/checking/{checked}")
-    public List<Alert> notChecked(@PathVariable boolean checked){
-     //   Optional<Alert> unchecked = alertDao.findByChecked(checked); //If exist in the Database
-     //   return unchecked.isPresent() ? unchecked.get() : null; //THEN Return
-        List<Alert> list = new ArrayList<>();
-        alertDao.findByChecked(checked).iterator().forEachRemaining(list::add);
-        return list;
-    }
-
     @GetMapping("/{id}")
     public List<Alert> getUserAlerts(@PathVariable int id){
         List<Alert> list = new ArrayList<>();

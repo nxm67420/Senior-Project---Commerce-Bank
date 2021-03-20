@@ -23,7 +23,7 @@ public interface AlertDao extends CrudRepository<Alert, Integer> {
     Optional<Alert> findById(Integer id);
 
     //Find Alerts that have been !checked
-    List<Alert> findByChecked(Boolean checked);
+    List<Alert> findByChecked(boolean checked);
 
 
     //Find Alerts that have been altered / tampered
