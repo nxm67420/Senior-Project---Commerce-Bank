@@ -18,6 +18,8 @@ public interface UserDao extends CrudRepository<User, Long> { //<Trying To Acces
     //Used in Login Verification
     User findByUserName(String name);
 
+    User findById(int id);
+
     //Finds all users with role 'Admin' || 'User'
     //Based on role assigned, allows access to certain HTML page
     List <User> findByRole(String role);

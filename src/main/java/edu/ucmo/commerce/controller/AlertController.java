@@ -2,9 +2,13 @@ package edu.ucmo.commerce.controller;
 
 import edu.ucmo.commerce.dao.AlertDao;
 import edu.ucmo.commerce.dao.ApplicationUsersDao;
+import edu.ucmo.commerce.dao.UserDao;
 import edu.ucmo.commerce.model.Alert;
 import edu.ucmo.commerce.model.ApplicationUsers;
+import edu.ucmo.commerce.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -23,7 +27,13 @@ public class AlertController {
     private AlertDao alertDao;
 
     @Autowired
+    private JavaMailSender javaMailSender;
+
+    @Autowired
     private ApplicationUsersDao applicationUsersDao;
+
+    @Autowired
+    private UserDao userDao;
 
     @PostMapping
     public Alert saveAlert(@RequestBody Alert alert){
@@ -35,6 +45,40 @@ public class AlertController {
                 alert.getChange_agent(),
                 alert.getChange_process()
                 );
+
+        /*
+
+         HANDLES EMAILS AFTER ALERT HAS BEEN POSTED
+
+         */
+        SimpleMailMessage msg = new SimpleMailMessage();
+        List<ApplicationUsers> applicationUsers = new ArrayList<>();
+        List<String> emails = new ArrayList<>();
+
+        //Gathers the relationships between userId and applicationIds
+        applicationUsersDao.findByApplicationId(alert.getApplication_id()).iterator().forEachRemaining(applicationUsers::add);
+
+        //Uses previous relationships to gather user emails
+        for (ApplicationUsers application: applicationUsers) {
+            emails.add(userDao.findById(application.getUserId()).getEmail());
+        }
+
+        //Only creates an email if there are emails
+        if(emails.size()>0) {
+            //Creates the email
+            msg.setTo(emails.toArray(new String[0]));
+            msg.setSubject("New Alert!");
+            msg.setText("One of your files: " + alert.getFile() + " has been modified at " + alert.getTimestamp() + " . Please acknowledge it!");
+            javaMailSender.send(msg);
+        }
+
+        /*
+
+         END OF EMAIL
+
+         */
+
+
         return alertDao.save(newAlert);
     }
 
@@ -51,7 +95,7 @@ public class AlertController {
     @GetMapping(value = "alerts/{id}")
     public Alert returnOne(@PathVariable int id){
         Optional<Alert> optionalAlert = alertDao.findById(id); //If exist in the Database
-        return optionalAlert.isPresent() ? optionalAlert.get() : null; //THEN Return
+        return optionalAlert.orElse(null); //THEN Return
     }
 
     //Return (Alerts.Checked == False)

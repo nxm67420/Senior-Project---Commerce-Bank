@@ -9,15 +9,15 @@ INSERT INTO `alert` (`id`, `application_id`, `change_agent`, `change_process`, `
 INSERT INTO `alert` (`id`, `application_id`, `change_agent`, `change_process`, `file`, `hostname`, `timestamp`, `checked`) VALUES (NULL, 'xyz', 'test\\puppet_agent', 'C:\\Program Files\\xyzpet Labs\\puppet\\sys\\ruby\\bin\\ruby.exe', 'C:\\Windows\\System32\\drivers\\etc\\services', 'ltaxyz345101010.test.testing.com', TIMESTAMP '2021-02-21 19:50:30.45', 0);
 
 REPLACE INTO users (user_id, user_name, email, password, first_name, last_name, role)
-VALUES (1,'user', 'user@acme.com',
+VALUES (1,'user', 'user@gmail.com',
         '$2y$10$A50PPo/tm3skv9iguM4UpOJg3ZUulV0XMB3iuGpx7po4k9OcFrREO',
         'Program', 'User', 'USER');
 REPLACE INTO users (user_id, user_name, email, password, first_name, last_name, role)
-VALUES (2, 'admin', 'admin@acme.com',
+VALUES (2, 'admin', 'admin@gmail.com',
         '$2y$10$A50PPo/tm3skv9iguM4UpOJg3ZUulV0XMB3iuGpx7po4k9OcFrREO',
         'Program', 'Admin', 'ADMIN');
 REPLACE INTO users (user_id, user_name, email, password, first_name, last_name, role)
-VALUES (3, 'hunter', 'admin@acme.com',
+VALUES (3, 'hunter', 'admin@gmail.com',
         '$2y$10$A50PPo/tm3skv9iguM4UpOJg3ZUulV0XMB3iuGpx7po4k9OcFrREO',
         'Hunter', 'Ehrenfeld', 'USER');
 
