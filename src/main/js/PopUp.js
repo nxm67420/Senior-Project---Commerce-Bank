@@ -4,6 +4,7 @@ import Modal from 'react-bootstrap/Modal';
 import axios from "axios";
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown';
+import Alert from "react-bootstrap";
 import {useState} from "react";
 import ApiService from './services/ApiService';
 
@@ -33,7 +34,7 @@ function PopUp(props) {
         if(e==='1'){
             setValueTwo(true);
         }
-        else if(e==='2'){
+        else if(e ==='2'){
             setValueTwo(false);
         }
     };
@@ -44,7 +45,10 @@ function PopUp(props) {
         setValueOne('');
         setValueTwo('');
         setShow(false);
+        //Alert Timer
+        setTimeout(function() { alert("Alert Edit Canceled"); }, 500);
     };
+
 
     //Saves update
     const handleSave = ()=>{
@@ -61,6 +65,8 @@ function PopUp(props) {
             known: valueOne,
             malicious: valueTwo
         };
+
+
         console.log(alert);
         //Send PUT request
         axios.put('http://localhost:8080/alerts/' + alert.id, alert)

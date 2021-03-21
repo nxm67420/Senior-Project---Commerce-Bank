@@ -10,21 +10,25 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.0/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-    <style></style>
 </head>
 
 <body th:style="'background:url(' + @{/images/login.jpeg} + ');'">
 <div class="container" style="margin-top: 200px">
 
+    <!--Navigates to LoginController for Page Redirection-->
     <form th:action="@{/login}" method="POST" class="form-signin">
         <h3 class="form-signin-heading" th:text="Welcome"> </h3>
         <br/>
 
+        <!--Insert Username-->
         <input type="text" id="user_name" name="user_name" placeholder="User Name"
                class="form-control"/> <br/>
+
+        <!--Insert Password-->
         <input type="password" th:placeholder="Password"
                id="password" name="password" class="form-control"/> <br/>
 
+        <!--Error Message For Incorrect Inout-->
         <div align="center" th:if="${param.error}">
             <p style="font-size: 20px; color: #FF1C19;">User Name or Password invalid, please verify</p>
         </div>
@@ -32,6 +36,7 @@
         <!--Based on user login information / page will determine whether to
         output userPage.html || adminPage.html -->
 
+        <!--Submit Button-->
         <button class="btn btn-lg btn-primary btn-block" name="Submit" value="Login" type="Submit"
                 th:text="Login"> </button>
     </form>

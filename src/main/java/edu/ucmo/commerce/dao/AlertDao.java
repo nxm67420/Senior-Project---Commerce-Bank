@@ -1,6 +1,5 @@
 package edu.ucmo.commerce.dao;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import edu.ucmo.commerce.model.Alert;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -13,6 +12,7 @@ import java.util.Optional;
 
 @Repository
 public interface AlertDao extends CrudRepository<Alert, Integer> {
+
     @Query("select a from Alert a where a.application_id=:application_id")
     List<Alert> findAlertByApplicationId(String application_id);
 
@@ -22,15 +22,12 @@ public interface AlertDao extends CrudRepository<Alert, Integer> {
     //Find Alerts w/ specific id
     Optional<Alert> findById(Integer id);
 
-    //Find Alerts that have been !checked
+    //Find Alerts that have been (checked && !checked)
     List<Alert> findByChecked(Boolean checked);
 
+    //Delete Specific ID
+    void deleteAlertById(Integer id);
 
-    //Find Alerts that have been altered / tampered
-
-
-    //Find Alerts.Unchecked && Alerts.DaysOld == 2
-    //If File is unchecked && Time > 2 Days THEN Filter
-    //List<Alert> findByNotCheckedAndTimestamp(Date posted, Date passed);
-
+    //Finds *Possible Alerts that are Unchecked && Two Days Old
+    Optional<Alert> findByCheckedAndTimestamp(Boolean checked, Date date);
 }

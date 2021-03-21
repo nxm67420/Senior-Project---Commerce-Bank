@@ -25,6 +25,7 @@ public class AlertController {
     @Autowired
     private ApplicationUsersDao applicationUsersDao;
 
+    //Create Alert
     @PostMapping
     public Alert saveAlert(@RequestBody Alert alert){
         Alert newAlert = new Alert(
@@ -54,15 +55,20 @@ public class AlertController {
         return optionalAlert.isPresent() ? optionalAlert.get() : null; //THEN Return
     }
 
-    //Return (Alerts.Checked == False)
-    //Working
-    @GetMapping(value = "/checking/{checked}")
+    //Return (Alerts.Checked == true)
+    @GetMapping(value = "/checked/{checked}")
     public List<Alert> notChecked(@PathVariable boolean checked){
-     //   Optional<Alert> unchecked = alertDao.findByChecked(checked); //If exist in the Database
-     //   return unchecked.isPresent() ? unchecked.get() : null; //THEN Return
-        List<Alert> list = new ArrayList<>();
-        alertDao.findByChecked(checked).iterator().forEachRemaining(list::add);
-        return list;
+        List<Alert> checkedAlerts = new ArrayList<>();
+        alertDao.findByChecked(checked).iterator().forEachRemaining(checkedAlerts::add);
+        return checkedAlerts;
+    }
+
+    //Return (Alerts.Checked == false)
+    @GetMapping("/checked/{unChecked}")
+    public List<Alert> falseAlerts(@PathVariable boolean unChecked){
+        List<Alert> uncheckedAlerts = new ArrayList<>();
+        alertDao.findByChecked(unChecked).iterator().forEachRemaining(uncheckedAlerts::add);
+        return uncheckedAlerts;
     }
 
     @GetMapping("/{id}")
@@ -76,6 +82,7 @@ public class AlertController {
         return list;
     }
 
+    //Update Alert
     @PutMapping("/{id}")
     public Alert update(@RequestBody Alert alertUpdate, Principal principal){
         Optional<Alert> optionalAlert = alertDao.findById(alertUpdate.getId());
@@ -88,4 +95,9 @@ public class AlertController {
         return alertUpdate;
     }
 
+    //Delete Alert According to ID
+    @DeleteMapping("/delete/{id}")
+    public void deleteAlert(@PathVariable int id){
+        alertDao.deleteAlertById(id);
+    }
 }

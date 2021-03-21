@@ -14,6 +14,7 @@ import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
