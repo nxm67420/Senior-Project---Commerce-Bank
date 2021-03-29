@@ -1,11 +1,8 @@
 import React from 'react';
-import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown';
-import FormControl from 'react-bootstrap/FormControl'
-import InputGroup from 'react-bootstrap/InputGroup'
 import {useState} from "react";
 import ApiService from '../services/ApiService';
 import TextField from '@material-ui/core/TextField';
@@ -15,12 +12,12 @@ function PopUp(props) {
 
     const [show, setShow] = useState(false);
 
-    // valueOne -> known
-    // valueTwo -> malicious
-    // valueThree -> Ticket Number
-    const [valueOne,setValueOne]=useState(null);
-    const [valueTwo,setValueTwo]=useState(null);
-    const [valueThree, setValueThree]=useState("");
+    // valueKnown -> known
+    // valueMalicious -> malicious
+    // valueChangeNumber -> Ticket Number
+    const [valueKnown,setValueKnown]=useState(null);
+    const [valueMalicious,setValueMalicious]=useState(null);
+    const [valueChangeNumber, setValueChangeNumber]=useState("");
 
     //Style for selection
     const selectionStyle = {
@@ -31,39 +28,48 @@ function PopUp(props) {
     let changeNumber = null;
 
 
-    // Assigns valueOne to a Boolean
+    // Assigns valueKnown to a Boolean
     const handleSelectOne=(e)=>{
         // console.log(e);
         if(e==='1'){
-            setValueOne(true);
+            setValueKnown(true);
         }
         else if(e==='2'){
-            setValueOne(false);
+            setValueKnown(false);
         }
     };
 
-    // Assigns valueTwo to a Boolean
+    // Assigns valueMalicious to a Boolean
     const handleSelectTwo=(e)=>{
         // console.log(e);
         if(e==='1'){
-            setValueTwo(true);
+            setValueMalicious(true);
         }
         else if(e==='2'){
-            setValueTwo(false);
+            setValueMalicious(false);
         }
     };
 
     //Closes Modal
     //If there was a selected value, clear it
     const handleClose = () => {
-        setValueOne('');
-        setValueTwo('');
+        setValueKnown('');
+        setValueMalicious('');
         setShow(false);
     };
 
     //Saves update
     const handleSave = ()=>{
-        console.log(valueOne);
+
+        //Sets control_number to either the state value or to N/A
+        //Value will be stored in the database
+        let control_number;
+        if(valueKnown===true){
+            control_number=valueChangeNumber
+        }
+        else{
+            control_number="N/A"
+        }
 
         //Create new alert object to send PUT request with
         let alert = {
@@ -74,8 +80,9 @@ function PopUp(props) {
             change_agent: props.alert.change_agent,
             change_process: props.alert.change_process,
             timestamp: props.alert.timestamp,
-            known: valueOne,
-            malicious: valueTwo
+            known: valueKnown,
+            malicious: valueMalicious,
+            control_number: control_number
         };
         console.log(alert);
         //Send PUT request
@@ -99,15 +106,15 @@ function PopUp(props) {
 
     //Prints the selection
     const know = () => {
-        if(valueOne===true){
+        if(valueKnown===true){
             changeNumber =
                 <TextField id="outlined-basic" label="Change/Ticket Number" variant="outlined" required={true} size="small" style={selectionStyle} onChange={(e) => {
-                    setValueThree(e.target.value)
+                    setValueChangeNumber(e.target.value)
                 }}/>;
-                console.log(valueThree);
+                console.log(valueChangeNumber);
             return "known";
         }
-        else if(valueOne===false){
+        else if(valueKnown===false){
             changeNumber = null
             return "unknown";
         }
@@ -115,20 +122,20 @@ function PopUp(props) {
 
     //Prints the selection
     const malicious = () => {
-        if(valueTwo===true){
+        if(valueMalicious===true){
             return "malicious";
         }
-        else if(valueTwo===false){
+        else if(valueMalicious===false){
             return "not malicious";
         }
     };
 
     const buttonDisabled = () => {
-        if(valueOne === null || valueTwo === null)
+        if(valueKnown === null || valueMalicious === null)
             return true;
         else{
-            if(valueOne===true){
-                if(valueThree.trim()==""){
+            if(valueKnown===true){
+                if(valueChangeNumber.trim()==""){
                     return true;
                 }
                 else
