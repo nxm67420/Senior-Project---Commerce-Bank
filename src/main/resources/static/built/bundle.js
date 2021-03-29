@@ -59430,10 +59430,7 @@ function PopUp(props) {
     setValueOne('');
     setValueTwo('');
     setShow(false); //Alert Timer
-
-    setTimeout(function () {
-      alert("Alert Edit Canceled");
-    }, 500);
+    // setTimeout(function() { alert("Alert Edit Canceled"); }, 500);
   }; //Saves update
 
 
@@ -60089,20 +60086,26 @@ var UserList2 = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var currentRole = "";
+      var _this6 = this;
 
-      if (this.state.role === 'ADMIN') {
-        /*#__PURE__*/
-        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Hello,  ", this.state.role, " ");
+      var currentRole = function currentRole() {
+        _this6.userRole();
+      };
+
+      var message = null;
+
+      if (currentRole === 'ADMIN') {
+        currentRole === "ADMIN", message = "Hello,  ";
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_AdminList__WEBPACK_IMPORTED_MODULE_2__["default"], null);
+      } else if (currentRole === 'USER') {
+        currentRole === "USER", message = "Greetings, ";
       } else {
-        /*#__PURE__*/
-        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Greetings, ", this.state.role);
+        currentRole === "UNKNOWN", message = "Welcome, ";
       }
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
         className: "text-center"
-      }, " Nicks Table Demo"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Table__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      }, " ", message, ", ", currentRole, " Table Demo"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Table__WEBPACK_IMPORTED_MODULE_3__["default"], {
         striped: true,
         bordered: true,
         hover: true
@@ -60114,12 +60117,12 @@ var UserList2 = /*#__PURE__*/function (_React$Component) {
           variant: "outline-primary"
         }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_5__["FontAwesomeIcon"], {
           icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_6__["faEdit"]
-        }), " "), '', " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["Button"], {
+        })), '', " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["Button"], {
           size: "md",
           variant: "outline-danger"
         }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_5__["FontAwesomeIcon"], {
           icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_6__["faTrash"]
-        }), " "))));
+        })))));
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tfoot", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
         colSpan: 12
       })))));
@@ -60142,9 +60145,11 @@ var UserList2 = /*#__PURE__*/function (_React$Component) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _UserList__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./UserList */ "./src/main/js/UserList.js");
-/* harmony import */ var _UserList2__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./UserList2 */ "./src/main/js/UserList2.js");
+/* harmony import */ var _UserList2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./UserList2 */ "./src/main/js/UserList2.js");
+/* harmony import */ var _UserList__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./UserList */ "./src/main/js/UserList.js");
 /* harmony import */ var _Footer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Footer */ "./src/main/js/Footer.js");
+
+
 var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 var ReactDOM = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
@@ -60152,12 +60157,11 @@ var ReactDOM = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/in
 
 
 
-
 function App() {
-  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(_UserList2__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("h1", {
+  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(_UserList2__WEBPACK_IMPORTED_MODULE_0__["default"], null), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("h1", {
     className: "text-center",
     style: style
-  }, "System File Management "), /*#__PURE__*/React.createElement(_UserList__WEBPACK_IMPORTED_MODULE_0__["default"], null), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(_Footer__WEBPACK_IMPORTED_MODULE_2__["default"], null)));
+  }, "System File Management "), /*#__PURE__*/React.createElement(_UserList__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(_Footer__WEBPACK_IMPORTED_MODULE_2__["default"], null)));
 }
 
 var style = {

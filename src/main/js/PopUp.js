@@ -20,7 +20,7 @@ function PopUp(props) {
     // Assigns valueOne to a Boolean
     const handleSelectOne=(e)=>{
         // console.log(e);
-        if(e==='1'){
+        if( e==='1'){
             setValueOne(true);
         }
         else if(e==='2'){
@@ -46,7 +46,7 @@ function PopUp(props) {
         setValueTwo('');
         setShow(false);
         //Alert Timer
-        setTimeout(function() { alert("Alert Edit Canceled"); }, 500);
+        // setTimeout(function() { alert("Alert Edit Canceled"); }, 500);
     };
 
 

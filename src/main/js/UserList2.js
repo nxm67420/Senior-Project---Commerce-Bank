@@ -95,17 +95,25 @@ class UserList2 extends React.Component{
     };
 
     render() {
-        const currentRole = "";
-        if(this.state.role === 'ADMIN'){
-            <h1>Hello,  {this.state.role} </h1>;
+        const currentRole = () =>{
+            this.userRole()
+        };
+        let message = null;
+        if(currentRole === 'ADMIN'){
+            message = "Hello, {currentRole} ";
             return <AdminList/>
         }
+        else if (currentRole === 'USER'){
+            currentRole === "USER",
+            message = "Greetings, "
+        }
         else{
-            <h1>Greetings, {this.state.role}</h1>
+            currentRole === "UNKNOWN",
+            message = "Welcome, "
         }
         return(
             <div>
-                <h1 className="text-center"> Nicks Table Demo</h1>
+                <h1 className="text-center"> {message}, {currentRole} Table Demo</h1>
                 <Table striped bordered hover>
                     <thead>
                         <tr>
@@ -131,8 +139,12 @@ class UserList2 extends React.Component{
                             <td>{alert.checked}</td>
                             <td>
                             <ButtonGroup>
-                                <Button size={"md"} variant={"outline-primary"}> <FontAwesomeIcon icon={faEdit} /> </Button>
-                                {''} <Button size={"md"} variant={"outline-danger"}> <FontAwesomeIcon icon={faTrash} /> </Button>
+                                <Button size={"md"} variant={"outline-primary"}> <FontAwesomeIcon icon={faEdit} />
+
+                                </Button>
+                                {''} <Button size={"md"} variant={"outline-danger"}> <FontAwesomeIcon icon={faTrash} />
+
+                                </Button>
                             </ButtonGroup>
                             </td>
                         </tr>
