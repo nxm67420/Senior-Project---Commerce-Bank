@@ -7,6 +7,7 @@ import {useState} from "react";
 import ApiService from './services/ApiService';
 
 function PopUp(props) {
+
     const [show, setShow] = useState(false);
 
     // valueOne -> known
@@ -14,6 +15,9 @@ function PopUp(props) {
     const [valueOne,setValueOne]=useState(null);
     const [valueTwo,setValueTwo]=useState(null);
 
+    const selectionStyle = {
+        paddingBottom: "20px"
+    };
 
     // Assigns valueOne to a Boolean
     const handleSelectOne=(e)=>{
@@ -105,16 +109,20 @@ function PopUp(props) {
                     <Modal.Title>Acknowledgement</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <DropdownButton id="dropdown-item-button" title="Known Change?" onSelect={handleSelectOne}>
-                        <Dropdown.Item eventKey="1">Known</Dropdown.Item>
-                        <Dropdown.Item eventKey="2">Unknown</Dropdown.Item>
-                    </DropdownButton>
-                    <b><span>Selected: {know()}</span></b>
-                    <DropdownButton id="dropdown-item-button" title="Malicious?" onSelect={handleSelectTwo}>
-                        <Dropdown.Item eventKey="1">Malicious</Dropdown.Item>
-                        <Dropdown.Item eventKey="2">Not Malicious</Dropdown.Item>
-                    </DropdownButton>
-                    <b><span>Selected: {malicious()}</span></b>
+                    <div>
+                        <DropdownButton id="dropdown-item-button" title="Known Change?" onSelect={handleSelectOne}>
+                            <Dropdown.Item eventKey="1">Known</Dropdown.Item>
+                            <Dropdown.Item eventKey="2">Unknown</Dropdown.Item>
+                        </DropdownButton>
+                        <b><div style={selectionStyle}>Selected: {know()}</div></b>
+                    </div>
+                    <div>
+                        <DropdownButton id="dropdown-item-button" title="Malicious?" onSelect={handleSelectTwo}>
+                            <Dropdown.Item eventKey="1">Malicious</Dropdown.Item>
+                            <Dropdown.Item eventKey="2">Not Malicious</Dropdown.Item>
+                        </DropdownButton>
+                    </div>
+                    <b><div style={selectionStyle}>Selected: {malicious()}</div></b>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
