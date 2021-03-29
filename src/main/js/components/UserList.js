@@ -94,7 +94,7 @@ class UserList extends React.Component {
         }
          else {
              let table;
-            // Used to conditionally render items that are on the difference between acknowledged and unacknowledgd
+            // Used to conditionally render items that are on the difference between acknowledged and unacknowledged
             if(this.state.checked){
                 table =  <Checked currentAlerts={this.state.checkedAlerts}/>
             }

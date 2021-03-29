@@ -8,6 +8,8 @@ import FormControl from 'react-bootstrap/FormControl'
 import InputGroup from 'react-bootstrap/InputGroup'
 import {useState} from "react";
 import ApiService from '../services/ApiService';
+import TextField from '@material-ui/core/TextField';
+
 
 function PopUp(props) {
 
@@ -15,21 +17,18 @@ function PopUp(props) {
 
     // valueOne -> known
     // valueTwo -> malicious
+    // valueThree -> Ticket Number
     const [valueOne,setValueOne]=useState(null);
     const [valueTwo,setValueTwo]=useState(null);
+    const [valueThree, setValueThree]=useState("");
 
+    //Style for selection
     const selectionStyle = {
         paddingBottom: "20px"
     };
 
-    const changeNumber =
-    <InputGroup className="mb-3">
-        <InputGroup.Prepend>
-        </InputGroup.Prepend>
-        <FormControl
-            placeholder="Enter Change Control number or Trouble ticket number"
-        />
-    </InputGroup>;
+    //Generates Input Box when Known is selected
+    let changeNumber = null;
 
 
     // Assigns valueOne to a Boolean
@@ -65,6 +64,7 @@ function PopUp(props) {
     //Saves update
     const handleSave = ()=>{
         console.log(valueOne);
+
         //Create new alert object to send PUT request with
         let alert = {
             id: props.alert.id,
@@ -87,6 +87,8 @@ function PopUp(props) {
                 //Reloads alert list with updated data
                 props.reloadAlerts(res.data);
             });
+
+        //Modal doesnt show anymore
         setShow(false);
 
         //Calls method to show that the alert has been acknowledged
@@ -98,9 +100,15 @@ function PopUp(props) {
     //Prints the selection
     const know = () => {
         if(valueOne===true){
+            changeNumber =
+                <TextField id="outlined-basic" label="Change/Ticket Number" variant="outlined" required={true} size="small" style={selectionStyle} onChange={(e) => {
+                    setValueThree(e.target.value)
+                }}/>;
+                console.log(valueThree);
             return "known";
         }
         else if(valueOne===false){
+            changeNumber = null
             return "unknown";
         }
     };
@@ -114,6 +122,22 @@ function PopUp(props) {
             return "not malicious";
         }
     };
+
+    const buttonDisabled = () => {
+        if(valueOne === null || valueTwo === null)
+            return true;
+        else{
+            if(valueOne===true){
+                if(valueThree.trim()==""){
+                    return true;
+                }
+                else
+                    return false;
+            }
+            else
+                return false;
+        }
+    }
 
     return (
         <>
@@ -145,7 +169,7 @@ function PopUp(props) {
                     <Button variant="secondary" onClick={handleClose}>
                         Close
                     </Button>
-                    <Button variant="primary" onClick={handleSave} disabled={valueOne===null || valueTwo===null}>
+                    <Button variant="primary" onClick={handleSave} disabled={buttonDisabled()}>
                         Save Changes
                     </Button>
                 </Modal.Footer>
