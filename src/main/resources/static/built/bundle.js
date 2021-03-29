@@ -49147,7 +49147,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_bootstrap_Modal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap/Modal */ "./node_modules/react-bootstrap/esm/Modal.js");
 /* harmony import */ var react_bootstrap_DropdownButton__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap/DropdownButton */ "./node_modules/react-bootstrap/esm/DropdownButton.js");
 /* harmony import */ var react_bootstrap_Dropdown__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap/Dropdown */ "./node_modules/react-bootstrap/esm/Dropdown.js");
-/* harmony import */ var _services_ApiService__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./services/ApiService */ "./src/main/js/services/ApiService.js");
+/* harmony import */ var react_bootstrap_FormControl__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap/FormControl */ "./node_modules/react-bootstrap/esm/FormControl.js");
+/* harmony import */ var react_bootstrap_InputGroup__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap/InputGroup */ "./node_modules/react-bootstrap/esm/InputGroup.js");
+/* harmony import */ var _services_ApiService__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./services/ApiService */ "./src/main/js/services/ApiService.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -49159,6 +49161,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
 
 
 
@@ -49188,7 +49192,12 @@ function PopUp(props) {
 
   var selectionStyle = {
     paddingBottom: "20px"
-  }; // Assigns valueOne to a Boolean
+  };
+  var changeNumber = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_InputGroup__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    className: "mb-3"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_InputGroup__WEBPACK_IMPORTED_MODULE_6__["default"].Prepend, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_FormControl__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    placeholder: "Enter Change Control number or Trouble ticket number"
+  })); // Assigns valueOne to a Boolean
 
   var handleSelectOne = function handleSelectOne(e) {
     // console.log(e);
@@ -49234,9 +49243,9 @@ function PopUp(props) {
     };
     console.log(alert); //Send PUT request
 
-    _services_ApiService__WEBPACK_IMPORTED_MODULE_5__["default"].acknowledge(alert).then(function () {
+    _services_ApiService__WEBPACK_IMPORTED_MODULE_7__["default"].acknowledge(alert).then(function () {
       return (//Fetches updated list of alerts
-        _services_ApiService__WEBPACK_IMPORTED_MODULE_5__["default"].getData()
+        _services_ApiService__WEBPACK_IMPORTED_MODULE_7__["default"].getData()
       );
     }).then(function (res) {
       //Reloads alert list with updated data
@@ -49285,7 +49294,7 @@ function PopUp(props) {
     eventKey: "2"
   }, "Unknown")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     style: selectionStyle
-  }, "Selected: ", know()))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_DropdownButton__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }, "Selected: ", know())), changeNumber), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_DropdownButton__WEBPACK_IMPORTED_MODULE_3__["default"], {
     id: "dropdown-item-button",
     title: "Malicious?",
     onSelect: handleSelectTwo

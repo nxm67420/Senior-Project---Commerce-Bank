@@ -3,6 +3,8 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown';
+import FormControl from 'react-bootstrap/FormControl'
+import InputGroup from 'react-bootstrap/InputGroup'
 import {useState} from "react";
 import ApiService from './services/ApiService';
 
@@ -18,6 +20,16 @@ function PopUp(props) {
     const selectionStyle = {
         paddingBottom: "20px"
     };
+
+    const changeNumber =
+    <InputGroup className="mb-3">
+        <InputGroup.Prepend>
+        </InputGroup.Prepend>
+        <FormControl
+            placeholder="Enter Change Control number or Trouble ticket number"
+        />
+    </InputGroup>;
+
 
     // Assigns valueOne to a Boolean
     const handleSelectOne=(e)=>{
@@ -115,6 +127,7 @@ function PopUp(props) {
                             <Dropdown.Item eventKey="2">Unknown</Dropdown.Item>
                         </DropdownButton>
                         <b><div style={selectionStyle}>Selected: {know()}</div></b>
+                        {changeNumber}
                     </div>
                     <div>
                         <DropdownButton id="dropdown-item-button" title="Malicious?" onSelect={handleSelectTwo}>
