@@ -1,4 +1,5 @@
 import React from 'react';
+import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import DropdownButton from 'react-bootstrap/DropdownButton';
@@ -6,7 +7,7 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import FormControl from 'react-bootstrap/FormControl'
 import InputGroup from 'react-bootstrap/InputGroup'
 import {useState} from "react";
-import ApiService from './services/ApiService';
+import ApiService from '../services/ApiService';
 
 function PopUp(props) {
 
@@ -87,6 +88,9 @@ function PopUp(props) {
                 props.reloadAlerts(res.data);
             });
         setShow(false);
+
+        //Calls method to show that the alert has been acknowledged
+        props.showingAlert();
     };
 
     const handleShow = () => setShow(true);
