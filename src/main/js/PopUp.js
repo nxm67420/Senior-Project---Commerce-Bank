@@ -97,7 +97,7 @@ function PopUp(props) {
 
     return (
         <>
-            <Button variant="primary" onClick={handleShow}>
+            <Button variant="primary" onClick={handleShow} style={{color: "white", background: "#009688", border: "none"}}>
                 Acknowledge Alert
             </Button>
             <Modal show={show} onHide={handleClose}>
@@ -105,7 +105,7 @@ function PopUp(props) {
                     <Modal.Title>Acknowledgement</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <DropdownButton id="dropdown-item-button" title="Known Change?" onSelect={handleSelectOne}>
+                    <DropdownButton id="dropdown-item-button" title="Known Change?" onSelect={handleSelectOne} style ={{borderColor:"red"}}>
                         <Dropdown.Item eventKey="1">Known</Dropdown.Item>
                         <Dropdown.Item eventKey="2">Unknown</Dropdown.Item>
                     </DropdownButton>
@@ -120,7 +120,7 @@ function PopUp(props) {
                     <Button variant="secondary" onClick={handleClose}>
                         Close
                     </Button>
-                    <Button variant="primary" onClick={handleSave} disabled={valueOne===null || valueTwo===null}>
+                    <Button variant="primary" onClick={handleSave} disabled={valueOne===null || valueTwo===null} style={{color: "white", background: "#009688", border: "none"}}>
                         Save Changes
                     </Button>
                 </Modal.Footer>

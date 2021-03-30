@@ -1,12 +1,8 @@
 import React from 'react';
-import {Nav, Navbar} from "react-bootstrap";
+import {Nav, Navbar, NavItem} from "react-bootstrap";
 import ApiService from "./services/ApiService";
 import Checked from "./Checked";
 import UnCheckedAdmin from "./UnCheckedAdmin";
-
-
-
-
 class AdminList extends React.Component {
 
     constructor (props){
@@ -98,8 +94,7 @@ class AdminList extends React.Component {
         }
         return (
             <div>
-                Admin
-                <Navbar bg="dark" variant="dark">
+                <Navbar bg="dark" variant="dark" >
                     <Navbar.Brand href="/"> File System </Navbar.Brand>
                     <Navbar.Toggle />
                     <Nav className="mr-auto">

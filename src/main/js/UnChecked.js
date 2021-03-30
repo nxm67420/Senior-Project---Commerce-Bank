@@ -36,6 +36,7 @@ class UnChecked extends React.Component {
                     <th>Change Agent</th>
                     <th>Change Process</th>
                     <th>Timestamp</th>
+                    <th>Acknowledge</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -51,7 +52,7 @@ class UnChecked extends React.Component {
                                     <td>{alert.change_process}</td>
                                     <td>{alert.timestamp}</td>
                                     <td>
-                                        <PopUp user={this.props.userId} id={alert.id} alert={alert} reloadAlerts={this.props.reloadAlerts} />
+                                       <p id={'popupID'}><PopUp user={this.props.userId} id={alert.id} alert={alert} reloadAlerts={this.props.reloadAlerts} /></p>
                                     </td>
                                 </tr>)
                 }
