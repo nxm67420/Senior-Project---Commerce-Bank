@@ -3,7 +3,7 @@ import {Nav, Navbar} from "react-bootstrap";
 import AdminList from "./AdminList";
 import Checked from "./Checked";
 import UnChecked from "./UnChecked";
-import ApiService from "./services/ApiService";
+import ApiService from "../services/ApiService";
 
 
 class UserList extends React.Component {
@@ -94,7 +94,7 @@ class UserList extends React.Component {
         }
          else {
              let table;
-            // Used to conditionally render items that are on the difference between acknowledged and unacknowledgd
+            // Used to conditionally render items that are on the difference between acknowledged and unacknowledged
             if(this.state.checked){
                 table =  <Checked currentAlerts={this.state.checkedAlerts}/>
             }
@@ -116,47 +116,6 @@ class UserList extends React.Component {
                                           style={{marginRight: "120px"}}>Acknowledged Alerts</Nav.Link>
                             </Nav>
                         </Navbar>
-                        {/*<ButtonGroup toggle className="mb-2">*/}
-                        {/*    <ToggleButton*/}
-                        {/*        type="checkbox"*/}
-                        {/*        variant="primary"*/}
-                        {/*        checked={this.state.checked}*/}
-                        {/*        value="1"*/}
-                        {/*        onChange={this.setChecked.bind(this)}*/}
-                        {/*    >*/}
-                        {/*        Two Days*/}
-                        {/*    </ToggleButton>*/}
-                        {/*</ButtonGroup>*/}
-                        {/*<Table striped bordered hover>*/}
-                        {/*    <thead>*/}
-                        {/*    <tr>*/}
-                        {/*        <th>File</th>*/}
-                        {/*        <th>Hostname</th>*/}
-                        {/*        <th>Application ID</th>*/}
-                        {/*        <th>Change Agent</th>*/}
-                        {/*        <th>Change Process</th>*/}
-                        {/*        <th>Timestamp</th>*/}
-                        {/*    </tr>*/}
-                        {/*    </thead>*/}
-                        {/*    <tbody>*/}
-                        {/*    {*/}
-                        {/*        this.state.currentAlerts.sort((a, b) => a.timestamp < b.timestamp ? 1 : -1)*/}
-                        {/*            .map(*/}
-                        {/*                alert =>*/}
-                        {/*                    <tr key={alert.id}>*/}
-                        {/*                        <td>{alert.file}</td>*/}
-                        {/*                        <td>{alert.hostname}</td>*/}
-                        {/*                        <td>{alert.application_id}</td>*/}
-                        {/*                        <td>{alert.change_agent}</td>*/}
-                        {/*                        <td>{alert.change_process}</td>*/}
-                        {/*                        <td>{alert.timestamp}</td>*/}
-                        {/*                        <td>*/}
-                        {/*                            <PopUp user={this.state.userId} id={alert.id} alert={alert} reloadAlerts={this.reloadAlerts} />*/}
-                        {/*                        </td>*/}
-                        {/*                    </tr>)*/}
-                        {/*    }*/}
-                        {/*    </tbody>*/}
-                        {/*</Table>*/}
                         {table}
                     </div>
                 );
