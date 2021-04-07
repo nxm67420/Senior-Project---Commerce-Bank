@@ -3,6 +3,7 @@ package edu.ucmo.commerce.service;
 import edu.ucmo.commerce.dao.UserDao;
 import edu.ucmo.commerce.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,8 +16,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class MyUserDetalisService implements UserDetailsService {
-
+public class MyUserDetailsService implements UserDetailsService {
+    
     //Created Object to Test Verification Process
     @Autowired
     private UserDao userDao;
