@@ -48945,19 +48945,19 @@ var AdminList = /*#__PURE__*/function (_React$Component) {
         href: "#unacknowledge",
         onSelect: this.unchecked.bind(this),
         style: {
-          marginRight: "120px"
+          marginRight: "60px"
         }
       }, "Unacknowledged Alerts"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Nav"].Link, {
         href: "#acknowledge",
         onSelect: this.checked.bind(this),
         style: {
-          marginRight: "120px"
+          marginRight: "60px"
         }
       }, "Acknowledged Alerts"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Nav"].Link, {
         href: "#filter",
         onSelect: this.filtered.bind(this),
         style: {
-          marginRight: "120px"
+          marginRight: "60px"
         }
       }, "Red Alerts (+2 Days Old)"))), table);
     }
