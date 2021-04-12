@@ -107,13 +107,13 @@ class UserList extends React.Component {
                 return (
                     <div>
                         <Navbar bg="dark" variant="dark">
-                            <Navbar.Brand href="/"> File System </Navbar.Brand>
+                            <Navbar.Brand href="/" style = {{marginRight: "60px"}}> File System </Navbar.Brand>
                             <Navbar.Toggle/>
                             <Nav className="mr-auto">
                                 <Nav.Link href="#unacknowledge" onSelect={this.unchecked.bind(this)}
-                                          style={{marginRight: "120px"}}>Unacknowledged Alerts</Nav.Link>
+                                          style={{marginRight: "60px"}}>Unacknowledged Alerts</Nav.Link>
                                 <Nav.Link href="#acknowledge" onSelect={this.checked.bind(this)}
-                                          style={{marginRight: "120px"}}>Acknowledged Alerts</Nav.Link>
+                                          style={{marginRight: "60px"}}>Acknowledged Alerts</Nav.Link>
                             </Nav>
                         </Navbar>
                         {table}
