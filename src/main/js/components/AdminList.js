@@ -1,6 +1,6 @@
 import React from 'react';
-import {Nav, Navbar, NavItem} from "react-bootstrap";
-import ApiService from "./services/ApiService";
+import {Nav, Navbar} from "react-bootstrap";
+import ApiService from "../services/ApiService";
 import Checked from "./Checked";
 import UnCheckedAdmin from "./UnCheckedAdmin";
 class AdminList extends React.Component {

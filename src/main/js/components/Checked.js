@@ -37,6 +37,7 @@ class Checked extends React.Component {
                             <th>Known Change</th>
                             <th>Malicious Change</th>
                             <th>Acknowledged User</th>
+                            <th>Control/Ticket Change Number</th>
                             <th>Acknowledged Time</th>
                         </tr>
                         </thead>
@@ -55,6 +56,7 @@ class Checked extends React.Component {
                                             <td>{alert.known.toString()}</td>
                                             <td>{alert.malicious.toString()}</td>
                                             <td>{alert.acknowledge_user}</td>
+                                            <td>{alert.control_number}</td>
                                             <td>{alert.acknowledge_time}</td>
                                         </tr>)
                         }
