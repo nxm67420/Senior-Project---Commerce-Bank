@@ -34,3 +34,9 @@ input[type="password"] {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 }
+
+#topHeader {
+    background: #404040;
+    color: #f9f9f9;
+}
+

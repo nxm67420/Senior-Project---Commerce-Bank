@@ -33,8 +33,6 @@ public class Alert {
     private Timestamp acknowledge_time;
     @Column
     private String acknowledge_user;
-    @Column
-    private String control_number;
 
     public Alert(
             Timestamp timestamp,
@@ -46,8 +44,7 @@ public class Alert {
             Boolean known,
             Boolean malicious,
             Timestamp acknowledge_time,
-            String acknowledge_user,
-            String control_number) {
+            String acknowledge_user) {
         this.timestamp = timestamp;
         this.hostname = hostname;
         this.application_id = application_id;
@@ -59,7 +56,6 @@ public class Alert {
         this.malicious = malicious;
         this.acknowledge_time = acknowledge_time;
         this.acknowledge_user=acknowledge_user;
-        this.control_number=control_number;
     }
 
     public Alert(
@@ -181,14 +177,6 @@ public class Alert {
 
     public void setAcknowledge_time(Timestamp acknowledge_time) {
         this.acknowledge_time = acknowledge_time;
-    }
-
-    public String getControl_number() {
-        return control_number;
-    }
-
-    public void setControl_number(String control_number) {
-        this.control_number = control_number;
     }
 
     @Override

@@ -8,6 +8,7 @@ class Footer extends React.Component{
         let yearOf = new Date().getFullYear();
 
         return (
+            <div id = "footer">
             <Navbar fixed={"bottom"} bg="dark" variant="dark">
                 <Container>
                     <Col lg={12} className={"text-center text-muted"}>
@@ -18,6 +19,7 @@ class Footer extends React.Component{
                 </Container>
 
             </Navbar>
+            </div>
         );
     }
 

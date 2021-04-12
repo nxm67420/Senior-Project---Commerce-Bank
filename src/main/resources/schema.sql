@@ -21,7 +21,6 @@ CREATE TABLE alert (
                        known BOOLEAN,
                        malicious BOOLEAN,
                        acknowledge_user VARCHAR(255),
-                       control_number VARCHAR(255),
                        PRIMARY KEY (id)
 );
 
