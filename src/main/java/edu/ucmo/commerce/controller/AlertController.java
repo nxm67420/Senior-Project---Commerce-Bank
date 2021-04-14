@@ -62,7 +62,6 @@ public class AlertController {
         for (ApplicationUsers application: applicationUsers) {
             emails.add(userDao.findById(application.getUserId()).getEmail());
         }
-
         //Only creates an email if there are emails
         if(emails.size()>0) {
             //Creates the email
@@ -117,6 +116,15 @@ public class AlertController {
             alertUpdate.setAcknowledge_user(principal.getName());
             alertUpdate.setChecked(true);
             alertDao.save(alertUpdate);
+
+            /*** Alerts IT department if alert was malicious **/
+            if(alertUpdate.getMalicious()==true){
+                SimpleMailMessage msg = new SimpleMailMessage();
+                msg.setTo("IT@Commercebank.com");
+                msg.setSubject("Malicious Alert Reported!");
+                msg.setText(alertUpdate.getFile() + " has been reported to be malicious by User: " + principal.getName() + ". Please address this ASAP!");
+                javaMailSender.send(msg);
+            }
         }
         return alertUpdate;
     }

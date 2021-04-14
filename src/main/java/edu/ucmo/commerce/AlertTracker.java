@@ -38,7 +38,6 @@ public class AlertTracker {
 	@Autowired
 	private JavaMailSender javaMailSender;
 
-
 	@Scheduled(fixedDelay = 10000)
 	public void unacknowledgedAlerts(){
 
