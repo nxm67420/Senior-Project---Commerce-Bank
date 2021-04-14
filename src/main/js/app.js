@@ -1,6 +1,6 @@
 const React = require('react');
 const ReactDOM = require('react-dom');
-import UserList from "./UserList";
+import UserList from "./components/UserList";
 import Footer from "./Footer";
 
 function App() {
