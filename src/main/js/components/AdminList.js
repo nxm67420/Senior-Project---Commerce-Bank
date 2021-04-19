@@ -3,10 +3,6 @@ import {Nav, Navbar} from "react-bootstrap";
 import ApiService from "../services/ApiService";
 import Checked from "./Checked";
 import UnCheckedAdmin from "./UnCheckedAdmin";
-
-
-
-
 class AdminList extends React.Component {
 
     constructor (props){
@@ -98,14 +94,13 @@ class AdminList extends React.Component {
         }
         return (
             <div>
-                Admin
-                <Navbar bg="dark" variant="dark">
+                <Navbar bg="dark" variant="dark" >
                     <Navbar.Brand href="/"> File System </Navbar.Brand>
                     <Navbar.Toggle />
                     <Nav className="mr-auto">
-                        <Nav.Link href="#unacknowledge" onSelect={this.unchecked.bind(this)} style={{marginRight: "120px"}}>Unacknowledged Alerts</Nav.Link>
-                        <Nav.Link href="#acknowledge" onSelect={this.checked.bind(this)} style={{marginRight: "120px"}}>Acknowledged Alerts</Nav.Link>
-                        <Nav.Link href="#filter" onSelect={this.filtered.bind(this)} style={{marginRight: "120px"}}>Red Alerts (+2 Days Old)</Nav.Link>
+                        <Nav.Link href="#unacknowledge" onSelect={this.unchecked.bind(this)} style={{marginRight: "60px"}}>Unacknowledged Alerts</Nav.Link>
+                        <Nav.Link href="#acknowledge" onSelect={this.checked.bind(this)} style={{marginRight: "60px"}}>Acknowledged Alerts</Nav.Link>
+                        <Nav.Link href="#filter" onSelect={this.filtered.bind(this)} style={{marginRight: "60px"}}>Red Alerts (+2 Days Old)</Nav.Link>
                     </Nav>
                 </Navbar>
                 {/*<Table striped bordered hover>*/}

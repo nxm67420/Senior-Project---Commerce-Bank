@@ -1,10 +1,12 @@
 import React from 'react';
-import {Nav, Navbar} from "react-bootstrap";
+import {Nav, Navbar, Spinner} from "react-bootstrap";
 import AdminList from "./AdminList";
 import Checked from "./Checked";
 import UnChecked from "./UnChecked";
 import ApiService from "../services/ApiService";
-
+import Backdrop from '@material-ui/core/Backdrop';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import { makeStyles } from '@material-ui/core/styles';
 
 class UserList extends React.Component {
 
@@ -20,7 +22,8 @@ class UserList extends React.Component {
             currentAlerts: [],
             checked: false,
             role: [],
-            userId: []
+            userId: [],
+            loading : true
         };
         this.reloadAlerts = this.reloadAlerts.bind(this);
     }
@@ -34,7 +37,8 @@ class UserList extends React.Component {
             alerts: alerts,
             checkedAlerts: checked,
             uncheckedAlerts: unchecked,
-            currentAlerts: checked
+            currentAlerts: checked,
+            loading : false
         });
         }
         else{
@@ -42,7 +46,8 @@ class UserList extends React.Component {
                 alerts: alerts,
                 checkedAlerts: checked,
                 uncheckedAlerts: unchecked,
-                currentAlerts: unchecked
+                currentAlerts: unchecked,
+                loading : false
             });
         }
         console.log(alerts);
@@ -66,7 +71,8 @@ class UserList extends React.Component {
                     alerts: alerts,
                     checkedAlerts: checked,
                     uncheckedAlerts: unchecked,
-                    currentAlerts: unchecked
+                    currentAlerts: unchecked,
+                    loading : false
                 });
             });
             console.log(this.state.currentAlerts);
@@ -75,45 +81,63 @@ class UserList extends React.Component {
     checked() {
         this.setState({
             currentAlerts: this.state.checkedAlerts,
-            checked: true
+            checked: true,
+            loading : false
         })
     }
 
     unchecked() {
         this.setState({
             currentAlerts: this.state.uncheckedAlerts,
-            checked: false
+            checked: false,
+            loading : false
         })
     }
 
 
 
     render() {
-        if(this.state.role === 'ADMIN'){
-            return <AdminList/>
+        //Spinner Design
+        const useStyles = makeStyles((theme) => ({
+            backdrop: {
+                zIndex: theme.zIndex.drawer + 1,
+                color: '#fff',
+            },
+        }));
+        //If Collecting Data, Display Loading Page
+        if (this.state.loading) {
+            return (
+                <Backdrop style={useStyles} open>
+                    <CircularProgress color="inherit"/>
+                </Backdrop>
+            )
         }
-         else {
-             let table;
-            // Used to conditionally render items that are on the difference between acknowledged and unacknowledged
-            if(this.state.checked){
-                table =  <Checked currentAlerts={this.state.checkedAlerts}/>
-            }
-            else {
-                console.log(this.state.currentAlerts);
-                console.log(this.state.uncheckedAlerts);
-                table = <UnChecked currentAlerts={this.state.currentAlerts} reloadAlerts={this.reloadAlerts} userId={this.state.userId}/>
-            }
+        else {
+            //If Done Collecting Data, Show Results
+            if (this.state.role === 'ADMIN') {
+                return <AdminList/>
+            } else {
+                let table;
+                // Used to conditionally render items that are on the difference between acknowledged and unacknowledged
+                if (this.state.checked) {
+                    table = <Checked currentAlerts={this.state.checkedAlerts}/>
+                } else {
+                    console.log(this.state.currentAlerts);
+                    console.log(this.state.uncheckedAlerts);
+                    table = <UnChecked currentAlerts={this.state.currentAlerts} reloadAlerts={this.reloadAlerts}
+                                       userId={this.state.userId}/>
+                }
                 console.log(this.state.checked);
                 return (
                     <div>
                         <Navbar bg="dark" variant="dark">
-                            <Navbar.Brand href="/"> File System </Navbar.Brand>
+                            <Navbar.Brand href="/" style={{marginRight: "60px"}}> File System </Navbar.Brand>
                             <Navbar.Toggle/>
                             <Nav className="mr-auto">
                                 <Nav.Link href="#unacknowledge" onSelect={this.unchecked.bind(this)}
-                                          style={{marginRight: "120px"}}>Unacknowledged Alerts</Nav.Link>
+                                          style={{marginRight: "60px"}}>Unacknowledged Alerts</Nav.Link>
                                 <Nav.Link href="#acknowledge" onSelect={this.checked.bind(this)}
-                                          style={{marginRight: "120px"}}>Acknowledged Alerts</Nav.Link>
+                                          style={{marginRight: "60px"}}>Acknowledged Alerts</Nav.Link>
                             </Nav>
                         </Navbar>
                         {table}
@@ -121,7 +145,7 @@ class UserList extends React.Component {
                 );
             }
         }
-
+    }
 }
 
 export default UserList;

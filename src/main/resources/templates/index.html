@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org">
 <head lang="en">
-    <meta charset="UTF-8"/>
-    <title>ReactJS + Spring</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Commerce Project</title>
     <script src="https://unpkg.com/regenerator-runtime@0.13.1/runtime.js"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/pageStyles.css}"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.0/css/bootstrap.min.css">
 </head>
-<body>
-
-Logged in as: <b th:inline="text">[[${#httpServletRequest.remoteUser}]]</b>
+<body th:style="'background:url(' + @{/images/backgroundImg.jpg} + ');'">
+<h3 align="center" id = "commerceTitle">Commerce Bank Project</h3>
+<div>
+<div id = 'idAndLogout'>
+<p id = 'loggedInAs'>Logged in as: <b th:inline="text">[[${#httpServletRequest.remoteUser}]]</b></p>
 <form th:action="@{/logout}" method="POST">
-    <input class="btn btn-primary" type="submit" value="Logout" style="float: right; margin-right: 10px"/>
-</form>
-<h1 align="center" th:style="'color: #228b22'">Welcome to Commerce Project!!!!</h1>
-
+    <input type="submit" value="Logout" id = 'logoutButton'/>
+</form></div>
 <div id="react"></div>
-
+</div>
 <script src="built/bundle.js"></script>
 
 </body>
