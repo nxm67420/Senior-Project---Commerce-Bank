@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head lang="en">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Commerce Project</title>
+    <script src="https://unpkg.com/regenerator-runtime@0.13.1/runtime.js"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/pageStyles.css}"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.0/css/bootstrap.min.css">
+</head>
+<body th:style="'background:url(' + @{/images/backgroundImg.jpg} + ') no-repeat center center fixed;'">
+
+        <h3 align="center" id = "commerceTitle">Commerce Bank Project</h3>
+        <p id = 'loggedInAs'>Logged in as: <b th:inline="text">[[${#httpServletRequest.remoteUser}]]</b></p>
+            <form th:action="@{/logout}" method="POST" id = "logoutNav">
+                <input type="submit" value="Logout" class = 'logoutButton'/>
+            </form>
+    <div id="react"></div>
+
+    <script src="built/bundle.js"></script>
+
+</body>
+</html>
