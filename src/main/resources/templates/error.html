@@ -6,18 +6,18 @@
     <title>404 - resource not found</title>
 </head>
 <body th:style="'background:url(' + @{/images/backgroundImg.jpg} + ');'">
-<h1>Status 404 - Resource Not Found </h1>
+<h1 style="margin-left: 550px; color: ">Status 404 - Resource Not Found </h1>
 
-<br><br>
+<br>
 
 <div style="margin-left: 300px">
-<h1>
-    <b>
-        <i>
-            Please go back to restart your browsing experience <a href="/" th:href="@{/}" class="btn btn-large btn-success">Go Home</a>
-        </i>
-    </b>
-</h1>
+    <h1>
+        <b>
+            <i>
+                &emsp;&emsp; Please go back to restart your browsing experience <a href="/" th:href="@{/}" class="btn btn-large btn-success">Go Home</a>
+            </i>
+        </b>
+    </h1>
     <div style="width: 1000px; box-shadow: 10px 5px 5px black;">
         <img src="../static/images/error.jpg" width="1000px" th:src="@{images/error.jpg}"/>
     </div>
@@ -27,7 +27,7 @@
 <!--    <p th:text="${status}">-->
 <br><br>
 
-<div th:fragment="footer" style="position: fixed; margin: 0 auto">
+<div th:fragment="footer" style="">
     &copy; 2021-2022 All Rights Reserved
 </div>
 </body>

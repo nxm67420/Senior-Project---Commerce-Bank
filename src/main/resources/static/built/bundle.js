@@ -69474,19 +69474,20 @@ var AdminList = /*#__PURE__*/function (_React$Component) {
         href: "#unacknowledge",
         onSelect: this.unchecked.bind(this),
         style: {
-          marginRight: "60px"
+          marginLeft: "200px"
         }
       }, "Unacknowledged Alerts"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Nav"].Link, {
         href: "#acknowledge",
         onSelect: this.checked.bind(this),
         style: {
-          marginRight: "60px"
+          marginLeft: "200px"
         }
       }, "Acknowledged Alerts"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Nav"].Link, {
         href: "#filter",
         onSelect: this.filtered.bind(this),
         style: {
-          marginRight: "60px"
+          marginLeft: "200px",
+          color: "red"
         }
       }, "Red Alerts (+2 Days Old)"))), table);
     }
@@ -70228,55 +70229,57 @@ var UserList = /*#__PURE__*/function (_React$Component) {
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_CircularProgress__WEBPACK_IMPORTED_MODULE_7__["default"], {
           color: "inherit"
         }));
-      } else {
-        //If Done Collecting Data, Show Results
-        if (this.state.role === 'ADMIN') {
-          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_AdminList__WEBPACK_IMPORTED_MODULE_2__["default"], null);
-        } else {
-          var table; // Used to conditionally render items that are on the difference between acknowledged and unacknowledged
+      } //If Done Collecting Data, Show Results
+      else {
+          //IF Admin
+          if (this.state.role === 'ADMIN') {
+            return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_AdminList__WEBPACK_IMPORTED_MODULE_2__["default"], null);
+          } //IF User
+          else {
+              var table; // Used to conditionally render items that are on the difference between acknowledged and unacknowledged
 
-          if (this.state.checked) {
-            table = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Checked__WEBPACK_IMPORTED_MODULE_3__["default"], {
-              currentAlerts: this.state.checkedAlerts
-            });
-          } else {
-            console.log(this.state.currentAlerts);
-            console.log(this.state.uncheckedAlerts);
-            table = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UnChecked__WEBPACK_IMPORTED_MODULE_4__["default"], {
-              currentAlerts: this.state.currentAlerts,
-              reloadAlerts: this.reloadAlerts,
-              userId: this.state.userId
-            });
-          }
+              if (this.state.checked) {
+                table = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Checked__WEBPACK_IMPORTED_MODULE_3__["default"], {
+                  currentAlerts: this.state.checkedAlerts
+                });
+              } else {
+                console.log(this.state.currentAlerts);
+                console.log(this.state.uncheckedAlerts);
+                table = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UnChecked__WEBPACK_IMPORTED_MODULE_4__["default"], {
+                  currentAlerts: this.state.currentAlerts,
+                  reloadAlerts: this.reloadAlerts,
+                  userId: this.state.userId
+                });
+              }
 
-          console.log(this.state.checked);
-          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Navbar"], {
-            bg: "dark",
-            variant: "dark"
-          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Navbar"].Brand, {
-            href: "/",
-            style: {
-              marginRight: "60px"
+              console.log(this.state.checked);
+              return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Navbar"], {
+                bg: "dark",
+                variant: "dark"
+              }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Navbar"].Brand, {
+                href: "/",
+                style: {
+                  marginRight: "60px"
+                }
+              }, " File System "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Navbar"].Toggle, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Nav"], {
+                className: "mr-auto"
+              }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Nav"].Link, {
+                href: "#unacknowledge",
+                onSelect: this.unchecked.bind(this),
+                style: {
+                  marginLeft: "200px",
+                  marginRight: "200px"
+                }
+              }, "Unacknowledged Alerts"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Nav"].Link, {
+                href: "#acknowledge",
+                onSelect: this.checked.bind(this),
+                style: {
+                  marginLeft: "200px",
+                  marginRight: "200px"
+                }
+              }, "Acknowledged Alerts"))), table);
             }
-          }, " File System "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Navbar"].Toggle, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Nav"], {
-            className: "mr-auto"
-          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Nav"].Link, {
-            href: "#unacknowledge",
-            onSelect: this.unchecked.bind(this),
-            style: {
-              marginLeft: "200px",
-              marginRight: "200px"
-            }
-          }, "Unacknowledged Alerts"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Nav"].Link, {
-            href: "#acknowledge",
-            onSelect: this.checked.bind(this),
-            style: {
-              marginLeft: "200px",
-              marginRight: "200px"
-            }
-          }, "Acknowledged Alerts"))), table);
         }
-      }
     }
   }]);
 
