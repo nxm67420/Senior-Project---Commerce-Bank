@@ -70307,7 +70307,7 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
 
-var ALERT_API_BASE_URL = 'http://localhost:8080/alerts';
+var ALERT_API_BASE_URL = window.location.hostname;
 
 var ApiService = /*#__PURE__*/function () {
   function ApiService() {
@@ -70324,12 +70324,12 @@ var ApiService = /*#__PURE__*/function () {
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("http://localhost:8080/users/username/request");
+                return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/users/username/request");
 
               case 2:
                 response = _context.sent;
                 _context.next = 5;
-                return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("http://localhost:8080/users/".concat(response.data));
+                return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/users/".concat(response.data));
 
               case 5:
                 res = _context.sent;
@@ -70360,19 +70360,19 @@ var ApiService = /*#__PURE__*/function () {
             switch (_context2.prev = _context2.next) {
               case 0:
                 _context2.next = 2;
-                return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("http://localhost:8080/users/username/request");
+                return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/users/username/request");
 
               case 2:
                 response = _context2.sent;
                 console.log(response.data);
                 _context2.next = 6;
-                return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("http://localhost:8080/users/".concat(response.data));
+                return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/users/".concat(response.data));
 
               case 6:
                 res = _context2.sent;
                 console.log(res);
                 _context2.next = 10;
-                return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("http://localhost:8080/alerts/".concat(res.data.id));
+                return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/alerts/".concat(res.data.id));
 
               case 10:
                 alerts = _context2.sent;
@@ -70402,7 +70402,7 @@ var ApiService = /*#__PURE__*/function () {
             switch (_context3.prev = _context3.next) {
               case 0:
                 _context3.next = 2;
-                return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(ALERT_API_BASE_URL);
+                return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/alerts");
 
               case 2:
                 return _context3.abrupt("return", _context3.sent);
@@ -70424,7 +70424,7 @@ var ApiService = /*#__PURE__*/function () {
   }, {
     key: "acknowledge",
     value: function acknowledge(alert) {
-      return axios__WEBPACK_IMPORTED_MODULE_0___default.a.put(ALERT_API_BASE_URL + "/" + alert.id, alert);
+      return axios__WEBPACK_IMPORTED_MODULE_0___default.a.put("/alerts" + "/" + alert.id, alert);
     }
   }]);
 
