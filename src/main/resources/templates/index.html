@@ -7,16 +7,23 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/pageStyles.css}"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.0/css/bootstrap.min.css">
 </head>
+
 <body th:style="'background:url(' + @{/images/backgroundImg.jpg} + ');'">
-<h3 align="center" id = "commerceTitle">Commerce Bank Project</h3>
+
+<h1 align="center" id = "commerceTitle">Commerce Bank Project</h1>
+
 <div>
-<div id = 'idAndLogout'>
-<p id = 'loggedInAs'>Logged in as: <b th:inline="text">[[${#httpServletRequest.remoteUser}]]</b></p>
-<form th:action="@{/logout}" method="POST">
-    <input type="submit" value="Logout" id = 'logoutButton'/>
-</form></div>
-<div id="react"></div>
+    <div id = 'idAndLogout'>
+        <h3 id = 'loggedInAs'>Logged in as: <b th:inline="text">[[${#httpServletRequest.remoteUser}]]</b></h3>
+
+        <form th:action="@{/logout}" method="POST">
+            <input type="submit" value="Logout" id = 'logoutButton' style="color: darkturquoise"/>
+        </form>
+    </div>
+
+    <div id="react"></div>
 </div>
+
 <script src="built/bundle.js"></script>
 
 </body>

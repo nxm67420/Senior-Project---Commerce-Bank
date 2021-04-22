@@ -100,7 +100,7 @@ class AdminList extends React.Component {
                     <Nav className="mr-auto">
                         <Nav.Link href="#unacknowledge" onSelect={this.unchecked.bind(this)} style={{marginLeft: "200px"}}>Unacknowledged Alerts</Nav.Link>
                         <Nav.Link href="#acknowledge" onSelect={this.checked.bind(this)} style={{marginLeft: "200px"}}>Acknowledged Alerts</Nav.Link>
-                        <Nav.Link href="#filter" onSelect={this.filtered.bind(this)} style={{marginLeft: "200px", color: "red"}}>Red Alerts (+2 Days Old)</Nav.Link>
+                        <Nav.Link href="#filter" onSelect={this.filtered.bind(this)} style={{marginLeft: "200px", color: "red"}}>Urgent Alerts (+2 Days Old)</Nav.Link>
                     </Nav>
                 </Navbar>
                 {/*<Table striped bordered hover>*/}
