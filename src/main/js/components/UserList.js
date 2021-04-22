@@ -112,6 +112,7 @@ class UserList extends React.Component {
                 </Backdrop>
             )
         }
+<<<<<<< HEAD
         //If Done Collecting Data, Show Results
         else {
             //IF Admin
@@ -120,6 +121,13 @@ class UserList extends React.Component {
             }
             //IF User
             else {
+=======
+        else {
+            //If Done Collecting Data, Show Results
+            if (this.state.role === 'ADMIN') {
+                return <AdminList/>
+            } else {
+>>>>>>> 10584d4331f110a1db3337fa3c2bb7812e232ac5
                 let table;
                 // Used to conditionally render items that are on the difference between acknowledged and unacknowledged
                 if (this.state.checked) {
