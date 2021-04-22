@@ -39,6 +39,7 @@ public class AlertTracker {
 	private JavaMailSender javaMailSender;
 
 	@Scheduled(fixedDelay = 10000)
+//	@Scheduled(cron = "0 0 6,19 * * *")
 	public void unacknowledgedAlerts(){
 
 
