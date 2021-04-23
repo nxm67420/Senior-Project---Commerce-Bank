@@ -93,7 +93,7 @@ Admin Can view Users_Unacknowledged Alerts
 Admin may also view User_Acknowledged Alerts
 <img width="1440" alt="Admin_Acknowledged" src="https://user-images.githubusercontent.com/46074688/115909777-954aeb80-a431-11eb-9ade-f9bde3dc6376.png">
 
-Also needed is an administration page that shows all alerts and allows for sorting on un- acknowledged alerts over the 2 day threshold. To solve thsi issue we created a separate Navbar tab labeled as Urgent Alerts, that record alerts passed the two day thresold.
+Also needed is an administration page that shows all alerts and allows for sorting on un- acknowledged alerts over the 2 day threshold. To solve this issue we created a separate Navbar tab labeled as Urgent Alerts, that will record alerts passed the two day thresold.
 <img width="1440" alt="Admin_Urgent" src="https://user-images.githubusercontent.com/46074688/115909805-a3007100-a431-11eb-8a43-a0762a2d07f8.png">
 
 
