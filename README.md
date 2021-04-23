@@ -1,5 +1,14 @@
 Commerce
-Here is a working link to our application https://dashboard.heroku.com/apps/spring21commerce <br>
+Here is a working link to our application https://spring21commerce.herokuapp.com/login <br>
+
+*User Login <br>
+username = user <br>
+password = password <br>
+
+*Admin Login <br>
+username = admin <br>
+password = password <br>
+
 Below is detailed information in regards to the project details and requirements. <br>
 
 # Commerce Bank Alert System
