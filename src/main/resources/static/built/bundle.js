@@ -69684,6 +69684,7 @@ function PopUp(props) {
   var handleClose = function handleClose() {
     setValueKnown(null);
     setValueMalicious(null);
+    setValueChangeNumber("");
     setShow(false);
     props.showingAlertCancel();
   }; //Saves update

@@ -55,6 +55,7 @@ function PopUp(props) {
     const handleClose = () => {
         setValueKnown(null);
         setValueMalicious( null);
+        setValueChangeNumber("");
         setShow(false);
         props.showingAlertCancel();
     };
