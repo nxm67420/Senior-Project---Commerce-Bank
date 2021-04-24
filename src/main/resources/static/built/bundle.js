@@ -69682,9 +69682,11 @@ function PopUp(props) {
 
 
   var handleClose = function handleClose() {
-    setValueKnown('');
-    setValueMalicious('');
+    setValueKnown(null);
+    setValueMalicious(null);
+    setValueChangeNumber("");
     setShow(false);
+    props.showingAlertCancel();
   }; //Saves update
 
 
@@ -69766,9 +69768,7 @@ function PopUp(props) {
   var buttonDisabled = function buttonDisabled() {
     if (valueKnown === null || valueMalicious === null) return true;else {
       if (valueKnown === true) {
-        if (valueChangeNumber.trim() == "") {
-          return true;
-        } else return false;
+        return valueChangeNumber.trim() === "";
       } else return false;
     }
   };
@@ -69891,9 +69891,11 @@ var UnChecked = /*#__PURE__*/function (_React$Component) {
       checked: false,
       role: [],
       userId: [],
-      showAlert: false
+      showAlert: false,
+      showAlertCancel: false
     };
     _this.showingAlert = _this.showingAlert.bind(_assertThisInitialized(_this));
+    _this.showingAlertCancel = _this.showingAlertCancel.bind(_assertThisInitialized(_this));
     return _this;
   } //Used to show a popup alert that an alert has been acknowledged
 
@@ -69902,7 +69904,16 @@ var UnChecked = /*#__PURE__*/function (_React$Component) {
     key: "showingAlert",
     value: function showingAlert() {
       this.setState({
-        showAlert: true
+        showAlert: true,
+        showAlertCancel: false
+      });
+    }
+  }, {
+    key: "showingAlertCancel",
+    value: function showingAlertCancel() {
+      this.setState({
+        showAlertCancel: true,
+        showAlert: false
       });
     }
   }, {
@@ -69926,7 +69937,17 @@ var UnChecked = /*#__PURE__*/function (_React$Component) {
         },
         dismissible: true
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Alert__WEBPACK_IMPORTED_MODULE_3__["default"].Heading, null, "Alert has been acknowledged!"));
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, alertPopUp, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Table__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      var alertCancel = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Alert__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        show: this.state.showAlertCancel,
+        variant: "warning",
+        onClose: function onClose() {
+          return _this2.setState({
+            showAlertCancel: false
+          });
+        },
+        dismissible: true
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Alert__WEBPACK_IMPORTED_MODULE_3__["default"].Heading, null, "Acknowledgement cancelled"));
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, alertPopUp, alertCancel, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Table__WEBPACK_IMPORTED_MODULE_1__["default"], {
         striped: true,
         bordered: true,
         hover: true
@@ -69942,7 +69963,8 @@ var UnChecked = /*#__PURE__*/function (_React$Component) {
           id: alert.id,
           alert: alert,
           reloadAlerts: _this2.props.reloadAlerts,
-          showingAlert: _this2.showingAlert
+          showingAlert: _this2.showingAlert,
+          showingAlertCancel: _this2.showingAlertCancel
         }))));
       }))));
     }
