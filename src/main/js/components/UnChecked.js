@@ -20,15 +20,27 @@ class UnChecked extends React.Component {
             checked: false,
             role: [],
             userId: [],
-            showAlert: false
+            showAlert: false,
+            showAlertCancel: false
         };
         this.showingAlert = this.showingAlert.bind(this);
+        this.showingAlertCancel = this.showingAlertCancel.bind(this);
 
     }
 
     //Used to show a popup alert that an alert has been acknowledged
     showingAlert() {
-        this.setState({showAlert: true});
+        this.setState({
+            showAlert: true,
+            showAlertCancel: false
+        });
+    }
+
+    showingAlertCancel(){
+        this.setState({
+            showAlertCancel:true,
+            showAlert: false
+        })
     }
 
     componentDidMount() {
@@ -44,10 +56,17 @@ class UnChecked extends React.Component {
                    dismissible>
                 <Alert.Heading>Alert has been acknowledged!</Alert.Heading>
             </Alert>;
+        const alertCancel =
+            <Alert show={this.state.showAlertCancel} variant="warning"
+                                   onClose={() => this.setState({showAlertCancel: false})}
+                                   dismissible>
+            <Alert.Heading>Acknowledgement cancelled</Alert.Heading>
+        </Alert>;
 
         return(
             <div>
                 {alertPopUp}
+                {alertCancel}
                 <Table striped bordered hover>
                     <thead>
                     <tr>
@@ -73,7 +92,7 @@ class UnChecked extends React.Component {
                                         <td>{alert.change_process}</td>
                                         <td>{alert.timestamp}</td>
                                         <td>
-                                            <p id={'popupID'}><PopUp user={this.props.userId} id={alert.id} alert={alert} reloadAlerts={this.props.reloadAlerts} showingAlert={this.showingAlert} /></p>
+                                            <p id={'popupID'}><PopUp user={this.props.userId} id={alert.id} alert={alert} reloadAlerts={this.props.reloadAlerts} showingAlert={this.showingAlert} showingAlertCancel={this.showingAlertCancel}/></p>
                                         </td>
                                     </tr>)
                     }

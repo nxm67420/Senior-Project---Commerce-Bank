@@ -69230,7 +69230,7 @@ function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) ===
 
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
@@ -69330,7 +69330,7 @@ function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) ===
 
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
@@ -69530,7 +69530,7 @@ function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) ===
 
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
@@ -69683,9 +69683,11 @@ function PopUp(props) {
 
 
   var handleClose = function handleClose() {
-    setValueKnown('');
-    setValueMalicious('');
+    setValueKnown(null);
+    setValueMalicious(null);
+    setValueChangeNumber("");
     setShow(false);
+    props.showingAlertCancel();
   }; //Saves update
 
 
@@ -69767,9 +69769,7 @@ function PopUp(props) {
   var buttonDisabled = function buttonDisabled() {
     if (valueKnown === null || valueMalicious === null) return true;else {
       if (valueKnown === true) {
-        if (valueChangeNumber.trim() == "") {
-          return true;
-        } else return false;
+        return valueChangeNumber.trim() === "";
       } else return false;
     }
   };
@@ -69861,7 +69861,7 @@ function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) ===
 
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
@@ -69892,9 +69892,11 @@ var UnChecked = /*#__PURE__*/function (_React$Component) {
       checked: false,
       role: [],
       userId: [],
-      showAlert: false
+      showAlert: false,
+      showAlertCancel: false
     };
     _this.showingAlert = _this.showingAlert.bind(_assertThisInitialized(_this));
+    _this.showingAlertCancel = _this.showingAlertCancel.bind(_assertThisInitialized(_this));
     return _this;
   } //Used to show a popup alert that an alert has been acknowledged
 
@@ -69903,7 +69905,16 @@ var UnChecked = /*#__PURE__*/function (_React$Component) {
     key: "showingAlert",
     value: function showingAlert() {
       this.setState({
-        showAlert: true
+        showAlert: true,
+        showAlertCancel: false
+      });
+    }
+  }, {
+    key: "showingAlertCancel",
+    value: function showingAlertCancel() {
+      this.setState({
+        showAlertCancel: true,
+        showAlert: false
       });
     }
   }, {
@@ -69927,7 +69938,17 @@ var UnChecked = /*#__PURE__*/function (_React$Component) {
         },
         dismissible: true
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Alert__WEBPACK_IMPORTED_MODULE_3__["default"].Heading, null, "Alert has been acknowledged!"));
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, alertPopUp, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Table__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      var alertCancel = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Alert__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        show: this.state.showAlertCancel,
+        variant: "warning",
+        onClose: function onClose() {
+          return _this2.setState({
+            showAlertCancel: false
+          });
+        },
+        dismissible: true
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Alert__WEBPACK_IMPORTED_MODULE_3__["default"].Heading, null, "Acknowledgement cancelled"));
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, alertPopUp, alertCancel, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Table__WEBPACK_IMPORTED_MODULE_1__["default"], {
         striped: true,
         bordered: true,
         hover: true
@@ -69943,7 +69964,8 @@ var UnChecked = /*#__PURE__*/function (_React$Component) {
           id: alert.id,
           alert: alert,
           reloadAlerts: _this2.props.reloadAlerts,
-          showingAlert: _this2.showingAlert
+          showingAlert: _this2.showingAlert,
+          showingAlertCancel: _this2.showingAlertCancel
         }))));
       }))));
     }
@@ -69986,7 +70008,7 @@ function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) ===
 
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
@@ -70085,7 +70107,7 @@ function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) ===
 
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
@@ -70316,6 +70338,7 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
+ // const ALERT_API_BASE_URL = 'http://localhost:8080/alerts';
 
 var ALERT_API_BASE_URL = window.location.hostname;
 
@@ -70333,20 +70356,30 @@ var ApiService = /*#__PURE__*/function () {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
+<<<<<<< HEAD
                 _context.next = 2;
+=======
+                console.log(window.location.hostname);
+                _context.next = 3;
+>>>>>>> master
                 return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/users/username/request");
 
-              case 2:
+              case 3:
                 response = _context.sent;
+<<<<<<< HEAD
                 _context.next = 5;
+=======
+                console.log(response);
+                _context.next = 7;
+>>>>>>> master
                 return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/users/".concat(response.data));
 
-              case 5:
+              case 7:
                 res = _context.sent;
                 console.log(res);
                 return _context.abrupt("return", res);
 
-              case 8:
+              case 10:
               case "end":
                 return _context.stop();
             }
@@ -70434,7 +70467,11 @@ var ApiService = /*#__PURE__*/function () {
   }, {
     key: "acknowledge",
     value: function acknowledge(alert) {
+<<<<<<< HEAD
       return axios__WEBPACK_IMPORTED_MODULE_0___default.a.put("/alerts" + "/" + alert.id, alert);
+=======
+      return axios__WEBPACK_IMPORTED_MODULE_0___default.a.put("/alerts/" + alert.id, alert);
+>>>>>>> master
     }
   }]);
 
