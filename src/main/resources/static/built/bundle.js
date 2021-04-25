@@ -70338,7 +70338,6 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
- // const ALERT_API_BASE_URL = 'http://localhost:8080/alerts';
 
 var ALERT_API_BASE_URL = window.location.hostname;
 
@@ -70356,30 +70355,21 @@ var ApiService = /*#__PURE__*/function () {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-<<<<<<< HEAD
-                _context.next = 2;
-=======
                 console.log(window.location.hostname);
                 _context.next = 3;
->>>>>>> master
                 return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/users/username/request");
 
               case 3:
                 response = _context.sent;
-<<<<<<< HEAD
-                _context.next = 5;
-=======
-                console.log(response);
-                _context.next = 7;
->>>>>>> master
+                _context.next = 6;
                 return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/users/".concat(response.data));
 
-              case 7:
+              case 6:
                 res = _context.sent;
                 console.log(res);
                 return _context.abrupt("return", res);
 
-              case 10:
+              case 9:
               case "end":
                 return _context.stop();
             }
@@ -70467,11 +70457,7 @@ var ApiService = /*#__PURE__*/function () {
   }, {
     key: "acknowledge",
     value: function acknowledge(alert) {
-<<<<<<< HEAD
       return axios__WEBPACK_IMPORTED_MODULE_0___default.a.put("/alerts" + "/" + alert.id, alert);
-=======
-      return axios__WEBPACK_IMPORTED_MODULE_0___default.a.put("/alerts/" + alert.id, alert);
->>>>>>> master
     }
   }]);
 
