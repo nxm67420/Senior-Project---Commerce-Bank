@@ -112,37 +112,47 @@ class UserList extends React.Component {
                 </Backdrop>
             )
         }
+        //If Done Collecting Data, Show Results
         else {
-            //If Done Collecting Data, Show Results
+            //IF Admin
             if (this.state.role === 'ADMIN') {
                 return <AdminList/>
-            } else {
-                let table;
-                // Used to conditionally render items that are on the difference between acknowledged and unacknowledged
-                if (this.state.checked) {
-                    table = <Checked currentAlerts={this.state.checkedAlerts}/>
+            }
+            //IF User
+            else {
+                //If Done Collecting Data, Show Results
+                if (this.state.role === 'ADMIN') {
+                    return <AdminList/>
                 } else {
-                    console.log(this.state.currentAlerts);
-                    console.log(this.state.uncheckedAlerts);
-                    table = <UnChecked currentAlerts={this.state.currentAlerts} reloadAlerts={this.reloadAlerts}
-                                       userId={this.state.userId}/>
+                    let table;
+                    // Used to conditionally render items that are on the difference between acknowledged and unacknowledged
+                    if (this.state.checked) {
+                        table = <Checked currentAlerts={this.state.checkedAlerts}/>
+                    } else {
+                        console.log(this.state.currentAlerts);
+                        console.log(this.state.uncheckedAlerts);
+                        table = <UnChecked currentAlerts={this.state.currentAlerts} reloadAlerts={this.reloadAlerts}
+                                           userId={this.state.userId}/>
+                    }
+                    console.log(this.state.checked);
+                    return (
+                        <div>
+                            <Navbar bg="dark" variant="dark">
+                                <Navbar.Brand href="/" style={{marginRight: "60px"}}> File System </Navbar.Brand>
+                                <Navbar.Toggle/>
+                                <Nav className="mr-auto">
+                                    <Nav.Link href="#unacknowledge" onSelect={this.unchecked.bind(this)}
+                                              style={{marginLeft: "200px", marginRight: "200px"}}>Unacknowledged
+                                        Alerts</Nav.Link>
+                                    <Nav.Link href="#acknowledge" onSelect={this.checked.bind(this)}
+                                              style={{marginLeft: "200px", marginRight: "200px"}}>Acknowledged
+                                        Alerts</Nav.Link>
+                                </Nav>
+                            </Navbar>
+                            {table}
+                        </div>
+                    );
                 }
-                console.log(this.state.checked);
-                return (
-                    <div>
-                        <Navbar bg="dark" variant="dark">
-                            <Navbar.Brand href="/" style={{marginRight: "60px"}}> File System </Navbar.Brand>
-                            <Navbar.Toggle/>
-                            <Nav className="mr-auto">
-                                <Nav.Link href="#unacknowledge" onSelect={this.unchecked.bind(this)}
-                                          style={{marginRight: "60px"}}>Unacknowledged Alerts</Nav.Link>
-                                <Nav.Link href="#acknowledge" onSelect={this.checked.bind(this)}
-                                          style={{marginRight: "60px"}}>Acknowledged Alerts</Nav.Link>
-                            </Nav>
-                        </Navbar>
-                        {table}
-                    </div>
-                );
             }
         }
     }

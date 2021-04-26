@@ -69230,7 +69230,7 @@ function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) ===
 
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
@@ -69259,7 +69259,7 @@ var Footer = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Container"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Col"], {
         lg: 12,
         className: "text-center text-muted"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, yearOf, " - ", yearOf + 1, "   All Rights Reserved by (Hunter, Jake, Nick)"))));
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "\xA9 All Rights Reserved by (Hunter, Jake, Nick)"))));
     }
   }]);
 
@@ -69330,7 +69330,7 @@ function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) ===
 
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
@@ -69474,21 +69474,22 @@ var AdminList = /*#__PURE__*/function (_React$Component) {
         href: "#unacknowledge",
         onSelect: this.unchecked.bind(this),
         style: {
-          marginRight: "60px"
+          marginLeft: "200px"
         }
       }, "Unacknowledged Alerts"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Nav"].Link, {
         href: "#acknowledge",
         onSelect: this.checked.bind(this),
         style: {
-          marginRight: "60px"
+          marginLeft: "200px"
         }
       }, "Acknowledged Alerts"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Nav"].Link, {
         href: "#filter",
         onSelect: this.filtered.bind(this),
         style: {
-          marginRight: "60px"
+          marginLeft: "200px",
+          color: "red"
         }
-      }, "Red Alerts (+2 Days Old)"))), table);
+      }, "Urgent Alerts (+2 Days Old)"))), table);
     }
   }]);
 
@@ -69529,7 +69530,7 @@ function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) ===
 
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
@@ -69682,9 +69683,11 @@ function PopUp(props) {
 
 
   var handleClose = function handleClose() {
-    setValueKnown('');
-    setValueMalicious('');
+    setValueKnown(null);
+    setValueMalicious(null);
+    setValueChangeNumber("");
     setShow(false);
+    props.showingAlertCancel();
   }; //Saves update
 
 
@@ -69766,9 +69769,7 @@ function PopUp(props) {
   var buttonDisabled = function buttonDisabled() {
     if (valueKnown === null || valueMalicious === null) return true;else {
       if (valueKnown === true) {
-        if (valueChangeNumber.trim() == "") {
-          return true;
-        } else return false;
+        return valueChangeNumber.trim() === "";
       } else return false;
     }
   };
@@ -69860,7 +69861,7 @@ function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) ===
 
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
@@ -69891,9 +69892,11 @@ var UnChecked = /*#__PURE__*/function (_React$Component) {
       checked: false,
       role: [],
       userId: [],
-      showAlert: false
+      showAlert: false,
+      showAlertCancel: false
     };
     _this.showingAlert = _this.showingAlert.bind(_assertThisInitialized(_this));
+    _this.showingAlertCancel = _this.showingAlertCancel.bind(_assertThisInitialized(_this));
     return _this;
   } //Used to show a popup alert that an alert has been acknowledged
 
@@ -69902,7 +69905,16 @@ var UnChecked = /*#__PURE__*/function (_React$Component) {
     key: "showingAlert",
     value: function showingAlert() {
       this.setState({
-        showAlert: true
+        showAlert: true,
+        showAlertCancel: false
+      });
+    }
+  }, {
+    key: "showingAlertCancel",
+    value: function showingAlertCancel() {
+      this.setState({
+        showAlertCancel: true,
+        showAlert: false
       });
     }
   }, {
@@ -69926,7 +69938,17 @@ var UnChecked = /*#__PURE__*/function (_React$Component) {
         },
         dismissible: true
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Alert__WEBPACK_IMPORTED_MODULE_3__["default"].Heading, null, "Alert has been acknowledged!"));
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, alertPopUp, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Table__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      var alertCancel = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Alert__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        show: this.state.showAlertCancel,
+        variant: "warning",
+        onClose: function onClose() {
+          return _this2.setState({
+            showAlertCancel: false
+          });
+        },
+        dismissible: true
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Alert__WEBPACK_IMPORTED_MODULE_3__["default"].Heading, null, "Acknowledgement cancelled"));
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, alertPopUp, alertCancel, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Table__WEBPACK_IMPORTED_MODULE_1__["default"], {
         striped: true,
         bordered: true,
         hover: true
@@ -69942,7 +69964,8 @@ var UnChecked = /*#__PURE__*/function (_React$Component) {
           id: alert.id,
           alert: alert,
           reloadAlerts: _this2.props.reloadAlerts,
-          showingAlert: _this2.showingAlert
+          showingAlert: _this2.showingAlert,
+          showingAlertCancel: _this2.showingAlertCancel
         }))));
       }))));
     }
@@ -69985,7 +70008,7 @@ function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) ===
 
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
@@ -70084,7 +70107,7 @@ function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) ===
 
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
@@ -70228,53 +70251,62 @@ var UserList = /*#__PURE__*/function (_React$Component) {
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_CircularProgress__WEBPACK_IMPORTED_MODULE_7__["default"], {
           color: "inherit"
         }));
-      } else {
-        //If Done Collecting Data, Show Results
-        if (this.state.role === 'ADMIN') {
-          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_AdminList__WEBPACK_IMPORTED_MODULE_2__["default"], null);
-        } else {
-          var table; // Used to conditionally render items that are on the difference between acknowledged and unacknowledged
+      } //If Done Collecting Data, Show Results
+      else {
+          //IF Admin
+          if (this.state.role === 'ADMIN') {
+            return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_AdminList__WEBPACK_IMPORTED_MODULE_2__["default"], null);
+          } //IF User
+          else {
+              //If Done Collecting Data, Show Results
+              if (this.state.role === 'ADMIN') {
+                return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_AdminList__WEBPACK_IMPORTED_MODULE_2__["default"], null);
+              } else {
+                var table; // Used to conditionally render items that are on the difference between acknowledged and unacknowledged
 
-          if (this.state.checked) {
-            table = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Checked__WEBPACK_IMPORTED_MODULE_3__["default"], {
-              currentAlerts: this.state.checkedAlerts
-            });
-          } else {
-            console.log(this.state.currentAlerts);
-            console.log(this.state.uncheckedAlerts);
-            table = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UnChecked__WEBPACK_IMPORTED_MODULE_4__["default"], {
-              currentAlerts: this.state.currentAlerts,
-              reloadAlerts: this.reloadAlerts,
-              userId: this.state.userId
-            });
-          }
+                if (this.state.checked) {
+                  table = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Checked__WEBPACK_IMPORTED_MODULE_3__["default"], {
+                    currentAlerts: this.state.checkedAlerts
+                  });
+                } else {
+                  console.log(this.state.currentAlerts);
+                  console.log(this.state.uncheckedAlerts);
+                  table = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UnChecked__WEBPACK_IMPORTED_MODULE_4__["default"], {
+                    currentAlerts: this.state.currentAlerts,
+                    reloadAlerts: this.reloadAlerts,
+                    userId: this.state.userId
+                  });
+                }
 
-          console.log(this.state.checked);
-          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Navbar"], {
-            bg: "dark",
-            variant: "dark"
-          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Navbar"].Brand, {
-            href: "/",
-            style: {
-              marginRight: "60px"
+                console.log(this.state.checked);
+                return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Navbar"], {
+                  bg: "dark",
+                  variant: "dark"
+                }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Navbar"].Brand, {
+                  href: "/",
+                  style: {
+                    marginRight: "60px"
+                  }
+                }, " File System "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Navbar"].Toggle, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Nav"], {
+                  className: "mr-auto"
+                }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Nav"].Link, {
+                  href: "#unacknowledge",
+                  onSelect: this.unchecked.bind(this),
+                  style: {
+                    marginLeft: "200px",
+                    marginRight: "200px"
+                  }
+                }, "Unacknowledged Alerts"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Nav"].Link, {
+                  href: "#acknowledge",
+                  onSelect: this.checked.bind(this),
+                  style: {
+                    marginLeft: "200px",
+                    marginRight: "200px"
+                  }
+                }, "Acknowledged Alerts"))), table);
+              }
             }
-          }, " File System "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Navbar"].Toggle, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Nav"], {
-            className: "mr-auto"
-          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Nav"].Link, {
-            href: "#unacknowledge",
-            onSelect: this.unchecked.bind(this),
-            style: {
-              marginRight: "60px"
-            }
-          }, "Unacknowledged Alerts"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Nav"].Link, {
-            href: "#acknowledge",
-            onSelect: this.checked.bind(this),
-            style: {
-              marginRight: "60px"
-            }
-          }, "Acknowledged Alerts"))), table);
         }
-      }
     }
   }]);
 
@@ -70307,7 +70339,7 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
 
-var ALERT_API_BASE_URL = 'http://localhost:8080/alerts';
+var ALERT_API_BASE_URL = window.location.hostname;
 
 var ApiService = /*#__PURE__*/function () {
   function ApiService() {
@@ -70323,20 +70355,21 @@ var ApiService = /*#__PURE__*/function () {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _context.next = 2;
-                return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("http://localhost:8080/users/username/request");
+                console.log(window.location.hostname);
+                _context.next = 3;
+                return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/users/username/request");
 
-              case 2:
+              case 3:
                 response = _context.sent;
-                _context.next = 5;
-                return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("http://localhost:8080/users/".concat(response.data));
+                _context.next = 6;
+                return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/users/".concat(response.data));
 
-              case 5:
+              case 6:
                 res = _context.sent;
                 console.log(res);
                 return _context.abrupt("return", res);
 
-              case 8:
+              case 9:
               case "end":
                 return _context.stop();
             }
@@ -70360,19 +70393,19 @@ var ApiService = /*#__PURE__*/function () {
             switch (_context2.prev = _context2.next) {
               case 0:
                 _context2.next = 2;
-                return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("http://localhost:8080/users/username/request");
+                return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/users/username/request");
 
               case 2:
                 response = _context2.sent;
                 console.log(response.data);
                 _context2.next = 6;
-                return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("http://localhost:8080/users/".concat(response.data));
+                return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/users/".concat(response.data));
 
               case 6:
                 res = _context2.sent;
                 console.log(res);
                 _context2.next = 10;
-                return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("http://localhost:8080/alerts/".concat(res.data.id));
+                return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/alerts/".concat(res.data.id));
 
               case 10:
                 alerts = _context2.sent;
@@ -70402,7 +70435,7 @@ var ApiService = /*#__PURE__*/function () {
             switch (_context3.prev = _context3.next) {
               case 0:
                 _context3.next = 2;
-                return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(ALERT_API_BASE_URL);
+                return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/alerts");
 
               case 2:
                 return _context3.abrupt("return", _context3.sent);
@@ -70424,7 +70457,7 @@ var ApiService = /*#__PURE__*/function () {
   }, {
     key: "acknowledge",
     value: function acknowledge(alert) {
-      return axios__WEBPACK_IMPORTED_MODULE_0___default.a.put(ALERT_API_BASE_URL + "/" + alert.id, alert);
+      return axios__WEBPACK_IMPORTED_MODULE_0___default.a.put("/alerts" + "/" + alert.id, alert);
     }
   }]);
 
