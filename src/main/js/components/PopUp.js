@@ -53,9 +53,11 @@ function PopUp(props) {
     //Closes Modal
     //If there was a selected value, clear it
     const handleClose = () => {
-        setValueKnown('');
-        setValueMalicious('');
+        setValueKnown(null);
+        setValueMalicious( null);
+        setValueChangeNumber("");
         setShow(false);
+        props.showingAlertCancel();
     };
 
     //Saves update
@@ -115,7 +117,7 @@ function PopUp(props) {
             return "known";
         }
         else if(valueKnown===false){
-            changeNumber = null
+            changeNumber = null;
             return "unknown";
         }
     };
@@ -135,16 +137,12 @@ function PopUp(props) {
             return true;
         else{
             if(valueKnown===true){
-                if(valueChangeNumber.trim()==""){
-                    return true;
-                }
-                else
-                    return false;
+                return valueChangeNumber.trim() === "";
             }
             else
                 return false;
         }
-    }
+    };
 
     return (
         <>

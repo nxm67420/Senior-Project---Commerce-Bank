@@ -2,10 +2,10 @@ import axios from 'axios';
 
 const ALERT_API_BASE_URL = window.location.hostname;
 
-
 class ApiService{
 
     async getRole() {
+        console.log(window.location.hostname);
         const response =
            await axios.get("/users/username/request");
         const res =
