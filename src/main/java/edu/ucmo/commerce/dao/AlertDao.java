@@ -1,6 +1,4 @@
 package edu.ucmo.commerce.dao;
-
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import edu.ucmo.commerce.model.Alert;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
